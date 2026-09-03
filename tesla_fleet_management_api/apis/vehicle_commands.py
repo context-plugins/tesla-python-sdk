@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from uuid import UUID, uuid4
+
 from ..auth import AsyncAuthSchemes, AuthSchemes
 from ..core import (
     AnySchemes,
@@ -804,6 +806,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/actuate_trunk"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[ActuateTrunkRequest | ActuateTrunkRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -833,6 +836,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/add_charge_schedule"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AddChargeScheduleRequest | AddChargeScheduleRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -862,6 +866,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/add_precondition_schedule"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AddPreconditionScheduleRequest | AddPreconditionScheduleRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -891,6 +896,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/adjust_volume"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AdjustVolumeRequest | AdjustVolumeRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -915,6 +921,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/cancel_software_update"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -938,6 +945,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_max_range"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -961,6 +969,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_standard"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -984,6 +993,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/clear_pin_to_drive_admin"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1007,6 +1017,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_port_door_close"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1035,6 +1046,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/guest_mode"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[GuestModeRequest | GuestModeRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1059,6 +1071,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/erase_user_data"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1082,6 +1095,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/flash_lights"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1105,6 +1119,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/honk_horn"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1128,6 +1143,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/door_lock"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1151,6 +1167,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/media_next_fav"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1174,6 +1191,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_port_door_open"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1197,6 +1215,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_start"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1220,6 +1239,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_start"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1243,6 +1263,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_stop"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1266,6 +1287,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_stop"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1289,6 +1311,7 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/door_unlock"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1319,6 +1342,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/actuate_trunk"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[ActuateTrunkRequest | ActuateTrunkRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1348,6 +1372,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/add_charge_schedule"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AddChargeScheduleRequest | AddChargeScheduleRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1377,6 +1402,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/add_precondition_schedule"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AddPreconditionScheduleRequest | AddPreconditionScheduleRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1406,6 +1432,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/adjust_volume"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AdjustVolumeRequest | AdjustVolumeRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1430,6 +1457,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/cancel_software_update"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1453,6 +1481,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_max_range"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1476,6 +1505,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_standard"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1499,6 +1529,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/clear_pin_to_drive_admin"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1522,6 +1553,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_port_door_close"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1550,6 +1582,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/guest_mode"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[GuestModeRequest | GuestModeRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1574,6 +1607,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/erase_user_data"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1597,6 +1631,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/flash_lights"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1620,6 +1655,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/honk_horn"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1643,6 +1679,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/door_lock"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1666,6 +1703,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/media_next_fav"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1689,6 +1727,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_port_door_open"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1712,6 +1751,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_start"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1735,6 +1775,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_start"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1758,6 +1799,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/charge_stop"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1781,6 +1823,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_stop"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -1804,6 +1847,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             http_method="POST",
             url_template=self._server.default("/api/1/vehicles/{vehicle_tag}/command/door_unlock"),
             path_params=[param[str]("vehicle_tag", vehicle_tag)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),

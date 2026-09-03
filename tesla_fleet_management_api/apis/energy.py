@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
+from uuid import UUID, uuid4
 
 from ..auth import AsyncAuthSchemes, AuthSchemes
 from ..core import (
@@ -597,6 +598,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/backup"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[BackupRequest | BackupRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -626,6 +628,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[OffGridVehicleChargingReserveRequest | OffGridVehicleChargingReserveRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -651,6 +654,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/grid_import_export"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[Any | None](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -830,6 +834,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/operation"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[OperationRequest | OperationRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -859,6 +864,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/storm_mode"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[StormModeRequest | StormModeRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -888,6 +894,7 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/time_of_use_settings"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[TimeOfUseSettingsRequest | TimeOfUseSettingsRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -919,6 +926,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/backup"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[BackupRequest | BackupRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -948,6 +956,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[OffGridVehicleChargingReserveRequest | OffGridVehicleChargingReserveRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -973,6 +982,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/grid_import_export"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[Any | None](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1152,6 +1162,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/operation"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[OperationRequest | OperationRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1181,6 +1192,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/storm_mode"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[StormModeRequest | StormModeRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -1210,6 +1222,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             http_method="POST",
             url_template=self._server.default("/api/1/energy_sites/{energy_site_id}/time_of_use_settings"),
             path_params=[param[str]("energy_site_id", energy_site_id)],
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[TimeOfUseSettingsRequest | TimeOfUseSettingsRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials

@@ -1,14 +1,14 @@
 <!-- Generated file — do not edit; regenerated with the SDK. -->
 
-# SDK map — Tesla (Python)
+# SDK map — Tesla Fleet Management API (Python)
 
 > A generated table of contents for this SDK. Consult this map and its sub-pages to learn signatures, error types, and server/auth wiring **by lookup**. Model shapes and enum values are *not* duplicated here — the map names the module declaring each type; read the shape there. Every name is the emitted spelling, so a wrong one fails at import rather than working silently.
 
 |  |  |
 | --- | --- |
-| SDK display name | Tesla |
-| Root package | `tesla` |
-| Distribution name | `tesla` |
+| SDK display name | Tesla Fleet Management API |
+| Root package | `tesla_fleet_management_api` |
+| Distribution name | `tesla-fleet-management-api` |
 | Requires | Python 3.10 or later |
 | API spec version | `1.0.0` |
 | Generator | APIMatic |
@@ -24,16 +24,16 @@ All `Source` paths on this map and its sub-pages are relative to the **SDK root*
 ### Synchronous client
 
 ```python
-from tesla import TeslaClient
-from tesla.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
-from tesla.core import AuthorizationCodeCredentials, ClientCredentials
+from tesla_fleet_management_api import TeslaFleetManagementApiClient
+from tesla_fleet_management_api.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
+from tesla_fleet_management_api.core import AuthorizationCodeCredentials, ClientCredentials
 
 
 def prompt(url: str) -> str:
     return input(f"Open {url}, then paste the code: ")
 
 
-client = TeslaClient(
+client = TeslaFleetManagementApiClient(
     bearer_auth="YOUR_BEARER_TOKEN",
     thirdpartytoken_authorization_code=AuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
         client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
@@ -49,16 +49,16 @@ client = TeslaClient(
 client.close()
 ```
 
-Alternatively, scope it — `with TeslaClient(...) as client:` closes the pool on exit.
+Alternatively, scope it — `with TeslaFleetManagementApiClient(...) as client:` closes the pool on exit.
 
 ### Asynchronous client
 
 ```python
 from asyncio import run, to_thread
 
-from tesla import AsyncTeslaClient
-from tesla.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
-from tesla.core import AsyncAuthorizationCodeCredentials, ClientCredentials
+from tesla_fleet_management_api import AsyncTeslaFleetManagementApiClient
+from tesla_fleet_management_api.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
+from tesla_fleet_management_api.core import AsyncAuthorizationCodeCredentials, ClientCredentials
 
 
 async def prompt(url: str) -> str:
@@ -67,7 +67,7 @@ async def prompt(url: str) -> str:
 
 
 async def main() -> None:
-    client = AsyncTeslaClient(
+    client = AsyncTeslaFleetManagementApiClient(
         bearer_auth="YOUR_BEARER_TOKEN",
         thirdpartytoken_authorization_code=AsyncAuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
             client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
@@ -84,15 +84,15 @@ async def main() -> None:
 run(main())
 ```
 
-Alternatively, scope it — `async with AsyncTeslaClient(...) as client:` closes the pool on exit.
+Alternatively, scope it — `async with AsyncTeslaFleetManagementApiClient(...) as client:` closes the pool on exit.
 
-`AsyncClient` (`tesla/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavor.
+`AsyncClient` (`tesla_fleet_management_api/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavor.
 
-`Client` and `AsyncClient` are aliases of `TeslaClient` and `AsyncTeslaClient` — the names tracebacks and `repr()` show; all four import from the root.
+`Client` and `AsyncClient` are aliases of `TeslaFleetManagementApiClient` and `AsyncTeslaFleetManagementApiClient` — the names tracebacks and `repr()` show; all four import from the root.
 
 `close()` / `aclose()` closes the transport even when you supplied one via `custom_http_client=` / `custom_async_http_client=`, and a closed client cannot be reused.
 
-Every API group is a property on the client (e.g. `client.charging`). Every constructor argument is optional and keyword-only. Sources: `tesla/client.py`, `tesla/async_client.py`:
+Every API group is a property on the client (e.g. `client.charging`). Every constructor argument is optional and keyword-only. Sources: `tesla_fleet_management_api/client.py`, `tesla_fleet_management_api/async_client.py`:
 
 | Keyword | Sync Type | Async Type | Default |
 | --- | --- | --- | --- |
@@ -111,21 +111,21 @@ The types those columns name — where each imports from and, for a credentials 
 
 | Type | Import from | Shape |
 | --- | --- | --- |
-| `Environment` | `tesla.server` | `Literal` of the Environments table's names |
-| `HttpClient` | `tesla.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()` |
-| `AuthorizationCodeCredentialsOrDict` | `tesla.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
-| `ThirdpartytokenAuthorizationCodeScope` | `tesla.auth` | `Enum` of the declared scopes |
-| `RefreshableTokenSource` | `tesla.core` | protocol — `fetch(credentials) -> OAuthTokenRefreshable` · `refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
-| `AuthorizationCodeCredentials` | `tesla.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
-| `ClientCredentialsOrDict` | `tesla.core` | `ClientCredentials` or a dict: `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
-| `ThirdpartytokenClientCredentialsScope` | `tesla.auth` | `Enum` of the declared scopes |
-| `TokenSource` | `tesla.core` | protocol — `fetch(credentials) -> OAuthToken` |
-| `ClientCredentials` | `tesla.core` | `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
-| `AsyncHttpClient` | `tesla.core` | protocol — `async send(request: HttpRequest) -> HttpResponse` · `async aclose()` |
-| `AsyncAuthorizationCodeCredentialsOrDict` | `tesla.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
-| `AsyncRefreshableTokenSource` | `tesla.core` | protocol — `async fetch(credentials) -> OAuthTokenRefreshable` · `async refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
-| `AsyncAuthorizationCodeCredentials` | `tesla.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
-| `AsyncTokenSource` | `tesla.core` | protocol — `async fetch(credentials) -> OAuthToken` |
+| `Environment` | `tesla_fleet_management_api.server` | `Literal` of the Environments table's names |
+| `HttpClient` | `tesla_fleet_management_api.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()` |
+| `AuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
+| `ThirdpartytokenAuthorizationCodeScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
+| `RefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthTokenRefreshable` · `refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
+| `AuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
+| `ClientCredentialsOrDict` | `tesla_fleet_management_api.core` | `ClientCredentials` or a dict: `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
+| `ThirdpartytokenClientCredentialsScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
+| `TokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthToken` |
+| `ClientCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
+| `AsyncHttpClient` | `tesla_fleet_management_api.core` | protocol — `async send(request: HttpRequest) -> HttpResponse` · `async aclose()` |
+| `AsyncAuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
+| `AsyncRefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthTokenRefreshable` · `async refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
+| `AsyncAuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
+| `AsyncTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthToken` |
 
 ---
 
@@ -138,21 +138,21 @@ Every operation is reached in two response modes:
 
 What `.error` holds is fixed per operation. There are two cases:
 
-- **Case A — typed error.** The operation documents at least one error status, so `tesla/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with `isinstance`. The operation blocks name the alias and the status each arm maps from.
-- **Case B — raw error.** The operation documents no error status; `.error` is `RawError` (`tesla/core/results.py`): `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse`.
+- **Case A — typed error.** The operation documents at least one error status, so `tesla_fleet_management_api/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with `isinstance`. The operation blocks name the alias and the status each arm maps from.
+- **Case B — raw error.** The operation documents no error status; `.error` is `RawError` (`tesla_fleet_management_api/core/results.py`): `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse`.
 
-Core runtime types (`tesla/core/`) — public members with their **declared types**, verbatim from source:
+Core runtime types (`tesla_fleet_management_api/core/`) — public members with their **declared types**, verbatim from source:
 
 | Type | Public members | Source |
 | --- | --- | --- |
-| `ApiError` — raised by every parsed call; `.error` is always `RawError` (no Case A alias in this SDK) | `error: E` · `status_code: int` · `response: HttpResponse` | `tesla/core/exceptions.py` |
-| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `response: HttpResponse` (on both) | `tesla/core/results.py` |
-| `RawError` | `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse` | `tesla/core/results.py` |
+| `ApiError` — raised by every parsed call; `.error` is always `RawError` (no Case A alias in this SDK) | `error: E` · `status_code: int` · `response: HttpResponse` | `tesla_fleet_management_api/core/exceptions.py` |
+| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `response: HttpResponse` (on both) | `tesla_fleet_management_api/core/results.py` |
+| `RawError` | `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse` | `tesla_fleet_management_api/core/results.py` |
 
 Typed error bodies (the arms of a Case A alias) are ordinary models — no special handling. The operation's **Type sources** table gives the module that declares each one; read field names, declared types and JSON aliases there, as for any other model.
 
 ```python
-from tesla.core import ApiError, RawError
+from tesla_fleet_management_api.core import ApiError, RawError
 
 try:
     response = client.charging.get_charging_history()
@@ -176,7 +176,7 @@ Each links to a sub-page with one block per operation, headed by its full access
 | **Four spellings, one signature** — the same method name and parameters on `Client` and `AsyncClient`, each also reachable through `.with_raw_response`; the async twin is a coroutine to `await`, with the same return types and error case, and where the **Async Type** column differs, pass the type it names | Getting a client |
 | **Parsed raises, raw returns** — `ApiError` versus `ApiResult` | Error-handling model |
 | **Case B error is always `RawError`** — also the last arm of every Case A alias, where a block's **Error arms** bullet ends in it | Error-handling model |
-| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout or extra headers; every signature ends with it | here (`tesla/core/request_options.py`) |
+| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout or extra headers; every signature ends with it | here (`tesla_fleet_management_api/core/request_options.py`) |
 | **Base URL is the selected environment's** — this SDK's only server, one URL per `environment=`; override it with `base_url="https://…"` | Servers & auth |
 | **Parameter names are literal** — signatures are generated code verbatim, and everything behind the bare `*` must be passed by name | here |
 | **A parameter's wire name is its Python name** — sent as-is on the path, query string, header or body, unless the block's **Params** bullet carries a wire name beside the role | here |
@@ -198,12 +198,12 @@ Sub-pages chunk per `###` block: each block is self-contained given the table ab
 
 ## Models — where they live, how to build them
 
-**Shapes live only in the source.** Every module under `tesla/models/` declares one type plus its input companion, and every module under `tesla/errors/` one alias plus the mapper that builds it; no two share a name. Take a type's module from the operation's **Type sources** table. When no retrieved chunk names it, the module is the type name in snake_case under the kind's directory below (`ActuateTrunkRequest` ↔ `actuate_trunk_request.py`). Never grep for a type.
+**Shapes live only in the source.** Every module under `tesla_fleet_management_api/models/` declares one type plus its input companion, and every module under `tesla_fleet_management_api/errors/` one alias plus the mapper that builds it; no two share a name. Take a type's module from the operation's **Type sources** table. When no retrieved chunk names it, the module is the type name in snake_case under the kind's directory below (`ActuateTrunkRequest` ↔ `actuate_trunk_request.py`). Never grep for a type.
 
 | Group | Count | Directory (module = `<type_name>.py`) |
 | --- | --- | --- |
-| Models (`SdkBaseModel` pydantic classes) | 84 | `tesla/models/` |
-| Enums (`Enum` over `str`) — Python member names + wire values | 4 | `tesla/models/enums/` |
+| Models (`SdkBaseModel` pydantic classes) | 84 | `tesla_fleet_management_api/models/` |
+| Enums (`Enum` over `str`) — Python member names + wire values | 4 | `tesla_fleet_management_api/models/enums/` |
 
 Conventions: a model is a `SdkBaseModel` (pydantic) class; a field whose wire name differs from its Python name carries it as `Field(alias=…)` (`type_` ↔ `"type"`) — read the alias off the field rather than deriving it. An omittable field is annotated `Optional[T]` and defaults to `UNSET`, and one that may also be explicitly null is `OptionalNullable[T]`; both come from `core` and neither is `typing.Optional` — there is no `None` arm unless the spec declared the property nullable, so passing `None` to the first is a type error rather than a value that serializes.
 
@@ -213,11 +213,11 @@ Import paths by content type (`from <package> import <Name>`):
 
 | Contents | Import from |
 | --- | --- |
-| Client (root) | `tesla` |
-| Operation controllers | `tesla.apis` |
-| Models | `tesla.models` |
-| Enums | `tesla.models.enums` |
-| Core runtime (`ApiError`, `ApiResult`, `RawError`, …) | `tesla.core` |
+| Client (root) | `tesla_fleet_management_api` |
+| Operation controllers | `tesla_fleet_management_api.apis` |
+| Models | `tesla_fleet_management_api.models` |
+| Enums | `tesla_fleet_management_api.models.enums` |
+| Core runtime (`ApiError`, `ApiResult`, `RawError`, …) | `tesla_fleet_management_api.core` |
 
 ---
 
@@ -229,7 +229,14 @@ Import paths by content type (`from <package> import <Name>`):
 
 **OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the base URL — so `base_url="https://…"` moves token traffic too. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
 
-**Environments.** `environment=` selects the target environment (`tesla/server/environment.py`); this SDK's one server (`tesla/server/server_config.py`) has a base URL per environment:
+Operation blocks name their scheme in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
+
+- `AND` — every scheme listed must be configured for the call to succeed.
+- `OR` — any one of the schemes listed can be used; the first one you configured is the one sent, in the order listed.
+
+A scheme you did not configure is skipped silently rather than raising, and the request is sent anyway — so an authentication failure can mean no credential was sent rather than a bad one.
+
+**Environments.** `environment=` selects the target environment (`tesla_fleet_management_api/server/environment.py`); this SDK's one server (`tesla_fleet_management_api/server/server_config.py`) has a base URL per environment:
 
 | Environment | Base URL | Hosting | Override point |
 | --- | --- | --- | --- |

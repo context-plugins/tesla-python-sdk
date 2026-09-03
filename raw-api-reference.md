@@ -2,11 +2,11 @@
 
 **Raw** endpoints, reached through `with_raw_response`, return `ApiResult[T, E]` and never raise for an API error. For the parsed endpoints, see [API Reference](api-reference.md).
 
-> Source: [TeslaClient](tesla/client.py)
+> Source: [TeslaFleetManagementApiClient](tesla_fleet_management_api/client.py)
 
 ## Charging
 
-> Source: [Charging](tesla/apis/charging.py)
+> Source: [Charging](tesla_fleet_management_api/apis/charging.py)
 
 <details>
 <summary><code>def get_charging_history(*, request_options: RequestOptionsOrDict | None = None) -> ApiResult[ChargingHistoryResponse, RawError]</code></summary>
@@ -61,7 +61,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -71,11 +71,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[ChargingHistoryResponse](tesla/models/charging_history_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[ChargingHistoryResponse](tesla_fleet_management_api/models/charging_history_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[ChargingHistoryResponse](tesla/models/charging_history_response.py)</code> -- Charging history retrieved successfully
+**On `Success`**: `payload` is <code>[ChargingHistoryResponse](tesla_fleet_management_api/models/charging_history_response.py)</code> -- Charging history retrieved successfully
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -139,7 +139,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>id</code> | <code>str</code> | Charging session invoice identifier |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -149,11 +149,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;None, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;None, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: the 2xx carries no content; `payload` is <code>None</code>
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -216,7 +216,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -226,11 +226,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[ChargingSessionsResponse](tesla/models/charging_sessions_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[ChargingSessionsResponse](tesla_fleet_management_api/models/charging_sessions_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[ChargingSessionsResponse](tesla/models/charging_sessions_response.py)</code> -- Charging sessions retrieved successfully
+**On `Success`**: `payload` is <code>[ChargingSessionsResponse](tesla_fleet_management_api/models/charging_sessions_response.py)</code> -- Charging sessions retrieved successfully
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -242,7 +242,7 @@ match result:
 
 ## Energy
 
-> Source: [Energy](tesla/apis/energy.py)
+> Source: [Energy](tesla_fleet_management_api/apis/energy.py)
 
 <details>
 <summary><code>def adjust_site_s_backup_reserve(energy_site_id: str, body: BackupRequest | BackupRequestDict, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[BackupResponse, RawError]</code></summary>
@@ -298,8 +298,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[BackupRequest](tesla/models/backup_request.py) \| [BackupRequestDict](tesla/models/backup_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[BackupRequest](tesla_fleet_management_api/models/backup_request.py) \| [BackupRequestDict](tesla_fleet_management_api/models/backup_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -309,11 +309,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[BackupResponse](tesla/models/backup_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[BackupResponse](tesla_fleet_management_api/models/backup_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[BackupResponse](tesla/models/backup_response.py)</code> -- Backup reserve updated
+**On `Success`**: `payload` is <code>[BackupResponse](tesla_fleet_management_api/models/backup_response.py)</code> -- Backup reserve updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -379,8 +379,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[OffGridVehicleChargingReserveRequest](tesla/models/off_grid_vehicle_charging_reserve_request.py) \| [OffGridVehicleChargingReserveRequestDict](tesla/models/off_grid_vehicle_charging_reserve_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[OffGridVehicleChargingReserveRequest](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py) \| [OffGridVehicleChargingReserveRequestDict](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -390,11 +390,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[GenericUpdateResponse](tesla/models/generic_update_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla/models/generic_update_response.py)</code> -- Reserve updated
+**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py)</code> -- Reserve updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -463,7 +463,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>Any \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -473,11 +473,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[GenericUpdateResponse](tesla/models/generic_update_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla/models/generic_update_response.py)</code> -- Grid import/export updated
+**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py)</code> -- Grid import/export updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -543,12 +543,12 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>kind</code> | <code>[KindOrStr](tesla/models/enums/kind.py)</code> | Value sent with the request. |
+| <code>kind</code> | <code>[KindOrStr](tesla_fleet_management_api/models/enums/kind.py)</code> | Value sent with the request. |
 | <code>start_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>period</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -558,11 +558,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CalendarHistoryResponse](tesla/models/calendar_history_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CalendarHistoryResponse](tesla_fleet_management_api/models/calendar_history_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CalendarHistoryResponse](tesla/models/calendar_history_response.py)</code> -- History retrieved
+**On `Success`**: `payload` is <code>[CalendarHistoryResponse](tesla_fleet_management_api/models/calendar_history_response.py)</code> -- History retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -626,7 +626,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -636,11 +636,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[LiveStatusResponse](tesla/models/live_status_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[LiveStatusResponse](tesla_fleet_management_api/models/live_status_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[LiveStatusResponse](tesla/models/live_status_response.py)</code> -- Live status retrieved
+**On `Success`**: `payload` is <code>[LiveStatusResponse](tesla_fleet_management_api/models/live_status_response.py)</code> -- Live status retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -704,7 +704,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -714,11 +714,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SiteInfoResponse](tesla/models/site_info_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla/models/site_info_response.py)</code> -- Site info retrieved
+**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py)</code> -- Site info retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -781,7 +781,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -791,11 +791,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[ProductsResponse](tesla/models/products_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[ProductsResponse](tesla_fleet_management_api/models/products_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[ProductsResponse](tesla/models/products_response.py)</code> -- Products retrieved
+**On `Success`**: `payload` is <code>[ProductsResponse](tesla_fleet_management_api/models/products_response.py)</code> -- Products retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -861,11 +861,11 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>kind</code> | <code>[KindGetWallConnectorChargingHistoryOrStr](tesla/models/enums/kind_get_wall_connector_charging_history.py)</code> | Value sent with the request. |
+| <code>kind</code> | <code>[KindGetWallConnectorChargingHistoryOrStr](tesla_fleet_management_api/models/enums/kind_get_wall_connector_charging_history.py)</code> | Value sent with the request. |
 | <code>start_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -875,11 +875,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[ChargeHistoryResponse](tesla/models/charge_history_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[ChargeHistoryResponse](tesla_fleet_management_api/models/charge_history_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[ChargeHistoryResponse](tesla/models/charge_history_response.py)</code> -- Charging history retrieved
+**On `Success`**: `payload` is <code>[ChargeHistoryResponse](tesla_fleet_management_api/models/charge_history_response.py)</code> -- Charging history retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -943,8 +943,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[OperationRequest](tesla/models/operation_request.py) \| [OperationRequestDict](tesla/models/operation_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[OperationRequest](tesla_fleet_management_api/models/operation_request.py) \| [OperationRequestDict](tesla_fleet_management_api/models/operation_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -954,11 +954,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[GenericUpdateResponse](tesla/models/generic_update_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla/models/generic_update_response.py)</code> -- Operation mode updated
+**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py)</code> -- Operation mode updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1022,8 +1022,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[StormModeRequest](tesla/models/storm_mode_request.py) \| [StormModeRequestDict](tesla/models/storm_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[StormModeRequest](tesla_fleet_management_api/models/storm_mode_request.py) \| [StormModeRequestDict](tesla_fleet_management_api/models/storm_mode_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1033,11 +1033,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[GenericUpdateResponse](tesla/models/generic_update_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla/models/generic_update_response.py)</code> -- Storm mode updated
+**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py)</code> -- Storm mode updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1101,8 +1101,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[TimeOfUseSettingsRequest](tesla/models/time_of_use_settings_request.py) \| [TimeOfUseSettingsRequestDict](tesla/models/time_of_use_settings_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[TimeOfUseSettingsRequest](tesla_fleet_management_api/models/time_of_use_settings_request.py) \| [TimeOfUseSettingsRequestDict](tesla_fleet_management_api/models/time_of_use_settings_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1112,11 +1112,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[GenericUpdateResponse](tesla/models/generic_update_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla/models/generic_update_response.py)</code> -- TOU settings updated
+**On `Success`**: `payload` is <code>[GenericUpdateResponse](tesla_fleet_management_api/models/generic_update_response.py)</code> -- TOU settings updated
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1128,7 +1128,7 @@ match result:
 
 ## Partner
 
-> Source: [Partner](tesla/apis/partner.py)
+> Source: [Partner](tesla_fleet_management_api/apis/partner.py)
 
 <details>
 <summary><code>def get_public_key_for_a_domain(domain: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[PublicKeyResponse, RawError]</code></summary>
@@ -1184,7 +1184,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>domain</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1194,11 +1194,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[PublicKeyResponse](tesla/models/public_key_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[PublicKeyResponse](tesla_fleet_management_api/models/public_key_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[PublicKeyResponse](tesla/models/public_key_response.py)</code> -- Public key retrieved
+**On `Success`**: `payload` is <code>[PublicKeyResponse](tesla_fleet_management_api/models/public_key_response.py)</code> -- Public key retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1261,7 +1261,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1271,11 +1271,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[FleetTelemetryErrorsResponse](tesla/models/fleet_telemetry_errors_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[FleetTelemetryErrorsResponse](tesla_fleet_management_api/models/fleet_telemetry_errors_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[FleetTelemetryErrorsResponse](tesla/models/fleet_telemetry_errors_response.py)</code> -- Fleet telemetry errors retrieved
+**On `Success`**: `payload` is <code>[FleetTelemetryErrorsResponse](tesla_fleet_management_api/models/fleet_telemetry_errors_response.py)</code> -- Fleet telemetry errors retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1338,7 +1338,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1348,11 +1348,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[BackupResponse](tesla/models/backup_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[BackupResponse](tesla_fleet_management_api/models/backup_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[BackupResponse](tesla/models/backup_response.py)</code> -- List of VINs with telemetry errors
+**On `Success`**: `payload` is <code>[BackupResponse](tesla_fleet_management_api/models/backup_response.py)</code> -- List of VINs with telemetry errors
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1415,8 +1415,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>body</code> | <code>[RegisterPartnerRequest](tesla/models/register_partner_request.py) \| [RegisterPartnerRequestDict](tesla/models/register_partner_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[RegisterPartnerRequest](tesla_fleet_management_api/models/register_partner_request.py) \| [RegisterPartnerRequestDict](tesla_fleet_management_api/models/register_partner_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1426,11 +1426,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[RegisterPartnerResponse](tesla/models/register_partner_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[RegisterPartnerResponse](tesla_fleet_management_api/models/register_partner_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[RegisterPartnerResponse](tesla/models/register_partner_response.py)</code> -- Partner account registered
+**On `Success`**: `payload` is <code>[RegisterPartnerResponse](tesla_fleet_management_api/models/register_partner_response.py)</code> -- Partner account registered
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1442,7 +1442,7 @@ match result:
 
 ## User
 
-> Source: [User](tesla/apis/user.py)
+> Source: [User](tesla_fleet_management_api/apis/user.py)
 
 <details>
 <summary><code>def get_active_orders_for_a_user(*, request_options: RequestOptionsOrDict | None = None) -> ApiResult[OrdersResponse, RawError]</code></summary>
@@ -1497,7 +1497,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1507,11 +1507,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[OrdersResponse](tesla/models/orders_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[OrdersResponse](tesla_fleet_management_api/models/orders_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[OrdersResponse](tesla/models/orders_response.py)</code> -- User orders retrieved
+**On `Success`**: `payload` is <code>[OrdersResponse](tesla_fleet_management_api/models/orders_response.py)</code> -- User orders retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1574,7 +1574,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1584,11 +1584,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[BackupResponse](tesla/models/backup_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[BackupResponse](tesla_fleet_management_api/models/backup_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[BackupResponse](tesla/models/backup_response.py)</code> -- Feature flags retrieved
+**On `Success`**: `payload` is <code>[BackupResponse](tesla_fleet_management_api/models/backup_response.py)</code> -- Feature flags retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1651,7 +1651,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1661,11 +1661,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[MeResponse](tesla/models/me_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[MeResponse](tesla_fleet_management_api/models/me_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[MeResponse](tesla/models/me_response.py)</code> -- User account retrieved
+**On `Success`**: `payload` is <code>[MeResponse](tesla_fleet_management_api/models/me_response.py)</code> -- User account retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1728,7 +1728,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1738,11 +1738,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[RegionResponse](tesla/models/region_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[RegionResponse](tesla_fleet_management_api/models/region_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[RegionResponse](tesla/models/region_response.py)</code> -- Region information retrieved
+**On `Success`**: `payload` is <code>[RegionResponse](tesla_fleet_management_api/models/region_response.py)</code> -- Region information retrieved
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1754,7 +1754,7 @@ match result:
 
 ## VehicleCommands
 
-> Source: [VehicleCommands](tesla/apis/vehicle_commands.py)
+> Source: [VehicleCommands](tesla_fleet_management_api/apis/vehicle_commands.py)
 
 <details>
 <summary><code>def actuatetrunk(vehicle_tag: str, body: ActuateTrunkRequest | ActuateTrunkRequestDict, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[CommandResponse, RawError]</code></summary>
@@ -1810,8 +1810,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[ActuateTrunkRequest](tesla/models/actuate_trunk_request.py) \| [ActuateTrunkRequestDict](tesla/models/actuate_trunk_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[ActuateTrunkRequest](tesla_fleet_management_api/models/actuate_trunk_request.py) \| [ActuateTrunkRequestDict](tesla_fleet_management_api/models/actuate_trunk_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1821,11 +1821,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1889,8 +1889,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[AddChargeScheduleRequest](tesla/models/add_charge_schedule_request.py) \| [AddChargeScheduleRequestDict](tesla/models/add_charge_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[AddChargeScheduleRequest](tesla_fleet_management_api/models/add_charge_schedule_request.py) \| [AddChargeScheduleRequestDict](tesla_fleet_management_api/models/add_charge_schedule_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1900,11 +1900,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -1968,8 +1968,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[AddPreconditionScheduleRequest](tesla/models/add_precondition_schedule_request.py) \| [AddPreconditionScheduleRequestDict](tesla/models/add_precondition_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[AddPreconditionScheduleRequest](tesla_fleet_management_api/models/add_precondition_schedule_request.py) \| [AddPreconditionScheduleRequestDict](tesla_fleet_management_api/models/add_precondition_schedule_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -1979,11 +1979,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2047,8 +2047,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[AdjustVolumeRequest](tesla/models/adjust_volume_request.py) \| [AdjustVolumeRequestDict](tesla/models/adjust_volume_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[AdjustVolumeRequest](tesla_fleet_management_api/models/adjust_volume_request.py) \| [AdjustVolumeRequestDict](tesla_fleet_management_api/models/adjust_volume_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2058,11 +2058,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2126,7 +2126,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2136,11 +2136,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2204,7 +2204,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2214,11 +2214,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2282,7 +2282,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2292,11 +2292,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2360,7 +2360,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2370,11 +2370,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2438,7 +2438,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2448,11 +2448,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2516,8 +2516,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[GuestModeRequest](tesla/models/guest_mode_request.py) \| [GuestModeRequestDict](tesla/models/guest_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[GuestModeRequest](tesla_fleet_management_api/models/guest_mode_request.py) \| [GuestModeRequestDict](tesla_fleet_management_api/models/guest_mode_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2527,11 +2527,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2595,7 +2595,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2605,11 +2605,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2673,7 +2673,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2683,11 +2683,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2751,7 +2751,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2761,11 +2761,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2829,7 +2829,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2839,11 +2839,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2907,7 +2907,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2917,11 +2917,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -2985,7 +2985,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -2995,11 +2995,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3063,7 +3063,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3073,11 +3073,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3141,7 +3141,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3151,11 +3151,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3219,7 +3219,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3229,11 +3229,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3297,7 +3297,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3307,11 +3307,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3375,7 +3375,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3385,11 +3385,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[CommandResponse](tesla/models/command_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[CommandResponse](tesla_fleet_management_api/models/command_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[CommandResponse](tesla/models/command_response.py)</code> -- Vehicle command response
+**On `Success`**: `payload` is <code>[CommandResponse](tesla_fleet_management_api/models/command_response.py)</code> -- Vehicle command response
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3401,7 +3401,7 @@ match result:
 
 ## Vehicles
 
-> Source: [Vehicles](tesla/apis/vehicles.py)
+> Source: [Vehicles](tesla_fleet_management_api/apis/vehicles.py)
 
 <details>
 <summary><code>def configure_fleet_telemetry_using_signed_jws_token(body: FleetTelemetryJwsRequest | FleetTelemetryJwsRequestDict, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[Any, RawError]</code></summary>
@@ -3456,8 +3456,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>body</code> | <code>[FleetTelemetryJwsRequest](tesla/models/fleet_telemetry_jws_request.py) \| [FleetTelemetryJwsRequestDict](tesla/models/fleet_telemetry_jws_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[FleetTelemetryJwsRequest](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py) \| [FleetTelemetryJwsRequestDict](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3467,11 +3467,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Telemetry configuration result
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3535,7 +3535,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>Any</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3545,11 +3545,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Telemetry configuration result
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3613,7 +3613,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3623,11 +3623,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Configuration deleted
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3691,7 +3691,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3701,11 +3701,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[DriversResponse](tesla/models/drivers_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[DriversResponse](tesla_fleet_management_api/models/drivers_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[DriversResponse](tesla/models/drivers_response.py)</code> -- List of drivers
+**On `Success`**: `payload` is <code>[DriversResponse](tesla_fleet_management_api/models/drivers_response.py)</code> -- List of drivers
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3769,7 +3769,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3779,11 +3779,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SiteInfoResponse](tesla/models/site_info_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla/models/site_info_response.py)</code> -- Eligible subscriptions
+**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py)</code> -- Eligible subscriptions
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3847,7 +3847,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3857,11 +3857,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SiteInfoResponse](tesla/models/site_info_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla/models/site_info_response.py)</code> -- Eligible upgrades
+**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py)</code> -- Eligible upgrades
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -3925,7 +3925,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -3935,11 +3935,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Enterprise roles
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4002,8 +4002,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>body</code> | <code>[FleetStatusRequest](tesla/models/fleet_status_request.py) \| [FleetStatusRequestDict](tesla/models/fleet_status_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[FleetStatusRequest](tesla_fleet_management_api/models/fleet_status_request.py) \| [FleetStatusRequestDict](tesla_fleet_management_api/models/fleet_status_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4013,11 +4013,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Fleet status
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4081,7 +4081,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4091,11 +4091,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Fleet telemetry configuration
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4159,7 +4159,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4169,11 +4169,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;Any, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;Any, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: `payload` is <code>Any</code> -- Fleet telemetry errors
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4237,7 +4237,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4247,11 +4247,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1VehiclesResponseResponse200](tesla/models/api1_vehicles_response_response200.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1VehiclesResponseResponse200](tesla_fleet_management_api/models/api1_vehicles_response_response200.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1VehiclesResponseResponse200](tesla/models/api1_vehicles_response_response200.py)</code> -- Vehicle info
+**On `Success`**: `payload` is <code>[Api1VehiclesResponseResponse200](tesla_fleet_management_api/models/api1_vehicles_response_response200.py)</code> -- Vehicle info
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4314,7 +4314,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4324,11 +4324,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1VehiclesResponse](tesla/models/api1_vehicles_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1VehiclesResponse](tesla_fleet_management_api/models/api1_vehicles_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1VehiclesResponse](tesla/models/api1_vehicles_response.py)</code> -- Vehicles list
+**On `Success`**: `payload` is <code>[Api1VehiclesResponse](tesla_fleet_management_api/models/api1_vehicles_response.py)</code> -- Vehicles list
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4392,7 +4392,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4402,11 +4402,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1VehiclesMobileEnabledResponse](tesla/models/api1_vehicles_mobile_enabled_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1VehiclesMobileEnabledResponse](tesla_fleet_management_api/models/api1_vehicles_mobile_enabled_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1VehiclesMobileEnabledResponse](tesla/models/api1_vehicles_mobile_enabled_response.py)</code> -- Mobile access status
+**On `Success`**: `payload` is <code>[Api1VehiclesMobileEnabledResponse](tesla_fleet_management_api/models/api1_vehicles_mobile_enabled_response.py)</code> -- Mobile access status
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4470,7 +4470,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4480,11 +4480,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1VehiclesNearbyChargingSitesResponse](tesla/models/api1_vehicles_nearby_charging_sites_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1VehiclesNearbyChargingSitesResponse](tesla_fleet_management_api/models/api1_vehicles_nearby_charging_sites_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1VehiclesNearbyChargingSitesResponse](tesla/models/api1_vehicles_nearby_charging_sites_response.py)</code> -- Charging sites
+**On `Success`**: `payload` is <code>[Api1VehiclesNearbyChargingSitesResponse](tesla_fleet_management_api/models/api1_vehicles_nearby_charging_sites_response.py)</code> -- Charging sites
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4548,7 +4548,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4558,11 +4558,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SimpleOkResponse](tesla/models/simple_ok_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SimpleOkResponse](tesla_fleet_management_api/models/simple_ok_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SimpleOkResponse](tesla/models/simple_ok_response.py)</code> -- Driver removed
+**On `Success`**: `payload` is <code>[SimpleOkResponse](tesla_fleet_management_api/models/simple_ok_response.py)</code> -- Driver removed
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4626,8 +4626,8 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>body</code> | <code>[EnterprisePayerRequest](tesla/models/enterprise_payer_request.py) \| [EnterprisePayerRequestDict](tesla/models/enterprise_payer_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>body</code> | <code>[EnterprisePayerRequest](tesla_fleet_management_api/models/enterprise_payer_request.py) \| [EnterprisePayerRequestDict](tesla_fleet_management_api/models/enterprise_payer_request.py)</code> | The request body. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4637,11 +4637,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;None, [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;None, [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
 **On `Success`**: the 2xx carries no content; `payload` is <code>None</code>
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4705,7 +4705,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4715,11 +4715,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SiteInfoResponse](tesla/models/site_info_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla/models/site_info_response.py)</code> -- Realtime vehicle data
+**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py)</code> -- Realtime vehicle data
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4783,7 +4783,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4793,11 +4793,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1DxVehiclesOptionsResponse](tesla/models/api1_dx_vehicles_options_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1DxVehiclesOptionsResponse](tesla_fleet_management_api/models/api1_dx_vehicles_options_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1DxVehiclesOptionsResponse](tesla/models/api1_dx_vehicles_options_response.py)</code> -- Vehicle options
+**On `Success`**: `payload` is <code>[Api1DxVehiclesOptionsResponse](tesla_fleet_management_api/models/api1_dx_vehicles_options_response.py)</code> -- Vehicle options
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4861,7 +4861,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4871,11 +4871,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[SiteInfoResponse](tesla/models/site_info_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla/models/site_info_response.py)</code> -- Vehicle specifications
+**On `Success`**: `payload` is <code>[SiteInfoResponse](tesla_fleet_management_api/models/site_info_response.py)</code> -- Vehicle specifications
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -4939,7 +4939,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -4949,11 +4949,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1VehiclesWakeUpResponse](tesla/models/api1_vehicles_wake_up_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1VehiclesWakeUpResponse](tesla_fleet_management_api/models/api1_vehicles_wake_up_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1VehiclesWakeUpResponse](tesla/models/api1_vehicles_wake_up_response.py)</code> -- Vehicle awakened
+**On `Success`**: `payload` is <code>[Api1VehiclesWakeUpResponse](tesla_fleet_management_api/models/api1_vehicles_wake_up_response.py)</code> -- Vehicle awakened
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>
@@ -5016,7 +5016,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
 
 </dd>
 </dl>
@@ -5026,11 +5026,11 @@ match result:
 <dl>
 <dd>
 
-**Returns**: <code>[ApiResult](tesla/core/results.py)&#91;[Api1DxWarrantyDetailsResponse](tesla/models/api1_dx_warranty_details_response.py), [RawError](tesla/core/results.py)&#93;</code>
+**Returns**: <code>[ApiResult](tesla_fleet_management_api/core/results.py)&#91;[Api1DxWarrantyDetailsResponse](tesla_fleet_management_api/models/api1_dx_warranty_details_response.py), [RawError](tesla_fleet_management_api/core/results.py)&#93;</code>
 
-**On `Success`**: `payload` is <code>[Api1DxWarrantyDetailsResponse](tesla/models/api1_dx_warranty_details_response.py)</code> -- Warranty information
+**On `Success`**: `payload` is <code>[Api1DxWarrantyDetailsResponse](tesla_fleet_management_api/models/api1_dx_warranty_details_response.py)</code> -- Warranty information
 
-**On `Failure`**: `error` is <code>[RawError](tesla/core/results.py)</code>
+**On `Failure`**: `error` is <code>[RawError](tesla_fleet_management_api/core/results.py)</code>
 
 </dd>
 </dl>

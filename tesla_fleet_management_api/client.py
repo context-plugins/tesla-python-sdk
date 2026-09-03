@@ -12,8 +12,10 @@ from .apis.user import User
 from .apis.vehicle_commands import VehicleCommands
 from .apis.vehicles import Vehicles
 from .auth import AuthSchemes, ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
-from .base_client import DEFAULT_TIMEOUT, BaseTeslaClient
+from .base_client import DEFAULT_TIMEOUT, BaseTeslaFleetManagementApiClient
 from .core import (
+    OPERATING_SYSTEM,
+    PYTHON_RUNTIME,
     AuthorizationCodeCredentials,
     AuthorizationCodeCredentialsOrDict,
     AuthorizationCodeTokenSource,
@@ -30,11 +32,12 @@ from .core import (
     TokenSource,
     client_secret_post,
     no_auth,
+    param,
 )
 from .server.environment import Environment
 
 
-class TeslaClient(BaseTeslaClient[RawClient]):
+class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]):
     def __init__(
         self,
         *,
@@ -58,7 +61,15 @@ class TeslaClient(BaseTeslaClient[RawClient]):
     ) -> None:
         super().__init__(environment=environment, base_url=base_url, timeout=timeout)
         self._raw_client = RawClient(
-            http_client=custom_http_client if custom_http_client is not None else HttpxClient(timeout=timeout)
+            http_client=custom_http_client if custom_http_client is not None else HttpxClient(timeout=timeout),
+            global_headers=[
+                param[str]("User-Agent", "TeslaFleetManagementApiClient/1.0.0 Python"),
+                param[str]("X-APIMatic-Lang", "Python"),
+                param[str]("X-APIMatic-Package-Version", "1.0.0"),
+                param[str]("X-APIMatic-Gen-Version", "4.0.0"),
+                param[str]("X-APIMatic-OS", OPERATING_SYSTEM),
+                param[str]("X-APIMatic-Runtime", PYTHON_RUNTIME),
+            ],
         )
         self._auth = AuthSchemes(
             bearer_auth=BearerAuthScheme(bearer_auth) if bearer_auth is not None else no_auth,
@@ -138,4 +149,4 @@ class TeslaClient(BaseTeslaClient[RawClient]):
         self.close()
 
 
-Client = TeslaClient
+Client = TeslaFleetManagementApiClient

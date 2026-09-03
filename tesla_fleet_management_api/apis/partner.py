@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from uuid import UUID, uuid4
+
 from ..auth import AsyncAuthSchemes, AuthSchemes
 from ..core import (
     AnySchemes,
@@ -262,6 +264,7 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
         return self._client.execute(
             http_method="POST",
             url_template=self._server.default("/api/1/partner_accounts"),
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[RegisterPartnerRequest | RegisterPartnerRequestDict](body),
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
@@ -355,6 +358,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         return await self._client.execute(
             http_method="POST",
             url_template=self._server.default("/api/1/partner_accounts"),
+            headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[RegisterPartnerRequest | RegisterPartnerRequestDict](body),
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials

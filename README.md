@@ -1,8 +1,8 @@
-# Tesla SDK
+# Tesla Fleet Management API SDK
 
 [![Built with APIMatic][apimatic-badge]][apimatic-url] [![License: MIT][license-badge]][license-url] [![Python 3.10+][python-badge]][python-url]
 
-The Tesla SDK for Python provides access to the Tesla REST APIs from Python applications.
+The Tesla Fleet Management API SDK for Python provides access to the Tesla Fleet Management API REST APIs from Python applications.
 
 > [!TIP]
 > **Looking for a specific signature, model, enum, or error type?** This SDK ships a generated
@@ -18,15 +18,15 @@ Unofficial OpenAPI specification for Tesla Fleet Management Charging endpoints.
 Install the Python SDK from PyPI, with whichever package manager your project uses:
 
 ```bash
-pip install tesla
+pip install tesla-fleet-management-api
 ```
 
 ```bash
-uv add tesla
+uv add tesla-fleet-management-api
 ```
 
 ```bash
-poetry add tesla
+poetry add tesla-fleet-management-api
 ```
 
 ---
@@ -35,19 +35,19 @@ poetry add tesla
 
 ### Synchronous client
 
-Construct `TeslaClient` with keyword arguments, and call `close()` when you are done. Every argument is optional; the full list is in the [SDK map](sdk-map.md).
+Construct `TeslaFleetManagementApiClient` with keyword arguments, and call `close()` when you are done. Every argument is optional; the full list is in the [SDK map](sdk-map.md).
 
 ```python
-from tesla import TeslaClient
-from tesla.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
-from tesla.core import AuthorizationCodeCredentials, ClientCredentials
+from tesla_fleet_management_api import TeslaFleetManagementApiClient
+from tesla_fleet_management_api.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
+from tesla_fleet_management_api.core import AuthorizationCodeCredentials, ClientCredentials
 
 
 def prompt(url: str) -> str:
     return input(f"Open {url}, then paste the code: ")
 
 
-client = TeslaClient(
+client = TeslaFleetManagementApiClient(
     bearer_auth="YOUR_BEARER_TOKEN",
     thirdpartytoken_authorization_code=AuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
         client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
@@ -63,22 +63,22 @@ client = TeslaClient(
 client.close()
 ```
 
-Alternatively, scope it -- `with TeslaClient(...) as client:` closes the pool on exit; see [Best Practices](#best-practices).
+Alternatively, scope it -- `with TeslaFleetManagementApiClient(...) as client:` closes the pool on exit; see [Best Practices](#best-practices).
 
-`Client` is exported as an alias of `TeslaClient`, so `from tesla import Client` also works.
+`Client` is exported as an alias of `TeslaFleetManagementApiClient`, so `from tesla_fleet_management_api import Client` also works.
 
 The SDK accepts every model-typed input in two interchangeable spellings, both type-checked: the typed model, or a plain dict with the same keys -- the `OrDict` and `Model | ModelDict` unions in the [SDK map](sdk-map.md). Pick whichever suits the call site: the dict form needs no import, while the model form adds a keyword-checked constructor and editor completion.
 
 ### Asynchronous client
 
-`AsyncTeslaClient` mirrors `TeslaClient` with **identical method names**, and every endpoint method is a coroutine. It takes the same arguments, with some differences -- for example, the transport argument is `custom_async_http_client`.
+`AsyncTeslaFleetManagementApiClient` mirrors `TeslaFleetManagementApiClient` with **identical method names**, and every endpoint method is a coroutine. It takes the same arguments, with some differences -- for example, the transport argument is `custom_async_http_client`.
 
 ```python
 from asyncio import run, to_thread
 
-from tesla import AsyncTeslaClient
-from tesla.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
-from tesla.core import AsyncAuthorizationCodeCredentials, ClientCredentials
+from tesla_fleet_management_api import AsyncTeslaFleetManagementApiClient
+from tesla_fleet_management_api.auth import ThirdpartytokenAuthorizationCodeScope, ThirdpartytokenClientCredentialsScope
+from tesla_fleet_management_api.core import AsyncAuthorizationCodeCredentials, ClientCredentials
 
 
 async def prompt(url: str) -> str:
@@ -87,7 +87,7 @@ async def prompt(url: str) -> str:
 
 
 async def main() -> None:
-    client = AsyncTeslaClient(
+    client = AsyncTeslaFleetManagementApiClient(
         bearer_auth="YOUR_BEARER_TOKEN",
         thirdpartytoken_authorization_code=AsyncAuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
             client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
@@ -104,7 +104,7 @@ async def main() -> None:
 run(main())
 ```
 
-Alternatively, scope it -- `async with AsyncTeslaClient(...) as client:` closes the pool on exit. Only the async spelling is `aclose`, matching httpx; see [Best Practices](#best-practices).
+Alternatively, scope it -- `async with AsyncTeslaFleetManagementApiClient(...) as client:` closes the pool on exit. Only the async spelling is `aclose`, matching httpx; see [Best Practices](#best-practices).
 
 `AsyncClient` is the exported alias. Each client accepts **only** its own transport argument and its own prompt flavour; passing the other's is a `TypeError` at runtime and an error under mypy.
 
@@ -130,11 +130,11 @@ Consult the map before scanning or grepping the source: it answers call-level co
 ## Best Practices
 
 > [!TIP]
-> Use a **single `TeslaClient` instance** for the lifetime of your application and reuse it across
+> Use a **single `TeslaFleetManagementApiClient` instance** for the lifetime of your application and reuse it across
 > all requests. Each instance owns its own connection pool, so an instance per request forfeits
 > connection reuse and leaks pools that are never closed.
 
-Match the disposal to the client's lifetime: an application-lifetime client is closed once at shutdown with `close()` / `aclose()`; where the lifetime fits a block, `with TeslaClient() as client:` / `async with AsyncTeslaClient() as client:` releases it automatically. Both are idempotent, but a closed client is not reusable: the next call raises. The client closes **whatever transport it holds**, including one you supplied via `custom_http_client` / `custom_async_http_client`; if you intend to reuse your own transport across clients, don't hand its lifetime to a `with` block.
+Match the disposal to the client's lifetime: an application-lifetime client is closed once at shutdown with `close()` / `aclose()`; where the lifetime fits a block, `with TeslaFleetManagementApiClient() as client:` / `async with AsyncTeslaFleetManagementApiClient() as client:` releases it automatically. Both are idempotent, but a closed client is not reusable: the next call raises. The client closes **whatever transport it holds**, including one you supplied via `custom_http_client` / `custom_async_http_client`; if you intend to reuse your own transport across clients, don't hand its lifetime to a `with` block.
 
 ## License
 

@@ -1,5 +1,5 @@
 [project]
-name = "tesla"
+name = "tesla-fleet-management-api"
 version = "1.0.0"
 description = "Unofficial OpenAPI specification for Tesla Fleet Management Charging endpoints."
 maintainers = [
@@ -74,7 +74,7 @@ ignore = [
 
 [tool.mypy]
 python_version = "3.10"         # the supported floor, not whichever interpreter is local
-files = ["tesla"]
+files = ["tesla_fleet_management_api"]
 strict = true
 warn_unreachable = true
 enable_error_code = ["redundant-expr", "truthy-bool", "ignore-without-code", "possibly-undefined"]
