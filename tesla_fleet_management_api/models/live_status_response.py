@@ -11,4 +11,4 @@ class LiveStatusResponse(SdkBaseModel):
 
 
 class LiveStatusResponseDict(TypedDict):
-    response: ResponseLiveStatusResponse | ResponseLiveStatusResponseDict
+    response: ResponseLiveStatusResponseDict

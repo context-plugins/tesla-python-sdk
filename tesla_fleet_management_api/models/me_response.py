@@ -11,4 +11,4 @@ class MeResponse(SdkBaseModel):
 
 
 class MeResponseDict(TypedDict):
-    response: ResponseMeResponse | ResponseMeResponseDict
+    response: ResponseMeResponseDict

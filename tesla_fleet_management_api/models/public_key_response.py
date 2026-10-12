@@ -11,4 +11,4 @@ class PublicKeyResponse(SdkBaseModel):
 
 
 class PublicKeyResponseDict(TypedDict):
-    response: ResponsePublicKeyResponse | ResponsePublicKeyResponseDict
+    response: ResponsePublicKeyResponseDict

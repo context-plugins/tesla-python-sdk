@@ -11,4 +11,4 @@ class ResponseChargeHistoryResponse(SdkBaseModel):
 
 
 class ResponseChargeHistoryResponseDict(TypedDict):
-    charge_history: list[ChargeHistory | ChargeHistoryDict]
+    charge_history: list[ChargeHistoryDict]

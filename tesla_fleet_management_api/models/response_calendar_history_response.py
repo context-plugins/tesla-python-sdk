@@ -12,5 +12,5 @@ class ResponseCalendarHistoryResponse(SdkBaseModel):
 
 
 class ResponseCalendarHistoryResponseDict(TypedDict):
-    events: list[Event | EventDict]
+    events: list[EventDict]
     total_events: int

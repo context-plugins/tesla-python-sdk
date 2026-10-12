@@ -24,11 +24,12 @@ from .core import (
     ClientCredentialsOrDict,
     ClientCredentialsTokenSource,
     HttpClient,
-    HttpxClient,
+    Httpx2Client,
     OAuth2RefreshableScheme,
     OAuth2Scheme,
     RawClient,
     RefreshableTokenSource,
+    RetryOptionsOrDict,
     TokenSource,
     client_secret_post,
     no_auth,
@@ -44,6 +45,7 @@ class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]
         environment: Environment = "production",
         base_url: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
+        retry_options: int | RetryOptionsOrDict | None = None,
         custom_http_client: HttpClient | None = None,
         bearer_auth: str | None = None,
         thirdpartytoken_authorization_code: (
@@ -59,9 +61,10 @@ class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]
             TokenSource[ClientCredentials[ThirdpartytokenClientCredentialsScope]] | None
         ) = None,
     ) -> None:
-        super().__init__(environment=environment, base_url=base_url, timeout=timeout)
+        super().__init__(environment=environment, base_url=base_url, timeout=timeout, retry_options=retry_options)
         self._raw_client = RawClient(
-            http_client=custom_http_client if custom_http_client is not None else HttpxClient(timeout=timeout),
+            http_client=custom_http_client if custom_http_client is not None else Httpx2Client(timeout=timeout),
+            retry_options=self._retry_options,
             global_headers=[
                 param[str]("User-Agent", "TeslaFleetManagementApiClient/1.0.0 Python"),
                 param[str]("X-APIMatic-Lang", "Python"),

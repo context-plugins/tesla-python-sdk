@@ -59,7 +59,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -82,7 +82,7 @@ except ApiError as e:
 </details>
 
 <details>
-<summary><code>def get_charging_invoice(id: str, *, request_options: RequestOptionsOrDict | None = None) -> None</code></summary>
+<summary><code>def get_charging_invoice(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None</code></summary>
 
 <dl>
 <dd>
@@ -106,7 +106,7 @@ Returns a charging invoice PDF for a charging session.
 
 ```python
 try:
-    client.charging.get_charging_invoice(id)
+    client.charging.get_charging_invoice("some example string")
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -115,7 +115,7 @@ except ApiError as e:
 
 ```python
 try:
-    await async_client.charging.get_charging_invoice(id)
+    await async_client.charging.get_charging_invoice("some example string")
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -130,8 +130,8 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | Charging session invoice identifier |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | Charging session invoice identifier |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -204,7 +204,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -255,7 +255,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.adjust_site_s_backup_reserve(energy_site_id, body)
+    response = client.energy.adjust_site_s_backup_reserve(
+        "some example string", BackupRequest(backup_reserve_percent=1)
+    )
     # TODO: Handle 'response' of type BackupResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -265,7 +267,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.adjust_site_s_backup_reserve(energy_site_id, body)
+    response = await async_client.energy.adjust_site_s_backup_reserve(
+        "some example string", BackupRequest(backup_reserve_percent=1)
+    )
     # TODO: Handle 'response' of type BackupResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -283,7 +287,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[BackupRequest](tesla_fleet_management_api/models/backup_request.py) \| [BackupRequestDict](tesla_fleet_management_api/models/backup_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -330,7 +334,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.adjust_site_s_off_grid_vehicle_charging_reserve(energy_site_id, body)
+    response = client.energy.adjust_site_s_off_grid_vehicle_charging_reserve(
+        "some example string", OffGridVehicleChargingReserveRequest(off_grid_vehicle_charging_reserve_percent=1)
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -340,7 +346,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.adjust_site_s_off_grid_vehicle_charging_reserve(energy_site_id, body)
+    response = await async_client.energy.adjust_site_s_off_grid_vehicle_charging_reserve(
+        "some example string", OffGridVehicleChargingReserveRequest(off_grid_vehicle_charging_reserve_percent=1)
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -358,7 +366,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[OffGridVehicleChargingReserveRequest](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py) \| [OffGridVehicleChargingReserveRequestDict](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -405,7 +413,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(energy_site_id)
+    response = client.energy.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
+        "some example string"
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -416,7 +426,7 @@ except ApiError as e:
 ```python
 try:
     response = await async_client.energy.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-        energy_site_id
+        "some example string"
     )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
@@ -435,7 +445,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>Any \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -482,7 +492,12 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.energy.get_backup_or_energy_history(energy_site_id, kind, start_date, end_date)
+    response = client.energy.get_backup_or_energy_history(
+        "some example string",
+        Kind.BACKUP,
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    )
     # TODO: Handle 'response' of type CalendarHistoryResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -492,7 +507,12 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.get_backup_or_energy_history(energy_site_id, kind, start_date, end_date)
+    response = await async_client.energy.get_backup_or_energy_history(
+        "some example string",
+        Kind.BACKUP,
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    )
     # TODO: Handle 'response' of type CalendarHistoryResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -514,7 +534,7 @@ except ApiError as e:
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>period</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -561,7 +581,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.energy.get_live_site_status(energy_site_id)
+    response = client.energy.get_live_site_status("some example string")
     # TODO: Handle 'response' of type LiveStatusResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -571,7 +591,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.get_live_site_status(energy_site_id)
+    response = await async_client.energy.get_live_site_status("some example string")
     # TODO: Handle 'response' of type LiveStatusResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -588,7 +608,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -635,7 +655,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.energy.get_site_information_assets_settings_features(energy_site_id)
+    response = client.energy.get_site_information_assets_settings_features("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -645,7 +665,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.get_site_information_assets_settings_features(energy_site_id)
+    response = await async_client.energy.get_site_information_assets_settings_features("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -662,7 +682,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -735,7 +755,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -782,7 +802,12 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.energy.get_wall_connector_charging_history(energy_site_id, kind, start_date, end_date)
+    response = client.energy.get_wall_connector_charging_history(
+        "some example string",
+        KindGetWallConnectorChargingHistory.CHARGE,
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    )
     # TODO: Handle 'response' of type ChargeHistoryResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -792,7 +817,12 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.get_wall_connector_charging_history(energy_site_id, kind, start_date, end_date)
+    response = await async_client.energy.get_wall_connector_charging_history(
+        "some example string",
+        KindGetWallConnectorChargingHistory.CHARGE,
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+        datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    )
     # TODO: Handle 'response' of type ChargeHistoryResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -813,7 +843,7 @@ except ApiError as e:
 | <code>start_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -860,7 +890,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.set_site_mode_autonomous_or_self_consumption(energy_site_id, body)
+    response = client.energy.set_site_mode_autonomous_or_self_consumption(
+        "some example string", OperationRequest(default_real_mode=DefaultRealMode.AUTONOMOUS)
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -870,7 +902,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.set_site_mode_autonomous_or_self_consumption(energy_site_id, body)
+    response = await async_client.energy.set_site_mode_autonomous_or_self_consumption(
+        "some example string", OperationRequest(default_real_mode=DefaultRealMode.AUTONOMOUS)
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -888,7 +922,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[OperationRequest](tesla_fleet_management_api/models/operation_request.py) \| [OperationRequestDict](tesla_fleet_management_api/models/operation_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -935,7 +969,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.update_storm_watch_participation(energy_site_id, body)
+    response = client.energy.update_storm_watch_participation("some example string", StormModeRequest(enabled=True))
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -945,7 +979,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.update_storm_watch_participation(energy_site_id, body)
+    response = await async_client.energy.update_storm_watch_participation(
+        "some example string", StormModeRequest(enabled=True)
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -963,7 +999,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[StormModeRequest](tesla_fleet_management_api/models/storm_mode_request.py) \| [StormModeRequestDict](tesla_fleet_management_api/models/storm_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1010,7 +1046,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.energy.update_time_of_use_tou_settings(energy_site_id, body)
+    response = client.energy.update_time_of_use_tou_settings(
+        "some example string", TimeOfUseSettingsRequest(tou_settings=TouSettings())
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1020,7 +1058,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.energy.update_time_of_use_tou_settings(energy_site_id, body)
+    response = await async_client.energy.update_time_of_use_tou_settings(
+        "some example string", TimeOfUseSettingsRequest(tou_settings=TouSettings())
+    )
     # TODO: Handle 'response' of type GenericUpdateResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1038,7 +1078,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[TimeOfUseSettingsRequest](tesla_fleet_management_api/models/time_of_use_settings_request.py) \| [TimeOfUseSettingsRequestDict](tesla_fleet_management_api/models/time_of_use_settings_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1089,7 +1129,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.partner.get_public_key_for_a_domain(domain)
+    response = client.partner.get_public_key_for_a_domain("some example string")
     # TODO: Handle 'response' of type PublicKeyResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1099,7 +1139,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.partner.get_public_key_for_a_domain(domain)
+    response = await async_client.partner.get_public_key_for_a_domain("some example string")
     # TODO: Handle 'response' of type PublicKeyResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1116,7 +1156,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>domain</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1189,7 +1229,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1262,7 +1302,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1309,7 +1349,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.partner.register_a_partner_account(body)
+    response = client.partner.register_a_partner_account(RegisterPartnerRequest(domain="some example string"))
     # TODO: Handle 'response' of type RegisterPartnerResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1319,7 +1359,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.partner.register_a_partner_account(body)
+    response = await async_client.partner.register_a_partner_account(
+        RegisterPartnerRequest(domain="some example string")
+    )
     # TODO: Handle 'response' of type RegisterPartnerResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1336,7 +1378,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[RegisterPartnerRequest](tesla_fleet_management_api/models/register_partner_request.py) \| [RegisterPartnerRequestDict](tesla_fleet_management_api/models/register_partner_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1413,7 +1455,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1486,7 +1528,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1559,7 +1601,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1632,7 +1674,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1683,7 +1725,9 @@ Controls the front or rear trunk
 
 ```python
 try:
-    response = client.vehicle_commands.actuatetrunk(vehicle_tag, body)
+    response = client.vehicle_commands.actuatetrunk(
+        "some example string", ActuateTrunkRequest(which_trunk=WhichTrunk.FRONT)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1693,7 +1737,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.actuatetrunk(vehicle_tag, body)
+    response = await async_client.vehicle_commands.actuatetrunk(
+        "some example string", ActuateTrunkRequest(which_trunk=WhichTrunk.FRONT)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1711,7 +1757,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[ActuateTrunkRequest](tesla_fleet_management_api/models/actuate_trunk_request.py) \| [ActuateTrunkRequestDict](tesla_fleet_management_api/models/actuate_trunk_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1758,7 +1804,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.addchargeschedule(vehicle_tag, body)
+    response = client.vehicle_commands.addchargeschedule(
+        "some example string", AddChargeScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1768,7 +1816,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.addchargeschedule(vehicle_tag, body)
+    response = await async_client.vehicle_commands.addchargeschedule(
+        "some example string", AddChargeScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1786,7 +1836,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AddChargeScheduleRequest](tesla_fleet_management_api/models/add_charge_schedule_request.py) \| [AddChargeScheduleRequestDict](tesla_fleet_management_api/models/add_charge_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1833,7 +1883,9 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.addpreconditionschedule(vehicle_tag, body)
+    response = client.vehicle_commands.addpreconditionschedule(
+        "some example string", AddPreconditionScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1843,7 +1895,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.addpreconditionschedule(vehicle_tag, body)
+    response = await async_client.vehicle_commands.addpreconditionschedule(
+        "some example string", AddPreconditionScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1861,7 +1915,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AddPreconditionScheduleRequest](tesla_fleet_management_api/models/add_precondition_schedule_request.py) \| [AddPreconditionScheduleRequestDict](tesla_fleet_management_api/models/add_precondition_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1908,7 +1962,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.adjustmediavolume(vehicle_tag, body)
+    response = client.vehicle_commands.adjustmediavolume("some example string", AdjustVolumeRequest(volume=1))
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1918,7 +1972,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.adjustmediavolume(vehicle_tag, body)
+    response = await async_client.vehicle_commands.adjustmediavolume(
+        "some example string", AdjustVolumeRequest(volume=1)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1936,7 +1992,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AdjustVolumeRequest](tesla_fleet_management_api/models/adjust_volume_request.py) \| [AdjustVolumeRequestDict](tesla_fleet_management_api/models/adjust_volume_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1983,7 +2039,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.cancelsoftwareupdate(vehicle_tag)
+    response = client.vehicle_commands.cancelsoftwareupdate("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1993,7 +2049,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.cancelsoftwareupdate(vehicle_tag)
+    response = await async_client.vehicle_commands.cancelsoftwareupdate("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2010,7 +2066,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2057,7 +2113,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.chargemaxrange(vehicle_tag)
+    response = client.vehicle_commands.chargemaxrange("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2067,7 +2123,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.chargemaxrange(vehicle_tag)
+    response = await async_client.vehicle_commands.chargemaxrange("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2084,7 +2140,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2131,7 +2187,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.chargestandard(vehicle_tag)
+    response = client.vehicle_commands.chargestandard("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2141,7 +2197,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.chargestandard(vehicle_tag)
+    response = await async_client.vehicle_commands.chargestandard("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2158,7 +2214,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2205,7 +2261,7 @@ Deactivates PIN to Drive and resets the associated PIN for supported firmware ve
 
 ```python
 try:
-    response = client.vehicle_commands.clear_pi_nto_drive_admin(vehicle_tag)
+    response = client.vehicle_commands.clear_pi_nto_drive_admin("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2215,7 +2271,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.clear_pi_nto_drive_admin(vehicle_tag)
+    response = await async_client.vehicle_commands.clear_pi_nto_drive_admin("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2232,7 +2288,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2279,7 +2335,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.closechargeportdoor(vehicle_tag)
+    response = client.vehicle_commands.closechargeportdoor("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2289,7 +2345,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.closechargeportdoor(vehicle_tag)
+    response = await async_client.vehicle_commands.closechargeportdoor("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2306,7 +2362,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2353,7 +2409,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.enableordisable_guest_mode(vehicle_tag, body)
+    response = client.vehicle_commands.enableordisable_guest_mode("some example string", GuestModeRequest(enable=True))
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2363,7 +2419,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.enableordisable_guest_mode(vehicle_tag, body)
+    response = await async_client.vehicle_commands.enableordisable_guest_mode(
+        "some example string", GuestModeRequest(enable=True)
+    )
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2381,7 +2439,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[GuestModeRequest](tesla_fleet_management_api/models/guest_mode_request.py) \| [GuestModeRequestDict](tesla_fleet_management_api/models/guest_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2428,7 +2486,7 @@ Erases user data from the vehicle UI. Requires Guest Mode.
 
 ```python
 try:
-    response = client.vehicle_commands.eraseuserdata(vehicle_tag)
+    response = client.vehicle_commands.eraseuserdata("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2438,7 +2496,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.eraseuserdata(vehicle_tag)
+    response = await async_client.vehicle_commands.eraseuserdata("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2455,7 +2513,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2502,7 +2560,7 @@ Briefly flashes vehicle headlights.
 
 ```python
 try:
-    response = client.vehicle_commands.flashlights(vehicle_tag)
+    response = client.vehicle_commands.flashlights("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2512,7 +2570,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.flashlights(vehicle_tag)
+    response = await async_client.vehicle_commands.flashlights("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2529,7 +2587,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2576,7 +2634,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.honkhorn(vehicle_tag)
+    response = client.vehicle_commands.honkhorn("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2586,7 +2644,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.honkhorn(vehicle_tag)
+    response = await async_client.vehicle_commands.honkhorn("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2603,7 +2661,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2650,7 +2708,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.lockdoors(vehicle_tag)
+    response = client.vehicle_commands.lockdoors("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2660,7 +2718,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.lockdoors(vehicle_tag)
+    response = await async_client.vehicle_commands.lockdoors("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2677,7 +2735,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2724,7 +2782,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.nextfavoritemediatrack(vehicle_tag)
+    response = client.vehicle_commands.nextfavoritemediatrack("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2734,7 +2792,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.nextfavoritemediatrack(vehicle_tag)
+    response = await async_client.vehicle_commands.nextfavoritemediatrack("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2751,7 +2809,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2798,7 +2856,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.openchargeportdoor(vehicle_tag)
+    response = client.vehicle_commands.openchargeportdoor("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2808,7 +2866,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.openchargeportdoor(vehicle_tag)
+    response = await async_client.vehicle_commands.openchargeportdoor("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2825,7 +2883,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2872,7 +2930,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.startcharging(vehicle_tag)
+    response = client.vehicle_commands.startcharging("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2882,7 +2940,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.startcharging(vehicle_tag)
+    response = await async_client.vehicle_commands.startcharging("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2899,7 +2957,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2946,7 +3004,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.startclimatepreconditioning(vehicle_tag)
+    response = client.vehicle_commands.startclimatepreconditioning("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2956,7 +3014,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.startclimatepreconditioning(vehicle_tag)
+    response = await async_client.vehicle_commands.startclimatepreconditioning("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2973,7 +3031,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3020,7 +3078,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.stopcharging(vehicle_tag)
+    response = client.vehicle_commands.stopcharging("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3030,7 +3088,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.stopcharging(vehicle_tag)
+    response = await async_client.vehicle_commands.stopcharging("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3047,7 +3105,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3094,7 +3152,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.stopclimatepreconditioning(vehicle_tag)
+    response = client.vehicle_commands.stopclimatepreconditioning("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3104,7 +3162,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.stopclimatepreconditioning(vehicle_tag)
+    response = await async_client.vehicle_commands.stopclimatepreconditioning("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3121,7 +3179,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3168,7 +3226,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicle_commands.unlockdoors(vehicle_tag)
+    response = client.vehicle_commands.unlockdoors("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3178,7 +3236,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicle_commands.unlockdoors(vehicle_tag)
+    response = await async_client.vehicle_commands.unlockdoors("some example string")
     # TODO: Handle 'response' of type CommandResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3195,7 +3253,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3246,7 +3304,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicles.configure_fleet_telemetry_using_signed_jws_token(body)
+    response = client.vehicles.configure_fleet_telemetry_using_signed_jws_token(FleetTelemetryJwsRequest())
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3256,7 +3314,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.configure_fleet_telemetry_using_signed_jws_token(body)
+    response = await async_client.vehicles.configure_fleet_telemetry_using_signed_jws_token(FleetTelemetryJwsRequest())
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3273,7 +3331,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[FleetTelemetryJwsRequest](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py) \| [FleetTelemetryJwsRequestDict](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3320,7 +3378,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicles.create_or_update_fleet_telemetry_configuration(body)
+    response = client.vehicles.create_or_update_fleet_telemetry_configuration({})
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3330,7 +3388,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.create_or_update_fleet_telemetry_configuration(body)
+    response = await async_client.vehicles.create_or_update_fleet_telemetry_configuration({})
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3347,7 +3405,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>Any</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3394,7 +3452,7 @@ Send a `DELETE` request.
 
 ```python
 try:
-    response = client.vehicles.delete_fleet_telemetry_configuration(vehicle_tag)
+    response = client.vehicles.delete_fleet_telemetry_configuration("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3404,7 +3462,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.delete_fleet_telemetry_configuration(vehicle_tag)
+    response = await async_client.vehicles.delete_fleet_telemetry_configuration("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3421,7 +3479,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3468,7 +3526,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_allowed_drivers_for_a_vehicle(vehicle_tag)
+    response = client.vehicles.get_allowed_drivers_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type DriversResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3478,7 +3536,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_allowed_drivers_for_a_vehicle(vehicle_tag)
+    response = await async_client.vehicles.get_allowed_drivers_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type DriversResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3495,7 +3553,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3542,7 +3600,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_eligible_vehicle_subscriptions(vin)
+    response = client.vehicles.get_eligible_vehicle_subscriptions("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3552,7 +3610,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_eligible_vehicle_subscriptions(vin)
+    response = await async_client.vehicles.get_eligible_vehicle_subscriptions("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3569,7 +3627,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3616,7 +3674,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_eligible_vehicle_upgrades(vin)
+    response = client.vehicles.get_eligible_vehicle_upgrades("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3626,7 +3684,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_eligible_vehicle_upgrades(vin)
+    response = await async_client.vehicles.get_eligible_vehicle_upgrades("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3643,7 +3701,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3690,7 +3748,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_enterprise_roles_for_a_vehicle(vin)
+    response = client.vehicles.get_enterprise_roles_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3700,7 +3758,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_enterprise_roles_for_a_vehicle(vin)
+    response = await async_client.vehicles.get_enterprise_roles_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3717,7 +3775,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3764,7 +3822,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicles.get_fleet_status_for_vehicles(body)
+    response = client.vehicles.get_fleet_status_for_vehicles(FleetStatusRequest())
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3774,7 +3832,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_fleet_status_for_vehicles(body)
+    response = await async_client.vehicles.get_fleet_status_for_vehicles(FleetStatusRequest())
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3791,7 +3849,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[FleetStatusRequest](tesla_fleet_management_api/models/fleet_status_request.py) \| [FleetStatusRequestDict](tesla_fleet_management_api/models/fleet_status_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3838,7 +3896,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_fleet_telemetry_configuration(vehicle_tag)
+    response = client.vehicles.get_fleet_telemetry_configuration("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3848,7 +3906,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_fleet_telemetry_configuration(vehicle_tag)
+    response = await async_client.vehicles.get_fleet_telemetry_configuration("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3865,7 +3923,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3912,7 +3970,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_fleet_telemetry_errors_for_a_vehicle(vehicle_tag)
+    response = client.vehicles.get_fleet_telemetry_errors_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3922,7 +3980,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_fleet_telemetry_errors_for_a_vehicle(vehicle_tag)
+    response = await async_client.vehicles.get_fleet_telemetry_errors_for_a_vehicle("some example string")
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3939,7 +3997,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3986,7 +4044,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.get_vehicle(vehicle_tag)
+    response = client.vehicles.get_vehicle("some example string")
     # TODO: Handle 'response' of type Api1VehiclesResponseResponse200
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3996,7 +4054,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.get_vehicle(vehicle_tag)
+    response = await async_client.vehicles.get_vehicle("some example string")
     # TODO: Handle 'response' of type Api1VehiclesResponseResponse200
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4013,7 +4071,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4086,7 +4144,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4133,7 +4191,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.mobile_enabled(vehicle_tag)
+    response = client.vehicles.mobile_enabled("some example string")
     # TODO: Handle 'response' of type Api1VehiclesMobileEnabledResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4143,7 +4201,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.mobile_enabled(vehicle_tag)
+    response = await async_client.vehicles.mobile_enabled("some example string")
     # TODO: Handle 'response' of type Api1VehiclesMobileEnabledResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4160,7 +4218,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4207,7 +4265,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.nearby_charging_sites(vehicle_tag)
+    response = client.vehicles.nearby_charging_sites("some example string")
     # TODO: Handle 'response' of type Api1VehiclesNearbyChargingSitesResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4217,7 +4275,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.nearby_charging_sites(vehicle_tag)
+    response = await async_client.vehicles.nearby_charging_sites("some example string")
     # TODO: Handle 'response' of type Api1VehiclesNearbyChargingSitesResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4234,7 +4292,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4281,7 +4339,7 @@ Send a `DELETE` request.
 
 ```python
 try:
-    response = client.vehicles.remove_driver_access_from_a_vehicle(vehicle_tag)
+    response = client.vehicles.remove_driver_access_from_a_vehicle("some example string")
     # TODO: Handle 'response' of type SimpleOkResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4291,7 +4349,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.remove_driver_access_from_a_vehicle(vehicle_tag)
+    response = await async_client.vehicles.remove_driver_access_from_a_vehicle("some example string")
     # TODO: Handle 'response' of type SimpleOkResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4308,7 +4366,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4355,7 +4413,9 @@ Send a `POST` request.
 
 ```python
 try:
-    client.vehicles.set_enterprise_payer_roles(vin, body)
+    client.vehicles.set_enterprise_payer_roles(
+        "some example string", EnterprisePayerRequest(role="some example string")
+    )
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -4364,7 +4424,9 @@ except ApiError as e:
 
 ```python
 try:
-    await async_client.vehicles.set_enterprise_payer_roles(vin, body)
+    await async_client.vehicles.set_enterprise_payer_roles(
+        "some example string", EnterprisePayerRequest(role="some example string")
+    )
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -4381,7 +4443,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[EnterprisePayerRequest](tesla_fleet_management_api/models/enterprise_payer_request.py) \| [EnterprisePayerRequestDict](tesla_fleet_management_api/models/enterprise_payer_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4428,7 +4490,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.vehicle_live_data(vehicle_tag)
+    response = client.vehicles.vehicle_live_data("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4438,7 +4500,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.vehicle_live_data(vehicle_tag)
+    response = await async_client.vehicles.vehicle_live_data("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4455,7 +4517,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4502,7 +4564,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.vehicle_options(vin)
+    response = client.vehicles.vehicle_options("some example string")
     # TODO: Handle 'response' of type Api1DxVehiclesOptionsResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4512,7 +4574,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.vehicle_options(vin)
+    response = await async_client.vehicles.vehicle_options("some example string")
     # TODO: Handle 'response' of type Api1DxVehiclesOptionsResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4529,7 +4591,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4576,7 +4638,7 @@ Send a `GET` request.
 
 ```python
 try:
-    response = client.vehicles.vehicle_specs(vin)
+    response = client.vehicles.vehicle_specs("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4586,7 +4648,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.vehicle_specs(vin)
+    response = await async_client.vehicles.vehicle_specs("some example string")
     # TODO: Handle 'response' of type SiteInfoResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4603,7 +4665,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4650,7 +4712,7 @@ Send a `POST` request.
 
 ```python
 try:
-    response = client.vehicles.wake_up_vehicle(vehicle_tag)
+    response = client.vehicles.wake_up_vehicle("some example string")
     # TODO: Handle 'response' of type Api1VehiclesWakeUpResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4660,7 +4722,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.vehicles.wake_up_vehicle(vehicle_tag)
+    response = await async_client.vehicles.wake_up_vehicle("some example string")
     # TODO: Handle 'response' of type Api1VehiclesWakeUpResponse
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4677,7 +4739,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4750,7 +4812,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>

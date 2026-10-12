@@ -14,5 +14,5 @@ class TariffElement(SdkBaseModel):
 
 
 class TariffElementDict(TypedDict):
-    price_components: NotRequired[list[PriceComponent | PriceComponentDict]]
+    price_components: NotRequired[list[PriceComponentDict]]
     restrictions: NotRequired[dict[str, Any]]

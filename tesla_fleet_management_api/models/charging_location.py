@@ -28,4 +28,4 @@ class ChargingLocationDict(TypedDict):
     total_stalls: NotRequired[int]
     site_closed: NotRequired[bool]
     billing_info: NotRequired[str]
-    location: NotRequired[Location1 | Location1Dict]
+    location: NotRequired[Location1Dict]

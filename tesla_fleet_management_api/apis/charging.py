@@ -10,10 +10,13 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_empty_response,
+    async_json_decoder,
     empty_response,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.charging_history_response import ChargingHistoryResponse
 from ..models.charging_sessions_response import ChargingSessionsResponse
@@ -28,41 +31,44 @@ class Charging:
         """Returns the paginated charging history for the authenticated account.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging history retrieved successfully
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_charging_history(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_charging_history(request_options=request_options))
 
-    def get_charging_invoice(self, id: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
+    def get_charging_invoice(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Returns a charging invoice PDF for a charging session.
 
         Args:
-            id: Charging session invoice identifier
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: Charging session invoice identifier
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Invoice PDF document
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_charging_invoice(id, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_charging_invoice(id_, request_options=request_options))
 
     def get_charging_sessions(self, *, request_options: RequestOptionsOrDict | None = None) -> ChargingSessionsResponse:
         """Returns charging session information. Only available for business fleet owners.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging sessions retrieved successfully
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_charging_sessions(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_charging_sessions(request_options=request_options))
 
     @property
     def with_raw_response(self) -> ChargingWithRawResponse:
@@ -79,28 +85,30 @@ class AsyncCharging:
         """Returns the paginated charging history for the authenticated account.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging history retrieved successfully
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.get_charging_history(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_charging_history(request_options=request_options))
 
-    async def get_charging_invoice(self, id: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
+    async def get_charging_invoice(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
         """Returns a charging invoice PDF for a charging session.
 
         Args:
-            id: Charging session invoice identifier
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: Charging session invoice identifier
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Invoice PDF document
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.get_charging_invoice(id, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_charging_invoice(id_, request_options=request_options))
 
     async def get_charging_sessions(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -108,14 +116,15 @@ class AsyncCharging:
         """Returns charging session information. Only available for business fleet owners.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging sessions retrieved successfully
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.get_charging_sessions(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_charging_sessions(request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncChargingWithRawResponse:
@@ -129,7 +138,8 @@ class ChargingWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
         """Returns the paginated charging history for the authenticated account.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -145,20 +155,21 @@ class ChargingWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
         )
 
     def get_charging_invoice(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[None, RawError]:
         """Returns a charging invoice PDF for a charging session.
 
         Args:
-            id: Charging session invoice identifier
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: Charging session invoice identifier
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/api/1/dx/charging/invoice/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=AnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
@@ -173,7 +184,8 @@ class ChargingWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
         """Returns charging session information. Only available for business fleet owners.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -196,7 +208,8 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         """Returns the paginated charging history for the authenticated account.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -206,30 +219,31 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[ChargingHistoryResponse],
+            decoder=async_json_decoder[ChargingHistoryResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
 
     async def get_charging_invoice(
-        self, id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[None, RawError]:
         """Returns a charging invoice PDF for a charging session.
 
         Args:
-            id: Charging session invoice identifier
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            id_: Charging session invoice identifier
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/api/1/dx/charging/invoice/{id}"),
-            path_params=[param[str]("id", id)],
+            path_params=[param[str]("id", id_)],
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=empty_response,
+            decoder=async_empty_response,
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -240,7 +254,8 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         """Returns charging session information. Only available for business fleet owners.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -250,7 +265,7 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[ChargingSessionsResponse],
+            decoder=async_json_decoder[ChargingSessionsResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

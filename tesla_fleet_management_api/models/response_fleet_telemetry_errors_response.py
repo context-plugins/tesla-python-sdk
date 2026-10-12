@@ -11,4 +11,4 @@ class ResponseFleetTelemetryErrorsResponse(SdkBaseModel):
 
 
 class ResponseFleetTelemetryErrorsResponseDict(TypedDict):
-    fleet_telemetry_errors: list[FleetTelemetryError | FleetTelemetryErrorDict]
+    fleet_telemetry_errors: list[FleetTelemetryErrorDict]

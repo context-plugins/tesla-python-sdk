@@ -13,6 +13,6 @@ class Response3(SdkBaseModel):
 
 
 class Response3Dict(TypedDict):
-    destination_charging: NotRequired[list[ChargingLocation | ChargingLocationDict]]
-    superchargers: NotRequired[list[ChargingLocation | ChargingLocationDict]]
+    destination_charging: NotRequired[list[ChargingLocationDict]]
+    superchargers: NotRequired[list[ChargingLocationDict]]
     timestamp: NotRequired[int]

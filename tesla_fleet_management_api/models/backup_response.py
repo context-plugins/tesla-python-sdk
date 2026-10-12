@@ -11,4 +11,4 @@ class BackupResponse(SdkBaseModel):
 
 
 class BackupResponseDict(TypedDict):
-    response: Response | ResponseDict
+    response: ResponseDict

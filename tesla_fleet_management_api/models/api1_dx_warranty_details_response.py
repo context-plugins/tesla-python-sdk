@@ -14,4 +14,4 @@ class Api1DxWarrantyDetailsResponse(SdkBaseModel):
 
 
 class Api1DxWarrantyDetailsResponseDict(TypedDict):
-    response: NotRequired[ResponseApi1DxWarrantyDetailsResponse | ResponseApi1DxWarrantyDetailsResponseDict]
+    response: NotRequired[ResponseApi1DxWarrantyDetailsResponseDict]

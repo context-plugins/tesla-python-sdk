@@ -61,7 +61,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -86,7 +86,7 @@ match result:
 </details>
 
 <details>
-<summary><code>def get_charging_invoice(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, RawError]</code></summary>
+<summary><code>def get_charging_invoice(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[None, RawError]</code></summary>
 
 <dl>
 <dd>
@@ -109,7 +109,7 @@ Returns a charging invoice PDF for a charging session.
 **Sync**
 
 ```python
-result = client.charging.with_raw_response.get_charging_invoice(id)
+result = client.charging.with_raw_response.get_charging_invoice("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -120,7 +120,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.charging.with_raw_response.get_charging_invoice(id)
+result = await async_client.charging.with_raw_response.get_charging_invoice("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -138,8 +138,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | Charging session invoice identifier |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | Charging session invoice identifier |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -216,7 +216,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -268,7 +268,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.adjust_site_s_backup_reserve(energy_site_id, body)
+result = client.energy.with_raw_response.adjust_site_s_backup_reserve(
+    "some example string", BackupRequest(backup_reserve_percent=1)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BackupResponse
@@ -279,7 +281,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.adjust_site_s_backup_reserve(energy_site_id, body)
+result = await async_client.energy.with_raw_response.adjust_site_s_backup_reserve(
+    "some example string", BackupRequest(backup_reserve_percent=1)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BackupResponse
@@ -299,7 +303,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[BackupRequest](tesla_fleet_management_api/models/backup_request.py) \| [BackupRequestDict](tesla_fleet_management_api/models/backup_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -347,7 +351,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(energy_site_id, body)
+result = client.energy.with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(
+    "some example string", OffGridVehicleChargingReserveRequest(off_grid_vehicle_charging_reserve_percent=1)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -359,7 +365,7 @@ match result:
 
 ```python
 result = await async_client.energy.with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(
-    energy_site_id, body
+    "some example string", OffGridVehicleChargingReserveRequest(off_grid_vehicle_charging_reserve_percent=1)
 )
 match result:
     case Success(payload=payload):
@@ -380,7 +386,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[OffGridVehicleChargingReserveRequest](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py) \| [OffGridVehicleChargingReserveRequestDict](tesla_fleet_management_api/models/off_grid_vehicle_charging_reserve_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -429,7 +435,7 @@ Send a `POST` request.
 
 ```python
 result = client.energy.with_raw_response.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-    energy_site_id
+    "some example string"
 )
 match result:
     case Success(payload=payload):
@@ -442,7 +448,7 @@ match result:
 
 ```python
 result = await async_client.energy.with_raw_response.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-    energy_site_id
+    "some example string"
 )
 match result:
     case Success(payload=payload):
@@ -463,7 +469,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>Any \| None</code> | The request body.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -511,7 +517,12 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.get_backup_or_energy_history(energy_site_id, kind, start_date, end_date)
+result = client.energy.with_raw_response.get_backup_or_energy_history(
+    "some example string",
+    Kind.BACKUP,
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CalendarHistoryResponse
@@ -523,7 +534,10 @@ match result:
 
 ```python
 result = await async_client.energy.with_raw_response.get_backup_or_energy_history(
-    energy_site_id, kind, start_date, end_date
+    "some example string",
+    Kind.BACKUP,
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
 )
 match result:
     case Success(payload=payload):
@@ -548,7 +562,7 @@ match result:
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>period</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -596,7 +610,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.get_live_site_status(energy_site_id)
+result = client.energy.with_raw_response.get_live_site_status("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LiveStatusResponse
@@ -607,7 +621,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.get_live_site_status(energy_site_id)
+result = await async_client.energy.with_raw_response.get_live_site_status("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LiveStatusResponse
@@ -626,7 +640,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -674,7 +688,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.get_site_information_assets_settings_features(energy_site_id)
+result = client.energy.with_raw_response.get_site_information_assets_settings_features("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -685,7 +699,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.get_site_information_assets_settings_features(energy_site_id)
+result = await async_client.energy.with_raw_response.get_site_information_assets_settings_features(
+    "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -704,7 +720,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -781,7 +797,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -829,7 +845,12 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.get_wall_connector_charging_history(energy_site_id, kind, start_date, end_date)
+result = client.energy.with_raw_response.get_wall_connector_charging_history(
+    "some example string",
+    KindGetWallConnectorChargingHistory.CHARGE,
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type ChargeHistoryResponse
@@ -841,7 +862,10 @@ match result:
 
 ```python
 result = await async_client.energy.with_raw_response.get_wall_connector_charging_history(
-    energy_site_id, kind, start_date, end_date
+    "some example string",
+    KindGetWallConnectorChargingHistory.CHARGE,
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
+    datetime(2024, 1, 15, 9, 30, 0, tzinfo=timezone.utc),
 )
 match result:
     case Success(payload=payload):
@@ -865,7 +889,7 @@ match result:
 | <code>start_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>end_date</code> | <code>RFC3339DateTime</code> | Value sent with the request. |
 | <code>time_zone</code> | <code>str \| None</code> | Value sent with the request.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -913,7 +937,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.set_site_mode_autonomous_or_self_consumption(energy_site_id, body)
+result = client.energy.with_raw_response.set_site_mode_autonomous_or_self_consumption(
+    "some example string", OperationRequest(default_real_mode=DefaultRealMode.AUTONOMOUS)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -924,7 +950,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.set_site_mode_autonomous_or_self_consumption(energy_site_id, body)
+result = await async_client.energy.with_raw_response.set_site_mode_autonomous_or_self_consumption(
+    "some example string", OperationRequest(default_real_mode=DefaultRealMode.AUTONOMOUS)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -944,7 +972,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[OperationRequest](tesla_fleet_management_api/models/operation_request.py) \| [OperationRequestDict](tesla_fleet_management_api/models/operation_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -992,7 +1020,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.update_storm_watch_participation(energy_site_id, body)
+result = client.energy.with_raw_response.update_storm_watch_participation(
+    "some example string", StormModeRequest(enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -1003,7 +1033,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.update_storm_watch_participation(energy_site_id, body)
+result = await async_client.energy.with_raw_response.update_storm_watch_participation(
+    "some example string", StormModeRequest(enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -1023,7 +1055,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[StormModeRequest](tesla_fleet_management_api/models/storm_mode_request.py) \| [StormModeRequestDict](tesla_fleet_management_api/models/storm_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1071,7 +1103,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.energy.with_raw_response.update_time_of_use_tou_settings(energy_site_id, body)
+result = client.energy.with_raw_response.update_time_of_use_tou_settings(
+    "some example string", TimeOfUseSettingsRequest(tou_settings=TouSettings())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -1082,7 +1116,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.energy.with_raw_response.update_time_of_use_tou_settings(energy_site_id, body)
+result = await async_client.energy.with_raw_response.update_time_of_use_tou_settings(
+    "some example string", TimeOfUseSettingsRequest(tou_settings=TouSettings())
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GenericUpdateResponse
@@ -1102,7 +1138,7 @@ match result:
 | --- | --- | --- |
 | <code>energy_site_id</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[TimeOfUseSettingsRequest](tesla_fleet_management_api/models/time_of_use_settings_request.py) \| [TimeOfUseSettingsRequestDict](tesla_fleet_management_api/models/time_of_use_settings_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1154,7 +1190,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.partner.with_raw_response.get_public_key_for_a_domain(domain)
+result = client.partner.with_raw_response.get_public_key_for_a_domain("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PublicKeyResponse
@@ -1165,7 +1201,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.partner.with_raw_response.get_public_key_for_a_domain(domain)
+result = await async_client.partner.with_raw_response.get_public_key_for_a_domain("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PublicKeyResponse
@@ -1184,7 +1220,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>domain</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1261,7 +1297,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1338,7 +1374,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1386,7 +1422,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.partner.with_raw_response.register_a_partner_account(body)
+result = client.partner.with_raw_response.register_a_partner_account(
+    RegisterPartnerRequest(domain="some example string")
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RegisterPartnerResponse
@@ -1397,7 +1435,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.partner.with_raw_response.register_a_partner_account(body)
+result = await async_client.partner.with_raw_response.register_a_partner_account(
+    RegisterPartnerRequest(domain="some example string")
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RegisterPartnerResponse
@@ -1416,7 +1456,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[RegisterPartnerRequest](tesla_fleet_management_api/models/register_partner_request.py) \| [RegisterPartnerRequestDict](tesla_fleet_management_api/models/register_partner_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1497,7 +1537,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1574,7 +1614,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1651,7 +1691,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1728,7 +1768,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1780,7 +1820,9 @@ Controls the front or rear trunk
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.actuatetrunk(vehicle_tag, body)
+result = client.vehicle_commands.with_raw_response.actuatetrunk(
+    "some example string", ActuateTrunkRequest(which_trunk=WhichTrunk.FRONT)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1791,7 +1833,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.actuatetrunk(vehicle_tag, body)
+result = await async_client.vehicle_commands.with_raw_response.actuatetrunk(
+    "some example string", ActuateTrunkRequest(which_trunk=WhichTrunk.FRONT)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1811,7 +1855,7 @@ match result:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[ActuateTrunkRequest](tesla_fleet_management_api/models/actuate_trunk_request.py) \| [ActuateTrunkRequestDict](tesla_fleet_management_api/models/actuate_trunk_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1859,7 +1903,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.addchargeschedule(vehicle_tag, body)
+result = client.vehicle_commands.with_raw_response.addchargeschedule(
+    "some example string", AddChargeScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1870,7 +1916,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.addchargeschedule(vehicle_tag, body)
+result = await async_client.vehicle_commands.with_raw_response.addchargeschedule(
+    "some example string", AddChargeScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1890,7 +1938,7 @@ match result:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AddChargeScheduleRequest](tesla_fleet_management_api/models/add_charge_schedule_request.py) \| [AddChargeScheduleRequestDict](tesla_fleet_management_api/models/add_charge_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1938,7 +1986,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.addpreconditionschedule(vehicle_tag, body)
+result = client.vehicle_commands.with_raw_response.addpreconditionschedule(
+    "some example string", AddPreconditionScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1949,7 +1999,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.addpreconditionschedule(vehicle_tag, body)
+result = await async_client.vehicle_commands.with_raw_response.addpreconditionschedule(
+    "some example string", AddPreconditionScheduleRequest(lat=1.5, lon=1.5, id=1, enabled=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -1969,7 +2021,7 @@ match result:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AddPreconditionScheduleRequest](tesla_fleet_management_api/models/add_precondition_schedule_request.py) \| [AddPreconditionScheduleRequestDict](tesla_fleet_management_api/models/add_precondition_schedule_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2017,7 +2069,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.adjustmediavolume(vehicle_tag, body)
+result = client.vehicle_commands.with_raw_response.adjustmediavolume(
+    "some example string", AdjustVolumeRequest(volume=1)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2028,7 +2082,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.adjustmediavolume(vehicle_tag, body)
+result = await async_client.vehicle_commands.with_raw_response.adjustmediavolume(
+    "some example string", AdjustVolumeRequest(volume=1)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2048,7 +2104,7 @@ match result:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[AdjustVolumeRequest](tesla_fleet_management_api/models/adjust_volume_request.py) \| [AdjustVolumeRequestDict](tesla_fleet_management_api/models/adjust_volume_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2096,7 +2152,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.cancelsoftwareupdate(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.cancelsoftwareupdate("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2107,7 +2163,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.cancelsoftwareupdate(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.cancelsoftwareupdate("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2126,7 +2182,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2174,7 +2230,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.chargemaxrange(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.chargemaxrange("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2185,7 +2241,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.chargemaxrange(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.chargemaxrange("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2204,7 +2260,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2252,7 +2308,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.chargestandard(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.chargestandard("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2263,7 +2319,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.chargestandard(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.chargestandard("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2282,7 +2338,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2330,7 +2386,7 @@ Deactivates PIN to Drive and resets the associated PIN for supported firmware ve
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.clear_pi_nto_drive_admin(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.clear_pi_nto_drive_admin("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2341,7 +2397,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.clear_pi_nto_drive_admin(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.clear_pi_nto_drive_admin("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2360,7 +2416,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2408,7 +2464,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.closechargeportdoor(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.closechargeportdoor("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2419,7 +2475,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.closechargeportdoor(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.closechargeportdoor("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2438,7 +2494,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2486,7 +2542,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.enableordisable_guest_mode(vehicle_tag, body)
+result = client.vehicle_commands.with_raw_response.enableordisable_guest_mode(
+    "some example string", GuestModeRequest(enable=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2497,7 +2555,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.enableordisable_guest_mode(vehicle_tag, body)
+result = await async_client.vehicle_commands.with_raw_response.enableordisable_guest_mode(
+    "some example string", GuestModeRequest(enable=True)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2517,7 +2577,7 @@ match result:
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[GuestModeRequest](tesla_fleet_management_api/models/guest_mode_request.py) \| [GuestModeRequestDict](tesla_fleet_management_api/models/guest_mode_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2565,7 +2625,7 @@ Erases user data from the vehicle UI. Requires Guest Mode.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.eraseuserdata(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.eraseuserdata("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2576,7 +2636,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.eraseuserdata(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.eraseuserdata("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2595,7 +2655,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2643,7 +2703,7 @@ Briefly flashes vehicle headlights.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.flashlights(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.flashlights("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2654,7 +2714,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.flashlights(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.flashlights("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2673,7 +2733,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2721,7 +2781,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.honkhorn(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.honkhorn("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2732,7 +2792,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.honkhorn(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.honkhorn("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2751,7 +2811,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2799,7 +2859,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.lockdoors(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.lockdoors("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2810,7 +2870,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.lockdoors(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.lockdoors("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2829,7 +2889,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2877,7 +2937,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.nextfavoritemediatrack(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.nextfavoritemediatrack("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2888,7 +2948,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.nextfavoritemediatrack(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.nextfavoritemediatrack("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2907,7 +2967,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2955,7 +3015,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.openchargeportdoor(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.openchargeportdoor("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2966,7 +3026,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.openchargeportdoor(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.openchargeportdoor("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -2985,7 +3045,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3033,7 +3093,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.startcharging(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.startcharging("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3044,7 +3104,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.startcharging(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.startcharging("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3063,7 +3123,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3111,7 +3171,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.startclimatepreconditioning(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.startclimatepreconditioning("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3122,7 +3182,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.startclimatepreconditioning(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.startclimatepreconditioning("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3141,7 +3201,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3189,7 +3249,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.stopcharging(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.stopcharging("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3200,7 +3260,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.stopcharging(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.stopcharging("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3219,7 +3279,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3267,7 +3327,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.stopclimatepreconditioning(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.stopclimatepreconditioning("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3278,7 +3338,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.stopclimatepreconditioning(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.stopclimatepreconditioning("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3297,7 +3357,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3345,7 +3405,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicle_commands.with_raw_response.unlockdoors(vehicle_tag)
+result = client.vehicle_commands.with_raw_response.unlockdoors("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3356,7 +3416,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicle_commands.with_raw_response.unlockdoors(vehicle_tag)
+result = await async_client.vehicle_commands.with_raw_response.unlockdoors("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CommandResponse
@@ -3375,7 +3435,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3427,7 +3487,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.configure_fleet_telemetry_using_signed_jws_token(body)
+result = client.vehicles.with_raw_response.configure_fleet_telemetry_using_signed_jws_token(FleetTelemetryJwsRequest())
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3438,7 +3498,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.configure_fleet_telemetry_using_signed_jws_token(body)
+result = await async_client.vehicles.with_raw_response.configure_fleet_telemetry_using_signed_jws_token(
+    FleetTelemetryJwsRequest()
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3457,7 +3519,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[FleetTelemetryJwsRequest](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py) \| [FleetTelemetryJwsRequestDict](tesla_fleet_management_api/models/fleet_telemetry_jws_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3505,7 +3567,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.create_or_update_fleet_telemetry_configuration(body)
+result = client.vehicles.with_raw_response.create_or_update_fleet_telemetry_configuration({})
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3516,7 +3578,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.create_or_update_fleet_telemetry_configuration(body)
+result = await async_client.vehicles.with_raw_response.create_or_update_fleet_telemetry_configuration({})
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3535,7 +3597,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>Any</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3583,7 +3645,7 @@ Send a `DELETE` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.delete_fleet_telemetry_configuration(vehicle_tag)
+result = client.vehicles.with_raw_response.delete_fleet_telemetry_configuration("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3594,7 +3656,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.delete_fleet_telemetry_configuration(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.delete_fleet_telemetry_configuration("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3613,7 +3675,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3661,7 +3723,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_allowed_drivers_for_a_vehicle(vehicle_tag)
+result = client.vehicles.with_raw_response.get_allowed_drivers_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type DriversResponse
@@ -3672,7 +3734,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_allowed_drivers_for_a_vehicle(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.get_allowed_drivers_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type DriversResponse
@@ -3691,7 +3753,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3739,7 +3801,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_eligible_vehicle_subscriptions(vin)
+result = client.vehicles.with_raw_response.get_eligible_vehicle_subscriptions("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -3750,7 +3812,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_eligible_vehicle_subscriptions(vin)
+result = await async_client.vehicles.with_raw_response.get_eligible_vehicle_subscriptions("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -3769,7 +3831,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3817,7 +3879,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_eligible_vehicle_upgrades(vin)
+result = client.vehicles.with_raw_response.get_eligible_vehicle_upgrades("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -3828,7 +3890,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_eligible_vehicle_upgrades(vin)
+result = await async_client.vehicles.with_raw_response.get_eligible_vehicle_upgrades("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -3847,7 +3909,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3895,7 +3957,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_enterprise_roles_for_a_vehicle(vin)
+result = client.vehicles.with_raw_response.get_enterprise_roles_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3906,7 +3968,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_enterprise_roles_for_a_vehicle(vin)
+result = await async_client.vehicles.with_raw_response.get_enterprise_roles_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3925,7 +3987,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3973,7 +4035,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_fleet_status_for_vehicles(body)
+result = client.vehicles.with_raw_response.get_fleet_status_for_vehicles(FleetStatusRequest())
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3984,7 +4046,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_fleet_status_for_vehicles(body)
+result = await async_client.vehicles.with_raw_response.get_fleet_status_for_vehicles(FleetStatusRequest())
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -4003,7 +4065,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>body</code> | <code>[FleetStatusRequest](tesla_fleet_management_api/models/fleet_status_request.py) \| [FleetStatusRequestDict](tesla_fleet_management_api/models/fleet_status_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4051,7 +4113,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_fleet_telemetry_configuration(vehicle_tag)
+result = client.vehicles.with_raw_response.get_fleet_telemetry_configuration("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -4062,7 +4124,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_fleet_telemetry_configuration(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.get_fleet_telemetry_configuration("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -4081,7 +4143,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4129,7 +4191,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_fleet_telemetry_errors_for_a_vehicle(vehicle_tag)
+result = client.vehicles.with_raw_response.get_fleet_telemetry_errors_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -4140,7 +4202,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_fleet_telemetry_errors_for_a_vehicle(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.get_fleet_telemetry_errors_for_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -4159,7 +4221,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4207,7 +4269,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.get_vehicle(vehicle_tag)
+result = client.vehicles.with_raw_response.get_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesResponseResponse200
@@ -4218,7 +4280,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.get_vehicle(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.get_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesResponseResponse200
@@ -4237,7 +4299,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4314,7 +4376,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4362,7 +4424,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.mobile_enabled(vehicle_tag)
+result = client.vehicles.with_raw_response.mobile_enabled("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesMobileEnabledResponse
@@ -4373,7 +4435,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.mobile_enabled(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.mobile_enabled("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesMobileEnabledResponse
@@ -4392,7 +4454,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4440,7 +4502,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.nearby_charging_sites(vehicle_tag)
+result = client.vehicles.with_raw_response.nearby_charging_sites("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesNearbyChargingSitesResponse
@@ -4451,7 +4513,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.nearby_charging_sites(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.nearby_charging_sites("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesNearbyChargingSitesResponse
@@ -4470,7 +4532,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4518,7 +4580,7 @@ Send a `DELETE` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.remove_driver_access_from_a_vehicle(vehicle_tag)
+result = client.vehicles.with_raw_response.remove_driver_access_from_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SimpleOkResponse
@@ -4529,7 +4591,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.remove_driver_access_from_a_vehicle(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.remove_driver_access_from_a_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SimpleOkResponse
@@ -4548,7 +4610,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4596,7 +4658,9 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.set_enterprise_payer_roles(vin, body)
+result = client.vehicles.with_raw_response.set_enterprise_payer_roles(
+    "some example string", EnterprisePayerRequest(role="some example string")
+)
 match result:
     case Success():
         ...  # 2xx, no content
@@ -4607,7 +4671,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.set_enterprise_payer_roles(vin, body)
+result = await async_client.vehicles.with_raw_response.set_enterprise_payer_roles(
+    "some example string", EnterprisePayerRequest(role="some example string")
+)
 match result:
     case Success():
         ...  # 2xx, no content
@@ -4627,7 +4693,7 @@ match result:
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
 | <code>body</code> | <code>[EnterprisePayerRequest](tesla_fleet_management_api/models/enterprise_payer_request.py) \| [EnterprisePayerRequestDict](tesla_fleet_management_api/models/enterprise_payer_request.py)</code> | The request body. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4675,7 +4741,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.vehicle_live_data(vehicle_tag)
+result = client.vehicles.with_raw_response.vehicle_live_data("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -4686,7 +4752,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.vehicle_live_data(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.vehicle_live_data("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -4705,7 +4771,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4753,7 +4819,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.vehicle_options(vin)
+result = client.vehicles.with_raw_response.vehicle_options("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1DxVehiclesOptionsResponse
@@ -4764,7 +4830,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.vehicle_options(vin)
+result = await async_client.vehicles.with_raw_response.vehicle_options("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1DxVehiclesOptionsResponse
@@ -4783,7 +4849,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4831,7 +4897,7 @@ Send a `GET` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.vehicle_specs(vin)
+result = client.vehicles.with_raw_response.vehicle_specs("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -4842,7 +4908,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.vehicle_specs(vin)
+result = await async_client.vehicles.with_raw_response.vehicle_specs("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SiteInfoResponse
@@ -4861,7 +4927,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vin</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4909,7 +4975,7 @@ Send a `POST` request.
 **Sync**
 
 ```python
-result = client.vehicles.with_raw_response.wake_up_vehicle(vehicle_tag)
+result = client.vehicles.with_raw_response.wake_up_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesWakeUpResponse
@@ -4920,7 +4986,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.vehicles.with_raw_response.wake_up_vehicle(vehicle_tag)
+result = await async_client.vehicles.with_raw_response.wake_up_vehicle("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Api1VehiclesWakeUpResponse
@@ -4939,7 +5005,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>vehicle_tag</code> | <code>str</code> | Value sent with the request. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5016,7 +5082,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](tesla_fleet_management_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>

@@ -14,7 +14,7 @@ class ChargingSessionsData(SdkBaseModel):
 
 
 class ChargingSessionsDataDict(TypedDict):
-    data: NotRequired[list[ChargingSession | ChargingSessionDict]]
+    data: NotRequired[list[ChargingSessionDict]]
     status_code: NotRequired[int]
     status_message: NotRequired[str]
     timestamp: NotRequired[dict[str, str]]

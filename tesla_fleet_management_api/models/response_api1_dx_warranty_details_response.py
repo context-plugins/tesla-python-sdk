@@ -14,6 +14,6 @@ class ResponseApi1DxWarrantyDetailsResponse(SdkBaseModel):
 
 
 class ResponseApi1DxWarrantyDetailsResponseDict(TypedDict):
-    active_warranty: NotRequired[list[WarrantyItem | WarrantyItemDict]]
-    upcoming_warranty: NotRequired[list[WarrantyItem | WarrantyItemDict]]
-    expired_warranty: NotRequired[list[WarrantyItem | WarrantyItemDict]]
+    active_warranty: NotRequired[list[WarrantyItemDict]]
+    upcoming_warranty: NotRequired[list[WarrantyItemDict]]
+    expired_warranty: NotRequired[list[WarrantyItemDict]]

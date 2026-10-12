@@ -14,6 +14,6 @@ class ChargeHistory(SdkBaseModel):
 
 
 class ChargeHistoryDict(TypedDict):
-    charge_start_time: ChargeStartTime | ChargeStartTimeDict
-    charge_duration: ChargeDuration | ChargeDurationDict
+    charge_start_time: ChargeStartTimeDict
+    charge_duration: ChargeDurationDict
     energy_added_wh: int

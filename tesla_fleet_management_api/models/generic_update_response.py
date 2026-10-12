@@ -11,4 +11,4 @@ class GenericUpdateResponse(SdkBaseModel):
 
 
 class GenericUpdateResponseDict(TypedDict):
-    response: Response | ResponseDict
+    response: ResponseDict

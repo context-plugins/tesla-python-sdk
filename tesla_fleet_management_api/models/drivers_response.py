@@ -12,5 +12,5 @@ class DriversResponse(SdkBaseModel):
 
 
 class DriversResponseDict(TypedDict):
-    response: NotRequired[list[Driver | DriverDict]]
+    response: NotRequired[list[DriverDict]]
     count: NotRequired[int]

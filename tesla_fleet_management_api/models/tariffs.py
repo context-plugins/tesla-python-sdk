@@ -13,4 +13,4 @@ class Tariffs(SdkBaseModel):
 
 class TariffsDict(TypedDict):
     currency: NotRequired[str]
-    elements: NotRequired[list[TariffElement | TariffElementDict]]
+    elements: NotRequired[list[TariffElementDict]]

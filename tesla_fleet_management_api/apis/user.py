@@ -10,8 +10,10 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     raw_error_response,
+    unwrap,
 )
 from ..models.backup_response import BackupResponse
 from ..models.me_response import MeResponse
@@ -28,14 +30,15 @@ class User:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             User orders retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_active_orders_for_a_user(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_active_orders_for_a_user(request_options=request_options))
 
     def get_custom_feature_flags_for_a_user(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -43,27 +46,29 @@ class User:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Feature flags retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_custom_feature_flags_for_a_user(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_custom_feature_flags_for_a_user(request_options=request_options))
 
     def get_summary_of_a_user_s_account(self, *, request_options: RequestOptionsOrDict | None = None) -> MeResponse:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             User account retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_summary_of_a_user_s_account(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_summary_of_a_user_s_account(request_options=request_options))
 
     def get_user_s_region_and_fleet_api_base_url(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -71,16 +76,15 @@ class User:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Region information retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_user_s_region_and_fleet_api_base_url(
-            request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.get_user_s_region_and_fleet_api_base_url(request_options=request_options))
 
     @property
     def with_raw_response(self) -> UserWithRawResponse:
@@ -97,14 +101,15 @@ class AsyncUser:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             User orders retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.get_active_orders_for_a_user(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_active_orders_for_a_user(request_options=request_options))
 
     async def get_custom_feature_flags_for_a_user(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -112,16 +117,17 @@ class AsyncUser:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Feature flags retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_custom_feature_flags_for_a_user(request_options=request_options)
-        ).unwrap()
+        )
 
     async def get_summary_of_a_user_s_account(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -129,14 +135,15 @@ class AsyncUser:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             User account retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.get_summary_of_a_user_s_account(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.get_summary_of_a_user_s_account(request_options=request_options))
 
     async def get_user_s_region_and_fleet_api_base_url(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -144,16 +151,17 @@ class AsyncUser:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Region information retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_user_s_region_and_fleet_api_base_url(request_options=request_options)
-        ).unwrap()
+        )
 
     @property
     def with_raw_response(self) -> AsyncUserWithRawResponse:
@@ -167,7 +175,8 @@ class UserWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -188,7 +197,8 @@ class UserWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -209,7 +219,8 @@ class UserWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -230,7 +241,8 @@ class UserWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -253,7 +265,8 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -263,7 +276,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[OrdersResponse],
+            decoder=async_json_decoder[OrdersResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -274,7 +287,8 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -284,7 +298,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[BackupResponse],
+            decoder=async_json_decoder[BackupResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -295,7 +309,8 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -305,7 +320,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[MeResponse],
+            decoder=async_json_decoder[MeResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -316,7 +331,8 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -326,7 +342,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[RegionResponse],
+            decoder=async_json_decoder[RegionResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

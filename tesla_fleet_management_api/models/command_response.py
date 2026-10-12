@@ -11,4 +11,4 @@ class CommandResponse(SdkBaseModel):
 
 
 class CommandResponseDict(TypedDict):
-    response: NotRequired[CommandResult | CommandResultDict]
+    response: NotRequired[CommandResultDict]

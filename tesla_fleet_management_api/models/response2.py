@@ -11,4 +11,4 @@ class Response2(SdkBaseModel):
 
 
 class Response2Dict(TypedDict):
-    signaling: Signaling | SignalingDict
+    signaling: SignalingDict

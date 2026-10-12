@@ -23,9 +23,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/charging/invoice/{id}`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
-- **Signature**: `def get_charging_invoice(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — path
+- **Signature**: `def get_charging_invoice(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — path `id`
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, RawError]`
 - **Error**: `RawError` — **Case B**

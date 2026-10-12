@@ -11,4 +11,4 @@ class RegisterPartnerResponse(SdkBaseModel):
 
 
 class RegisterPartnerResponseDict(TypedDict):
-    response: ResponseRegisterPartnerResponse | ResponseRegisterPartnerResponseDict
+    response: ResponseRegisterPartnerResponseDict

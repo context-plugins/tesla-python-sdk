@@ -11,4 +11,4 @@ class Api1VehiclesMobileEnabledResponse(SdkBaseModel):
 
 
 class Api1VehiclesMobileEnabledResponseDict(TypedDict):
-    response: NotRequired[MobileEnabled | MobileEnabledDict]
+    response: NotRequired[MobileEnabledDict]

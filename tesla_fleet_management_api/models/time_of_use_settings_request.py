@@ -11,4 +11,4 @@ class TimeOfUseSettingsRequest(SdkBaseModel):
 
 
 class TimeOfUseSettingsRequestDict(TypedDict):
-    tou_settings: TouSettings | TouSettingsDict
+    tou_settings: TouSettingsDict

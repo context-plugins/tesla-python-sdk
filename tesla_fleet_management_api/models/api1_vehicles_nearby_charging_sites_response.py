@@ -11,4 +11,4 @@ class Api1VehiclesNearbyChargingSitesResponse(SdkBaseModel):
 
 
 class Api1VehiclesNearbyChargingSitesResponseDict(TypedDict):
-    response: NotRequired[Response3 | Response3Dict]
+    response: NotRequired[Response3Dict]

@@ -11,4 +11,4 @@ class ResponseApi1DxVehiclesOptionsResponse(SdkBaseModel):
 
 
 class ResponseApi1DxVehiclesOptionsResponseDict(TypedDict):
-    codes: NotRequired[list[VehicleOption | VehicleOptionDict]]
+    codes: NotRequired[list[VehicleOptionDict]]

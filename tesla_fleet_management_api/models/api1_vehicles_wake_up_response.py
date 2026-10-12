@@ -11,4 +11,4 @@ class Api1VehiclesWakeUpResponse(SdkBaseModel):
 
 
 class Api1VehiclesWakeUpResponseDict(TypedDict):
-    response: NotRequired[VehicleBase | VehicleBaseDict]
+    response: NotRequired[VehicleBaseDict]

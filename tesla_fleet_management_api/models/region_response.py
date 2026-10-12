@@ -11,4 +11,4 @@ class RegionResponse(SdkBaseModel):
 
 
 class RegionResponseDict(TypedDict):
-    response: ResponseRegionResponse | ResponseRegionResponseDict
+    response: ResponseRegionResponseDict

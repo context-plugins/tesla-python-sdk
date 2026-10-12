@@ -11,4 +11,4 @@ class ChargingSessionsResponse(SdkBaseModel):
 
 
 class ChargingSessionsResponseDict(TypedDict):
-    response: ChargingSessionsData | ChargingSessionsDataDict
+    response: ChargingSessionsDataDict

@@ -11,4 +11,4 @@ class ChargingHistoryData(SdkBaseModel):
 
 
 class ChargingHistoryDataDict(TypedDict):
-    data: list[ChargingHistoryItem | ChargingHistoryItemDict]
+    data: list[ChargingHistoryItemDict]

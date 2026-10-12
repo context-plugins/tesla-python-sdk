@@ -11,4 +11,4 @@ class Api1VehiclesResponseGetVehicle(SdkBaseModel):
 
 
 class Api1VehiclesResponseGetVehicleDict(TypedDict):
-    response: NotRequired[VehicleBase | VehicleBaseDict]
+    response: NotRequired[VehicleBaseDict]

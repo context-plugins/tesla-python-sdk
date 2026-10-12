@@ -12,10 +12,12 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_body,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.actuate_trunk_request import ActuateTrunkRequest, ActuateTrunkRequestDict
 from ..models.add_charge_schedule_request import AddChargeScheduleRequest, AddChargeScheduleRequestDict
@@ -45,14 +47,15 @@ class VehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.actuatetrunk(vehicle_tag, body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.actuatetrunk(vehicle_tag, body, request_options=request_options))
 
     def addchargeschedule(
         self,
@@ -66,14 +69,15 @@ class VehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.addchargeschedule(vehicle_tag, body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.addchargeschedule(vehicle_tag, body, request_options=request_options))
 
     def addpreconditionschedule(
         self,
@@ -87,16 +91,17 @@ class VehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.addpreconditionschedule(
-            vehicle_tag, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.addpreconditionschedule(vehicle_tag, body, request_options=request_options)
+        )
 
     def adjustmediavolume(
         self,
@@ -110,14 +115,15 @@ class VehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.adjustmediavolume(vehicle_tag, body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.adjustmediavolume(vehicle_tag, body, request_options=request_options))
 
     def cancelsoftwareupdate(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -126,14 +132,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.cancelsoftwareupdate(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.cancelsoftwareupdate(vehicle_tag, request_options=request_options))
 
     def chargemaxrange(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -142,14 +149,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.chargemaxrange(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.chargemaxrange(vehicle_tag, request_options=request_options))
 
     def chargestandard(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -158,14 +166,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.chargestandard(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.chargestandard(vehicle_tag, request_options=request_options))
 
     def clear_pi_nto_drive_admin(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -174,14 +183,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.clear_pi_nto_drive_admin(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.clear_pi_nto_drive_admin(vehicle_tag, request_options=request_options))
 
     def closechargeportdoor(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -190,14 +200,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.closechargeportdoor(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.closechargeportdoor(vehicle_tag, request_options=request_options))
 
     def enableordisable_guest_mode(
         self,
@@ -211,16 +222,17 @@ class VehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.enableordisable_guest_mode(
-            vehicle_tag, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.enableordisable_guest_mode(vehicle_tag, body, request_options=request_options)
+        )
 
     def eraseuserdata(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -229,56 +241,60 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.eraseuserdata(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.eraseuserdata(vehicle_tag, request_options=request_options))
 
     def flashlights(self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None) -> CommandResponse:
         """Briefly flashes vehicle headlights.
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.flashlights(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.flashlights(vehicle_tag, request_options=request_options))
 
     def honkhorn(self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None) -> CommandResponse:
         """Send a ``POST`` request.
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.honkhorn(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.honkhorn(vehicle_tag, request_options=request_options))
 
     def lockdoors(self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None) -> CommandResponse:
         """Send a ``POST`` request.
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.lockdoors(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.lockdoors(vehicle_tag, request_options=request_options))
 
     def nextfavoritemediatrack(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -287,14 +303,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.nextfavoritemediatrack(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.nextfavoritemediatrack(vehicle_tag, request_options=request_options))
 
     def openchargeportdoor(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -303,14 +320,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.openchargeportdoor(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.openchargeportdoor(vehicle_tag, request_options=request_options))
 
     def startcharging(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -319,14 +337,15 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.startcharging(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.startcharging(vehicle_tag, request_options=request_options))
 
     def startclimatepreconditioning(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -335,30 +354,30 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.startclimatepreconditioning(
-            vehicle_tag, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.startclimatepreconditioning(vehicle_tag, request_options=request_options))
 
     def stopcharging(self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None) -> CommandResponse:
         """Send a ``POST`` request.
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stopcharging(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stopcharging(vehicle_tag, request_options=request_options))
 
     def stopclimatepreconditioning(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -367,28 +386,30 @@ class VehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stopclimatepreconditioning(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stopclimatepreconditioning(vehicle_tag, request_options=request_options))
 
     def unlockdoors(self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None) -> CommandResponse:
         """Send a ``POST`` request.
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.unlockdoors(vehicle_tag, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.unlockdoors(vehicle_tag, request_options=request_options))
 
     @property
     def with_raw_response(self) -> VehicleCommandsWithRawResponse:
@@ -411,14 +432,15 @@ class AsyncVehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.actuatetrunk(vehicle_tag, body, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.actuatetrunk(vehicle_tag, body, request_options=request_options))
 
     async def addchargeschedule(
         self,
@@ -432,16 +454,17 @@ class AsyncVehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.addchargeschedule(vehicle_tag, body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def addpreconditionschedule(
         self,
@@ -455,16 +478,17 @@ class AsyncVehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.addpreconditionschedule(vehicle_tag, body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def adjustmediavolume(
         self,
@@ -478,16 +502,17 @@ class AsyncVehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.adjustmediavolume(vehicle_tag, body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def cancelsoftwareupdate(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -496,16 +521,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.cancelsoftwareupdate(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.cancelsoftwareupdate(vehicle_tag, request_options=request_options))
 
     async def chargemaxrange(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -514,14 +538,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.chargemaxrange(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.chargemaxrange(vehicle_tag, request_options=request_options))
 
     async def chargestandard(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -530,14 +555,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.chargestandard(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.chargestandard(vehicle_tag, request_options=request_options))
 
     async def clear_pi_nto_drive_admin(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -546,16 +572,17 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.clear_pi_nto_drive_admin(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        )
 
     async def closechargeportdoor(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -564,16 +591,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.closechargeportdoor(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.closechargeportdoor(vehicle_tag, request_options=request_options))
 
     async def enableordisable_guest_mode(
         self,
@@ -587,16 +613,17 @@ class AsyncVehicleCommands:
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.enableordisable_guest_mode(vehicle_tag, body, request_options=request_options)
-        ).unwrap()
+        )
 
     async def eraseuserdata(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -605,14 +632,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.eraseuserdata(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.eraseuserdata(vehicle_tag, request_options=request_options))
 
     async def flashlights(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -621,14 +649,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.flashlights(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.flashlights(vehicle_tag, request_options=request_options))
 
     async def honkhorn(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -637,14 +666,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.honkhorn(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.honkhorn(vehicle_tag, request_options=request_options))
 
     async def lockdoors(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -653,14 +683,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.lockdoors(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.lockdoors(vehicle_tag, request_options=request_options))
 
     async def nextfavoritemediatrack(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -669,16 +700,17 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nextfavoritemediatrack(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        )
 
     async def openchargeportdoor(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -687,14 +719,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.openchargeportdoor(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.openchargeportdoor(vehicle_tag, request_options=request_options))
 
     async def startcharging(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -703,14 +736,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.startcharging(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.startcharging(vehicle_tag, request_options=request_options))
 
     async def startclimatepreconditioning(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -719,16 +753,17 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.startclimatepreconditioning(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stopcharging(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -737,14 +772,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.stopcharging(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.stopcharging(vehicle_tag, request_options=request_options))
 
     async def stopclimatepreconditioning(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -753,16 +789,17 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stopclimatepreconditioning(vehicle_tag, request_options=request_options)
-        ).unwrap()
+        )
 
     async def unlockdoors(
         self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
@@ -771,14 +808,15 @@ class AsyncVehicleCommands:
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Vehicle command response
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.unlockdoors(vehicle_tag, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.unlockdoors(vehicle_tag, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncVehicleCommandsWithRawResponse:
@@ -798,7 +836,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -828,7 +867,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -858,7 +898,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -888,7 +929,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -913,7 +955,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -937,7 +980,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -961,7 +1005,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -985,7 +1030,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1009,7 +1055,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1038,7 +1085,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1063,7 +1111,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1087,7 +1136,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1111,7 +1161,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1135,7 +1186,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1159,7 +1211,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1183,7 +1236,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1207,7 +1261,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1231,7 +1286,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1255,7 +1311,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1279,7 +1336,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1303,7 +1361,8 @@ class VehicleCommandsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthS
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1334,7 +1393,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1347,7 +1407,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1364,7 +1424,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1377,7 +1438,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1394,7 +1455,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1407,7 +1469,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1424,7 +1486,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1437,7 +1500,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1449,7 +1512,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1461,7 +1525,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1473,7 +1537,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1485,7 +1550,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1497,7 +1562,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1509,7 +1575,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1521,7 +1587,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1533,7 +1600,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1545,7 +1612,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1557,7 +1625,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1574,7 +1642,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         Args:
             vehicle_tag: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1587,7 +1656,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1599,7 +1668,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1611,7 +1681,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1623,7 +1693,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1635,7 +1706,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1647,7 +1718,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1659,7 +1731,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1671,7 +1743,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1683,7 +1756,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1695,7 +1768,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1707,7 +1781,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1719,7 +1793,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1731,7 +1806,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1743,7 +1818,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1755,7 +1831,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1767,7 +1843,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1779,7 +1856,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1791,7 +1868,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1803,7 +1881,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1815,7 +1893,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1827,7 +1906,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1839,7 +1918,8 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
 
         Args:
             vehicle_tag: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1851,7 +1931,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CommandResponse],
+            decoder=async_json_decoder[CommandResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

@@ -14,6 +14,6 @@ class Api1VehiclesResponse(SdkBaseModel):
 
 
 class Api1VehiclesResponseDict(TypedDict):
-    response: NotRequired[list[VehicleBase | VehicleBaseDict]]
-    pagination: NotRequired[Pagination | PaginationDict]
+    response: NotRequired[list[VehicleBaseDict]]
+    pagination: NotRequired[PaginationDict]
     count: NotRequired[int]

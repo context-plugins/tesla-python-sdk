@@ -12,10 +12,12 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_body,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.backup_response import BackupResponse
 from ..models.fleet_telemetry_errors_response import FleetTelemetryErrorsResponse
@@ -36,14 +38,15 @@ class Partner:
 
         Args:
             domain: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Public key retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_public_key_for_a_domain(domain, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_public_key_for_a_domain(domain, request_options=request_options))
 
     def get_recent_fleet_telemetry_errors(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -51,14 +54,15 @@ class Partner:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Fleet telemetry errors retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_recent_fleet_telemetry_errors(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_recent_fleet_telemetry_errors(request_options=request_options))
 
     def get_vins_with_fleet_telemetry_errors(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -66,14 +70,15 @@ class Partner:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             List of VINs with telemetry errors
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_vins_with_fleet_telemetry_errors(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_vins_with_fleet_telemetry_errors(request_options=request_options))
 
     def register_a_partner_account(
         self,
@@ -85,14 +90,15 @@ class Partner:
 
         Args:
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Partner account registered
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.register_a_partner_account(body, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.register_a_partner_account(body, request_options=request_options))
 
     @property
     def with_raw_response(self) -> PartnerWithRawResponse:
@@ -110,16 +116,17 @@ class AsyncPartner:
 
         Args:
             domain: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Public key retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_public_key_for_a_domain(domain, request_options=request_options)
-        ).unwrap()
+        )
 
     async def get_recent_fleet_telemetry_errors(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -127,16 +134,15 @@ class AsyncPartner:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Fleet telemetry errors retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.get_recent_fleet_telemetry_errors(request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.get_recent_fleet_telemetry_errors(request_options=request_options))
 
     async def get_vins_with_fleet_telemetry_errors(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -144,16 +150,17 @@ class AsyncPartner:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             List of VINs with telemetry errors
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_vins_with_fleet_telemetry_errors(request_options=request_options)
-        ).unwrap()
+        )
 
     async def register_a_partner_account(
         self,
@@ -165,16 +172,15 @@ class AsyncPartner:
 
         Args:
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Partner account registered
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.register_a_partner_account(body, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.register_a_partner_account(body, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncPartnerWithRawResponse:
@@ -189,7 +195,8 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
 
         Args:
             domain: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -211,7 +218,8 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -232,7 +240,8 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -257,7 +266,8 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
 
         Args:
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -283,7 +293,8 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
 
         Args:
             domain: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -294,7 +305,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[PublicKeyResponse],
+            decoder=async_json_decoder[PublicKeyResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -305,7 +316,8 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -315,7 +327,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[FleetTelemetryErrorsResponse],
+            decoder=async_json_decoder[FleetTelemetryErrorsResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -326,7 +338,8 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -336,7 +349,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[BackupResponse],
+            decoder=async_json_decoder[BackupResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -351,7 +364,8 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
 
         Args:
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -363,7 +377,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[RegisterPartnerResponse],
+            decoder=async_json_decoder[RegisterPartnerResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

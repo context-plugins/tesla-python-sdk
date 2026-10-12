@@ -12,5 +12,5 @@ class OrdersResponse(SdkBaseModel):
 
 
 class OrdersResponseDict(TypedDict):
-    response: list[ResponseOrdersResponse | ResponseOrdersResponseDict]
+    response: list[ResponseOrdersResponseDict]
     count: int

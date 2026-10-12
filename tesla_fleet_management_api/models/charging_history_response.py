@@ -11,4 +11,4 @@ class ChargingHistoryResponse(SdkBaseModel):
 
 
 class ChargingHistoryResponseDict(TypedDict):
-    response: ChargingHistoryData | ChargingHistoryDataDict
+    response: ChargingHistoryDataDict

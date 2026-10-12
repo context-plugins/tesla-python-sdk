@@ -11,4 +11,4 @@ class CalendarHistoryResponse(SdkBaseModel):
 
 
 class CalendarHistoryResponseDict(TypedDict):
-    response: ResponseCalendarHistoryResponse | ResponseCalendarHistoryResponseDict
+    response: ResponseCalendarHistoryResponseDict

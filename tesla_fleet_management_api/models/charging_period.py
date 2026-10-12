@@ -13,4 +13,4 @@ class ChargingPeriod(SdkBaseModel):
 
 class ChargingPeriodDict(TypedDict):
     start_date_time: NotRequired[str]
-    dimensions: NotRequired[list[ChargingDimension | ChargingDimensionDict]]
+    dimensions: NotRequired[list[ChargingDimensionDict]]

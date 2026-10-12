@@ -14,10 +14,12 @@ from ..core import (
     RequestOptionsOrDict,
     RFC3339DateTime,
     SecuredRawResponse,
+    async_json_decoder,
     json_body,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.backup_request import BackupRequest, BackupRequestDict
 from ..models.backup_response import BackupResponse
@@ -55,16 +57,17 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Backup reserve updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.adjust_site_s_backup_reserve(
-            energy_site_id, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.adjust_site_s_backup_reserve(energy_site_id, body, request_options=request_options)
+        )
 
     def adjust_site_s_off_grid_vehicle_charging_reserve(
         self,
@@ -78,16 +81,19 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Reserve updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(
-            energy_site_id, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(
+                energy_site_id, body, request_options=request_options
+            ),
+        )
 
     def allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
         self, energy_site_id: str, *, body: Any | None = None, request_options: RequestOptionsOrDict | None = None
@@ -97,16 +103,19 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Grid import/export updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-            energy_site_id, body=body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
+                energy_site_id, body=body, request_options=request_options
+            ),
+        )
 
     def get_backup_or_energy_history(
         self,
@@ -128,22 +137,25 @@ class Energy:
             end_date: Value sent with the request.
             period: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             History retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_backup_or_energy_history(
-            energy_site_id,
-            kind,
-            start_date,
-            end_date,
-            period=period,
-            time_zone=time_zone,
-            request_options=request_options,
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_backup_or_energy_history(
+                energy_site_id,
+                kind,
+                start_date,
+                end_date,
+                period=period,
+                time_zone=time_zone,
+                request_options=request_options,
+            ),
+        )
 
     def get_live_site_status(
         self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
@@ -152,14 +164,15 @@ class Energy:
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Live status retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_live_site_status(energy_site_id, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_live_site_status(energy_site_id, request_options=request_options))
 
     def get_site_information_assets_settings_features(
         self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
@@ -168,16 +181,19 @@ class Energy:
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Site info retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_site_information_assets_settings_features(
-            energy_site_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_site_information_assets_settings_features(
+                energy_site_id, request_options=request_options
+            ),
+        )
 
     def get_user_products_vehicles_energy_sites(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -185,14 +201,15 @@ class Energy:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Products retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_user_products_vehicles_energy_sites(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.get_user_products_vehicles_energy_sites(request_options=request_options))
 
     def get_wall_connector_charging_history(
         self,
@@ -212,16 +229,19 @@ class Energy:
             start_date: Value sent with the request.
             end_date: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging history retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.get_wall_connector_charging_history(
-            energy_site_id, kind, start_date, end_date, time_zone=time_zone, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.get_wall_connector_charging_history(
+                energy_site_id, kind, start_date, end_date, time_zone=time_zone, request_options=request_options
+            ),
+        )
 
     def set_site_mode_autonomous_or_self_consumption(
         self,
@@ -235,16 +255,19 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Operation mode updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.set_site_mode_autonomous_or_self_consumption(
-            energy_site_id, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.set_site_mode_autonomous_or_self_consumption(
+                energy_site_id, body, request_options=request_options
+            ),
+        )
 
     def update_storm_watch_participation(
         self,
@@ -258,16 +281,19 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Storm mode updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.update_storm_watch_participation(
-            energy_site_id, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.update_storm_watch_participation(
+                energy_site_id, body, request_options=request_options
+            ),
+        )
 
     def update_time_of_use_tou_settings(
         self,
@@ -281,16 +307,19 @@ class Energy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             TOU settings updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.update_time_of_use_tou_settings(
-            energy_site_id, body, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.update_time_of_use_tou_settings(
+                energy_site_id, body, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> EnergyWithRawResponse:
@@ -313,18 +342,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Backup reserve updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.adjust_site_s_backup_reserve(
                 energy_site_id, body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def adjust_site_s_off_grid_vehicle_charging_reserve(
         self,
@@ -338,18 +368,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Reserve updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.adjust_site_s_off_grid_vehicle_charging_reserve(
                 energy_site_id, body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
         self, energy_site_id: str, *, body: Any | None = None, request_options: RequestOptionsOrDict | None = None
@@ -359,18 +390,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Grid import/export updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
                 energy_site_id, body=body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_backup_or_energy_history(
         self,
@@ -392,14 +424,15 @@ class AsyncEnergy:
             end_date: Value sent with the request.
             period: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             History retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_backup_or_energy_history(
                 energy_site_id,
                 kind,
@@ -408,8 +441,8 @@ class AsyncEnergy:
                 period=period,
                 time_zone=time_zone,
                 request_options=request_options,
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_live_site_status(
         self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
@@ -418,16 +451,17 @@ class AsyncEnergy:
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Live status retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_live_site_status(energy_site_id, request_options=request_options)
-        ).unwrap()
+        )
 
     async def get_site_information_assets_settings_features(
         self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
@@ -436,18 +470,19 @@ class AsyncEnergy:
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Site info retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_site_information_assets_settings_features(
                 energy_site_id, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def get_user_products_vehicles_energy_sites(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -455,16 +490,17 @@ class AsyncEnergy:
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Products retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_user_products_vehicles_energy_sites(request_options=request_options)
-        ).unwrap()
+        )
 
     async def get_wall_connector_charging_history(
         self,
@@ -484,18 +520,19 @@ class AsyncEnergy:
             start_date: Value sent with the request.
             end_date: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Charging history retrieved
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.get_wall_connector_charging_history(
                 energy_site_id, kind, start_date, end_date, time_zone=time_zone, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def set_site_mode_autonomous_or_self_consumption(
         self,
@@ -509,18 +546,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Operation mode updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.set_site_mode_autonomous_or_self_consumption(
                 energy_site_id, body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def update_storm_watch_participation(
         self,
@@ -534,18 +572,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Storm mode updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.update_storm_watch_participation(
                 energy_site_id, body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def update_time_of_use_tou_settings(
         self,
@@ -559,18 +598,19 @@ class AsyncEnergy:
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             TOU settings updated
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.update_time_of_use_tou_settings(
                 energy_site_id, body, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncEnergyWithRawResponse:
@@ -590,7 +630,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -620,7 +661,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -646,7 +688,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -684,7 +727,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             end_date: Value sent with the request.
             period: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -714,7 +758,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -737,7 +782,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -759,7 +805,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -792,7 +839,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             start_date: Value sent with the request.
             end_date: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -826,7 +874,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -856,7 +905,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -886,7 +936,8 @@ class EnergyWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -918,7 +969,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -931,7 +983,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[BackupResponse],
+            decoder=async_json_decoder[BackupResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -948,7 +1000,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -961,7 +1014,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[GenericUpdateResponse],
+            decoder=async_json_decoder[GenericUpdateResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -974,7 +1027,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -987,7 +1041,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[GenericUpdateResponse],
+            decoder=async_json_decoder[GenericUpdateResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1012,7 +1066,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             end_date: Value sent with the request.
             period: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1030,7 +1085,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[CalendarHistoryResponse],
+            decoder=async_json_decoder[CalendarHistoryResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1042,7 +1097,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1053,7 +1109,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[LiveStatusResponse],
+            decoder=async_json_decoder[LiveStatusResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1065,7 +1121,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
 
         Args:
             energy_site_id: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1076,7 +1133,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[SiteInfoResponse],
+            decoder=async_json_decoder[SiteInfoResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1087,7 +1144,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         """Send a ``GET`` request.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1097,7 +1155,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[ProductsResponse],
+            decoder=async_json_decoder[ProductsResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1120,7 +1178,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             start_date: Value sent with the request.
             end_date: Value sent with the request.
             time_zone: Value sent with the request.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1137,7 +1196,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[ChargeHistoryResponse],
+            decoder=async_json_decoder[ChargeHistoryResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1154,7 +1213,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1167,7 +1227,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[GenericUpdateResponse],
+            decoder=async_json_decoder[GenericUpdateResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1184,7 +1244,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1197,7 +1258,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[GenericUpdateResponse],
+            decoder=async_json_decoder[GenericUpdateResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1214,7 +1275,8 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         Args:
             energy_site_id: Value sent with the request.
             body: The request body.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1227,7 +1289,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
             auth_scheme=AsyncAnySchemes(
                 self._auth.thirdpartytoken_authorization_code, self._auth.thirdpartytoken_client_credentials
             ),
-            decoder=json_decoder[GenericUpdateResponse],
+            decoder=async_json_decoder[GenericUpdateResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
