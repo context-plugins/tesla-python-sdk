@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/actuate_trunk`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def actuatetrunk(vehicle_tag: str, body: ActuateTrunkRequest | ActuateTrunkRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`, `body`
 - **Params**: `vehicle_tag` — path · `body` — JSON body
@@ -27,6 +28,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/add_charge_schedule`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def addchargeschedule(vehicle_tag: str, body: AddChargeScheduleRequest | AddChargeScheduleRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`, `body`
 - **Params**: `vehicle_tag` — path · `body` — JSON body
@@ -44,6 +46,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/add_precondition_schedule`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def addpreconditionschedule(vehicle_tag: str, body: AddPreconditionScheduleRequest | AddPreconditionScheduleRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`, `body`
 - **Params**: `vehicle_tag` — path · `body` — JSON body
@@ -61,6 +64,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/adjust_volume`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def adjustmediavolume(vehicle_tag: str, body: AdjustVolumeRequest | AdjustVolumeRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`, `body`
 - **Params**: `vehicle_tag` — path · `body` — JSON body
@@ -78,6 +82,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/cancel_software_update`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def cancelsoftwareupdate(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -93,6 +98,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_max_range`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def chargemaxrange(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -108,6 +114,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_standard`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def chargestandard(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -123,6 +130,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/clear_pin_to_drive_admin`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def clear_pi_nto_drive_admin(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -138,6 +146,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_port_door_close`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def closechargeportdoor(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -153,6 +162,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/guest_mode`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def enableordisable_guest_mode(vehicle_tag: str, body: GuestModeRequest | GuestModeRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`, `body`
 - **Params**: `vehicle_tag` — path · `body` — JSON body
@@ -170,6 +180,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/erase_user_data`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def eraseuserdata(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -185,6 +196,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/flash_lights`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def flashlights(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -200,6 +212,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/honk_horn`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def honkhorn(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -215,6 +228,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/door_lock`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def lockdoors(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -230,6 +244,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/media_next_fav`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def nextfavoritemediatrack(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -245,6 +260,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_port_door_open`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def openchargeportdoor(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -260,6 +276,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_start`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def startcharging(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -275,6 +292,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/auto_conditioning_start`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def startclimatepreconditioning(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -290,6 +308,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/charge_stop`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def stopcharging(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -305,6 +324,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/auto_conditioning_stop`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def stopclimatepreconditioning(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -320,6 +340,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/command/door_unlock`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def unlockdoors(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path

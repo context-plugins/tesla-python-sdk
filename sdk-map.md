@@ -41,7 +41,6 @@ client = TeslaFleetManagementApiClient(
     thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
         client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
     ),
-    environment="production",
 )
 
 # TODO: call endpoints here -- see api-reference.md
@@ -75,7 +74,6 @@ async def main() -> None:
         thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
             client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
         ),
-        environment="production",
     )
     # TODO: call endpoints here, awaiting each -- see api-reference.md
     await client.aclose()
@@ -96,10 +94,10 @@ Every API group is a property on the client (e.g. `client.charging`). Every cons
 
 | Keyword | Sync Type | Async Type | Default |
 | --- | --- | --- | --- |
-| `environment` | `Environment` | `Environment` | `"production"` |
-| `base_url` | `str \| None` | `str \| None` | `None` |
+| `server_config` | `ServerConfigOrDict \| None` | `ServerConfigOrDict \| None` | `None` |
 | `timeout` | `float` | `float` | `30.0` seconds |
 | `retry_options` | `int \| RetryOptionsOrDict \| None` | `int \| RetryOptionsOrDict \| None` | `None` |
+| `logging_options` | `LoggingOptionsOrDict \| None` | `LoggingOptionsOrDict \| None` | `None` |
 | `custom_http_client` | `HttpClient \| None` | — | `None` |
 | `custom_async_http_client` | — | `AsyncHttpClient \| None` | `None` |
 | `bearer_auth` | `str \| None` | `str \| None` | `None` |
@@ -112,9 +110,10 @@ The types those columns name — where each imports from and, for a credentials 
 
 | Type | Import from | Shape |
 | --- | --- | --- |
-| `Environment` | `tesla_fleet_management_api.server` | `Literal` of the Environments table's names |
+| `ServerConfigOrDict` | `tesla_fleet_management_api.server` | keys as the Servers & auth tables read |
 | `RetryOptionsOrDict` | `tesla_fleet_management_api.core` | a retry count, `RetryOptions`, or a dict: `max_retries: int` · `initial_delay: float` · `backoff_factor: float` · `max_delay: float` · `max_jitter: float` · `status_codes_to_retry: frozenset[int]` · `http_methods_to_retry: frozenset[HttpMethod]` |
-| `HttpClient` | `tesla_fleet_management_api.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()`; `send` returns once the head has arrived and never reads the body, and raises `TransportError` (from `core`) when no response arrives — anything else it raises is never retried |
+| `LoggingOptionsOrDict` | `tesla_fleet_management_api.core` | `LoggingOptions` or a dict: `log_request_headers: bool` · `log_response_headers: bool` · `log_request_body: bool` · `body_size_limit: int` · `redaction_placeholder: str` · `unmask_headers: AbstractSet[str]` · `mask_headers: AbstractSet[str]` · `mask_keys: AbstractSet[str]` |
+| `HttpClient` | `tesla_fleet_management_api.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()`; `send` returns once the head has arrived and never reads the body, and raises `SdkConnectionError` (from `core`; `SdkTimeoutError` for a timeout) when no response arrives, as the response's reads do for a body they cannot deliver, naming the call as `request.method` and `safe_url(request.url)` — anything else it raises is never retried |
 | `AuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
 | `ThirdpartytokenAuthorizationCodeScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `RefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthTokenRefreshable` · `refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
@@ -149,6 +148,25 @@ The wait before retry *n* is `initial_delay × backoff_factor^(n−1)` plus up t
 
 A single call overrides two of these through `request_options` (`tesla_fleet_management_api/core/request_options.py`): `max_retries` and `status_codes_to_retry`, each merged over the client's policy field by field — `request_options={"max_retries": 0}` turns retrying off for that one call and leaves every other call alone.
 
+### Logging — off by default
+
+Every HTTP exchange is written through the standard `logging` module under the `tesla_fleet_management_api` logger, and the SDK configures nothing itself. Set that logger's level to turn it on: INFO writes the request line and a 2xx response line, WARNING a non-2xx response line and each retry, ERROR a call that ends in an exception, and DEBUG the header dumps and the request body that the flags below turn on. Or set `TESLA_FLEET_MANAGEMENT_API_LOG=info|debug` before the process starts: it sets the level, turns the three flags on for `debug`, and adds a stderr handler only where nothing listens.
+
+`LoggingOptions` fields (source: `tesla_fleet_management_api/core/logging.py`). Pass only the fields you change; each one left out takes its default, and a name set you pass replaces its default:
+
+| Field | Type | Default |
+| --- | --- | --- |
+| `log_request_headers` | `bool` | `False` |
+| `log_response_headers` | `bool` | `False` |
+| `log_request_body` | `bool` | `False` |
+| `body_size_limit` | `int` (bytes) | `32768` |
+| `redaction_placeholder` | `str` | `"REDACTED"` |
+| `unmask_headers` | `AbstractSet[str]` | `frozenset()` |
+| `mask_headers` | `AbstractSet[str]` | `frozenset()` |
+| `mask_keys` | `AbstractSet[str]` | `frozenset({"sig", "signature", "access_token", "apikey", "api_key", "client_secret", "password", "refresh_token", "code", "assertion", "client_assertion"})` |
+
+A single call is quietened through `request_options` (`tesla_fleet_management_api/core/request_options.py`): `log_level`, a `logging` level constant, is a floor below which that call's records are not written; it never turns a dump or the body on. A header value prints `REDACTED` unless its name is on the runtime's safe list, a query value unless its key is a paging name, and a form field whose key is in `mask_keys` always; a JSON body prints as sent; a response body is never logged.
+
 ---
 
 ## Error-handling model (read once — applies to every operation)
@@ -158,17 +176,24 @@ Every operation is reached in two response modes:
 - **Parsed call.** Returns the decoded payload and raises `ApiError` on an error status, with the decoded body on `.error` and the status on `.status_code`.
 - **Raw call.** Reached through `.with_raw_response`; returns `ApiResult` — `Success` or `Failure` — and never raises for an API error. Read `.payload` on a `Success` or `.error` on a `Failure`; both carry `.status_code` and `.headers`.
 
+Everything a call raises derives from `SdkError`, so one `except SdkError` covers any number of calls; every member names the call as `.method` and `.url` and keeps what caused it on `__cause__`. Besides `ApiError`, three members raise in **both** modes: `ResponseDecodeError` for a body its declared type rejects, `SdkConnectionError` for no usable response (`SdkTimeoutError` when it timed out) and `AuthSchemeError` for a credential that could not be applied. `ApiError` and `ResponseDecodeError` are siblings, so `except ApiError` never catches a 2xx that broke its contract.
+
 What `.error` holds is fixed per operation. There are two cases:
 
-- **Case A — typed error.** The operation documents at least one error status, so `tesla_fleet_management_api/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with `isinstance`. The operation blocks name the alias and the status each arm maps from.
+- **Case A — typed error.** The operation documents at least one error status, so `tesla_fleet_management_api/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with a `match` class pattern or `isinstance`. The operation blocks name the alias and the status each arm maps from.
 - **Case B — raw error.** The operation documents no error status; `.error` is `RawError` (`tesla_fleet_management_api/core/results.py`): `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any`.
 
 Core runtime types (`tesla_fleet_management_api/core/`) — public members with their **declared types**, verbatim from source:
 
 | Type | Public members | Source |
 | --- | --- | --- |
-| `ApiError` — raised by every parsed call; `.error` is always `RawError` (no Case A alias in this SDK) | `error: E` · `status_code: int` · `headers: Mapping[str, str]` | `tesla_fleet_management_api/core/exceptions.py` |
-| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `status_code: int` · `headers: Mapping[str, str]` (both on either) | `tesla_fleet_management_api/core/results.py` |
+| `SdkError` — the root of everything a call raises | `method: HttpMethod` · `url: str` — the path rendered, no query; the cause on `__cause__` | `tesla_fleet_management_api/core/exceptions.py` |
+| `ApiError` — raised by every parsed call; `.error` is always `RawError` (no Case A alias in this SDK) | `error: E` · `status_code: int` · `headers: Mapping[str, str]` · `method: HttpMethod` · `url: str` | `tesla_fleet_management_api/core/exceptions.py` |
+| `ResponseDecodeError` — a body its declared type rejects, in both modes | `status_code: int` · `headers: Mapping[str, str]` · `method` · `url` | `tesla_fleet_management_api/core/exceptions.py` |
+| `SdkConnectionError` — no usable response, in both modes | `method` · `url`; the HTTP library's exception on `__cause__` | `tesla_fleet_management_api/core/exceptions.py` |
+| `SdkTimeoutError` — the `SdkConnectionError` that timed out | `timeout: float` · `method` · `url` | `tesla_fleet_management_api/core/exceptions.py` |
+| `AuthSchemeError` — a credential that could not be applied, in both modes | `scheme_failures: tuple[Exception, ...]` · `method` · `url` | `tesla_fleet_management_api/core/exceptions.py` |
+| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `status_code: int` · `headers: Mapping[str, str]` · `method: HttpMethod` · `url: str` (all four on either) | `tesla_fleet_management_api/core/results.py` |
 | `RawError` | `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` | `tesla_fleet_management_api/core/results.py` |
 
 Typed error bodies (the arms of a Case A alias) are ordinary models — no special handling. The operation's **Type sources** table gives the module that declares each one; read field names, declared types and JSON aliases there, as for any other model.
@@ -177,8 +202,28 @@ Typed error bodies (the arms of a Case A alias) are ordinary models — no speci
 try:
     response = client.charging.get_charging_history()
 except ApiError as e:
-    # Case B — raw error: e.error is RawError
+    # Case B — raw error: e.error is RawError.
     print(e.status_code, e.error.text())
+except ResponseDecodeError as e:
+    # Body rejected by its declared type.
+    print(f"{e.status_code}: undecodable body ({type(e.__cause__).__name__})")
+except SdkTimeoutError as e:
+    # No response, body or next event in time.
+    print(f"{e.method} {e.url} timed out after {e.timeout} s")
+except SdkConnectionError as e:
+    # Refused, dropped, or cut off mid-body.
+    print(f"{e.method} {e.url} could not connect: {e.__cause__!r}")
+except AuthSchemeError as e:
+    # A credential could not be applied; one failure per scheme tried.
+    for failure in e.scheme_failures:
+        print(f"{e.method} {e.url} unauthenticated: {failure}")
+except SdkError as e:
+    # A member added later.
+    print(e)
+except Exception as e:
+    # Not a call failure: input refused before sending (ValueError), a handler you wrote raising, or a bug here.
+    print(f"not a call failure: {e!r}")
+    raise e
 ```
 
 **Raw (`.with_raw_response`) variants: present on every operation** — the same call returns `ApiResult` instead of raising, with the same body on `Failure.error`. Of **64 operations**, **0 are Case A (typed)** and **64 are Case B (raw)**.
@@ -196,8 +241,8 @@ Each links to a sub-page with one block per operation, headed by its full access
 | **Four spellings, one signature** — the same method name and parameters on `Client` and `AsyncClient`, each also reachable through `.with_raw_response`; the async twin is a coroutine to `await`, with the same return types and error case, and where the **Async Type** column differs, pass the type it names | Getting a client |
 | **Parsed raises, raw returns** — `ApiError` versus `ApiResult` | Error-handling model |
 | **Case B error is always `RawError`** — also the last arm of every Case A alias, where a block's **Error arms** bullet ends in it | Error-handling model |
-| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout, extra headers, `max_retries` or `status_codes_to_retry`; every signature ends with it | here (`tesla_fleet_management_api/core/request_options.py`), Retries |
-| **Base URL is the selected environment's** — this SDK's only server, one URL per `environment=`; override it with `base_url="https://…"` | Servers & auth |
+| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout, extra headers, `max_retries`, `status_codes_to_retry` or `log_level`; every signature ends with it | here (`tesla_fleet_management_api/core/request_options.py`), Retries, Logging |
+| **Each operation names its own server** — this SDK declares several, so every block carries a **Server** bullet with the server's key in `server_config=` | its block |
 | **Parameter names are literal** — signatures are generated code verbatim, and everything behind the bare `*` must be passed by name | here |
 | **A parameter's wire name is its Python name** — sent as-is on the path, query string, header or body, unless the block's **Params** bullet carries a wire name beside the role | here |
 
@@ -205,14 +250,14 @@ Each links to a sub-page with one block per operation, headed by its full access
 
 Sub-pages chunk per `###` block: each block is self-contained given the table above, and assumes this page is loaded beside it.
 
-| Controller | Ops | Page |
-| --- | --- | --- |
-| `client.charging` | 3 | [map/operations/charging.md](map/operations/charging.md) |
-| `client.energy` | 11 | [map/operations/energy.md](map/operations/energy.md) |
-| `client.partner` | 4 | [map/operations/partner.md](map/operations/partner.md) |
-| `client.user` | 4 | [map/operations/user.md](map/operations/user.md) |
-| `client.vehicle_commands` | 21 | [map/operations/vehicle_commands.md](map/operations/vehicle_commands.md) |
-| `client.vehicles` | 21 | [map/operations/vehicles.md](map/operations/vehicles.md) |
+| Controller | Class | Ops | Page |
+| --- | --- | --- | --- |
+| `client.charging` | `Charging` / `AsyncCharging` | 3 | [map/operations/charging.md](map/operations/charging.md) |
+| `client.energy` | `Energy` / `AsyncEnergy` | 11 | [map/operations/energy.md](map/operations/energy.md) |
+| `client.partner` | `Partner` / `AsyncPartner` | 4 | [map/operations/partner.md](map/operations/partner.md) |
+| `client.user` | `User` / `AsyncUser` | 4 | [map/operations/user.md](map/operations/user.md) |
+| `client.vehicle_commands` | `VehicleCommands` / `AsyncVehicleCommands` | 21 | [map/operations/vehicle_commands.md](map/operations/vehicle_commands.md) |
+| `client.vehicles` | `Vehicles` / `AsyncVehicles` | 21 | [map/operations/vehicles.md](map/operations/vehicles.md) |
 
 ---
 
@@ -237,7 +282,7 @@ Import paths by content type (`from <package> import <Name>`):
 | Operation controllers | `tesla_fleet_management_api.apis` |
 | Models | `tesla_fleet_management_api.models` |
 | Enums | `tesla_fleet_management_api.models.enums` |
-| Core runtime (`ApiError`, `ApiResult`, `RawError`, …) | `tesla_fleet_management_api.core` |
+| Core runtime (`SdkError`, `ApiError`, `ApiResult`, `RawError`, …) | `tesla_fleet_management_api.core` |
 
 ---
 
@@ -245,9 +290,9 @@ Import paths by content type (`from <package> import <Name>`):
 
 **Bearer token.** Pass `bearer_auth="<token>"`.
 
-**OAuth2 (authorization code).** Pass `thirdpartytoken_authorization_code` your client id, redirect URI and authorization code; authorization is at `/authorize` and tokens come from `/token`, both on the base URL — so `base_url="https://…"` moves token traffic too. Scopes are the `ThirdpartytokenAuthorizationCodeScope` alias.
+**OAuth2 (authorization code).** Pass `thirdpartytoken_authorization_code` your client id, redirect URI and authorization code; authorization is at `/authorize` and tokens come from `/token`, both on the `auth_server` server. Scopes are the `ThirdpartytokenAuthorizationCodeScope` alias.
 
-**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the base URL — so `base_url="https://…"` moves token traffic too. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
+**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the `auth_server` server. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
 
 Operation blocks name their scheme in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 
@@ -256,12 +301,14 @@ Operation blocks name their scheme in an **Auth** bullet; an operation whose spe
 
 A scheme you did not configure is skipped silently rather than raising, and the request is sent anyway — so an authentication failure can mean no credential was sent rather than a bad one.
 
-**Environments.** `environment=` selects the target environment (`tesla_fleet_management_api/server/environment.py`); this SDK's one server (`tesla_fleet_management_api/server/server_config.py`) has a base URL per environment:
+**One environment.** The spec declares a single environment, so no `environment` keyword exists and there is nothing to select.
 
-| Environment | Base URL | Hosting | Override point |
-| --- | --- | --- | --- |
-| `"production"` *(default)* | `https://fleet-api.prd.na.vn.cloud.tesla.com` | Production | `base_url="https://…"` |
-| `"environment2"` | `https://auth.tesla.com/oauth2/v3` | Production | `base_url="https://…"` |
+**2 servers.** Base-URL templates and override points (`tesla_fleet_management_api/server/server_config.py`):
 
-Pick a row with `environment=`.
+| Server | Base URL | Override point |
+| --- | --- | --- |
+| `default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | `{"default": {"base_url": …}}` |
+| `auth_server` | `https://auth.tesla.com/oauth2/v3` | `{"auth_server": {"base_url": …}}` |
+
+Override any of these by passing `server_config=` a dict nested exactly as the columns above read — `{"default": {"base_url": …}}` — with each row's variables sitting beside its `base_url`.
 

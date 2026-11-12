@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/partner_accounts/public_key`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_public_key_for_a_domain(domain: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `domain`
 - **Params**: `domain` — query
@@ -25,6 +26,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/partner_accounts/fleet_telemetry_errors`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_recent_fleet_telemetry_errors(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `FleetTelemetryErrorsResponse`
 - **Returns (raw)**: `ApiResult[FleetTelemetryErrorsResponse, RawError]`
@@ -38,6 +40,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/partner_accounts/fleet_telemetry_error_vins`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_vins_with_fleet_telemetry_errors(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `BackupResponse`
 - **Returns (raw)**: `ApiResult[BackupResponse, RawError]`
@@ -51,6 +54,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/partner_accounts`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def register_a_partner_account(body: RegisterPartnerRequest | RegisterPartnerRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `body`
 - **Params**: `body` — JSON body

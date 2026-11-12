@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/charging/history`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_charging_history(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `ChargingHistoryResponse`
 - **Returns (raw)**: `ApiResult[ChargingHistoryResponse, RawError]`
@@ -23,6 +24,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/charging/invoice/{id}`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_charging_invoice(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `id_`
 - **Params**: `id_` — path `id`
@@ -34,6 +36,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/charging/sessions`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_charging_sessions(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `ChargingSessionsResponse`
 - **Returns (raw)**: `ApiResult[ChargingSessionsResponse, RawError]`

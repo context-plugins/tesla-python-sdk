@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/backup`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def adjust_site_s_backup_reserve(energy_site_id: str, body: BackupRequest | BackupRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `body`
 - **Params**: `energy_site_id` — path · `body` — JSON body
@@ -27,6 +28,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def adjust_site_s_off_grid_vehicle_charging_reserve(energy_site_id: str, body: OffGridVehicleChargingReserveRequest | OffGridVehicleChargingReserveRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `body`
 - **Params**: `energy_site_id` — path · `body` — JSON body
@@ -44,6 +46,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/grid_import_export`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(energy_site_id: str, *, body: Any | None = None, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`
 - **Params**: `energy_site_id` — path · `body` — JSON body
@@ -59,6 +62,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/energy_sites/{energy_site_id}/calendar_history`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_backup_or_energy_history(energy_site_id: str, kind: KindOrStr, start_date: RFC3339DateTime, end_date: RFC3339DateTime, *, period: str | None = None, time_zone: str | None = None, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `kind`, `start_date`, `end_date`
 - **Params**: `energy_site_id` — path · `kind` — query · `start_date` — query · `end_date` — query · `period` — query · `time_zone` — query
@@ -75,6 +79,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/energy_sites/{energy_site_id}/live_status`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_live_site_status(energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`
 - **Params**: `energy_site_id` — path
@@ -90,6 +95,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/energy_sites/{energy_site_id}/site_info`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_site_information_assets_settings_features(energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`
 - **Params**: `energy_site_id` — path
@@ -105,6 +111,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/products`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_user_products_vehicles_energy_sites(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `ProductsResponse`
 - **Returns (raw)**: `ApiResult[ProductsResponse, RawError]`
@@ -118,6 +125,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/energy_sites/{energy_site_id}/telemetry_history`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_wall_connector_charging_history(energy_site_id: str, kind: KindGetWallConnectorChargingHistoryOrStr, start_date: RFC3339DateTime, end_date: RFC3339DateTime, *, time_zone: str | None = None, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `kind`, `start_date`, `end_date`
 - **Params**: `energy_site_id` — path · `kind` — query · `start_date` — query · `end_date` — query · `time_zone` — query
@@ -134,6 +142,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/operation`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def set_site_mode_autonomous_or_self_consumption(energy_site_id: str, body: OperationRequest | OperationRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `body`
 - **Params**: `energy_site_id` — path · `body` — JSON body
@@ -151,6 +160,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/storm_mode`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def update_storm_watch_participation(energy_site_id: str, body: StormModeRequest | StormModeRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `body`
 - **Params**: `energy_site_id` — path · `body` — JSON body
@@ -168,6 +178,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/energy_sites/{energy_site_id}/time_of_use_settings`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def update_time_of_use_tou_settings(energy_site_id: str, body: TimeOfUseSettingsRequest | TimeOfUseSettingsRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `energy_site_id`, `body`
 - **Params**: `energy_site_id` — path · `body` — JSON body

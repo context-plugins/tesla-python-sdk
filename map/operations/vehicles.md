@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/fleet_telemetry_config_jws`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def configure_fleet_telemetry_using_signed_jws_token(body: FleetTelemetryJwsRequest | FleetTelemetryJwsRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `body`
 - **Params**: `body` — JSON body
@@ -26,6 +27,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/fleet_telemetry_config`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def create_or_update_fleet_telemetry_configuration(body: Any, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `body`
 - **Params**: `body` — JSON body
@@ -37,6 +39,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `DELETE /api/1/vehicles/{vehicle_tag}/fleet_telemetry_config`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def delete_fleet_telemetry_configuration(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -48,6 +51,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/drivers`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_allowed_drivers_for_a_vehicle(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -63,6 +67,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/vehicles/subscriptions/eligibility`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_eligible_vehicle_subscriptions(vin: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`
 - **Params**: `vin` — query
@@ -78,6 +83,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/vehicles/upgrades/eligibility`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_eligible_vehicle_upgrades(vin: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`
 - **Params**: `vin` — query
@@ -93,6 +99,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/enterprise/v1/{vin}/roles`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_enterprise_roles_for_a_vehicle(vin: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`
 - **Params**: `vin` — path
@@ -104,6 +111,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/fleet_status`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_fleet_status_for_vehicles(body: FleetStatusRequest | FleetStatusRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `body`
 - **Params**: `body` — JSON body
@@ -120,6 +128,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/fleet_telemetry_config`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_fleet_telemetry_configuration(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -131,6 +140,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/fleet_telemetry_errors`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_fleet_telemetry_errors_for_a_vehicle(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -142,6 +152,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_vehicle(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -157,6 +168,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def list_vehicles(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `Api1VehiclesResponse`
 - **Returns (raw)**: `ApiResult[Api1VehiclesResponse, RawError]`
@@ -170,6 +182,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/mobile_enabled`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def mobile_enabled(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -185,6 +198,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/nearby_charging_sites`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def nearby_charging_sites(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -200,6 +214,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `DELETE /api/1/vehicles/{vehicle_tag}/drivers`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def remove_driver_access_from_a_vehicle(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -215,6 +230,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/dx/enterprise/v1/{vin}/payer`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def set_enterprise_payer_roles(vin: str, body: EnterprisePayerRequest | EnterprisePayerRequestDict, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`, `body`
 - **Params**: `vin` — path · `body` — JSON body
@@ -231,6 +247,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vehicle_tag}/vehicle_data`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def vehicle_live_data(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -246,6 +263,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/vehicles/options`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def vehicle_options(vin: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`
 - **Params**: `vin` — query
@@ -261,6 +279,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/vehicles/{vin}/specs`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def vehicle_specs(vin: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vin`
 - **Params**: `vin` — path
@@ -276,6 +295,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `POST /api/1/vehicles/{vehicle_tag}/wake_up`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def wake_up_vehicle(vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `vehicle_tag`
 - **Params**: `vehicle_tag` — path
@@ -291,6 +311,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/dx/warranty/details`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def warranty_details(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `Api1DxWarrantyDetailsResponse`
 - **Returns (raw)**: `ApiResult[Api1DxWarrantyDetailsResponse, RawError]`

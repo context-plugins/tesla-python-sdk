@@ -25,6 +25,7 @@ from .core import (
     ClientCredentialsTokenSource,
     HttpClient,
     Httpx2Client,
+    LoggingOptionsOrDict,
     OAuth2RefreshableScheme,
     OAuth2Scheme,
     RawClient,
@@ -35,17 +36,17 @@ from .core import (
     no_auth,
     param,
 )
-from .server.environment import Environment
+from .server.server_config import ServerConfigOrDict
 
 
 class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]):
     def __init__(
         self,
         *,
-        environment: Environment = "production",
-        base_url: str | None = None,
+        server_config: ServerConfigOrDict | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         retry_options: int | RetryOptionsOrDict | None = None,
+        logging_options: LoggingOptionsOrDict | None = None,
         custom_http_client: HttpClient | None = None,
         bearer_auth: str | None = None,
         thirdpartytoken_authorization_code: (
@@ -61,10 +62,13 @@ class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]
             TokenSource[ClientCredentials[ThirdpartytokenClientCredentialsScope]] | None
         ) = None,
     ) -> None:
-        super().__init__(environment=environment, base_url=base_url, timeout=timeout, retry_options=retry_options)
+        super().__init__(
+            server_config=server_config, timeout=timeout, retry_options=retry_options, logging_options=logging_options
+        )
         self._raw_client = RawClient(
             http_client=custom_http_client if custom_http_client is not None else Httpx2Client(timeout=timeout),
             retry_options=self._retry_options,
+            logging_options=self._logging_options,
             global_headers=[
                 param[str]("User-Agent", "TeslaFleetManagementApiClient/1.0.0 Python"),
                 param[str]("X-APIMatic-Lang", "Python"),
@@ -86,9 +90,9 @@ class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]
                         if thirdpartytoken_authorization_code_token_source is not None
                         else AuthorizationCodeTokenSource[ThirdpartytokenAuthorizationCodeScope](
                             client=self._raw_client,
-                            authorization_url=self._server.default("/authorize"),
-                            token_url=self._server.default("/token"),
-                            refresh_url=self._server.default("/token"),
+                            authorization_url=self._server.auth_server("/authorize"),
+                            token_url=self._server.auth_server("/token"),
+                            refresh_url=self._server.auth_server("/token"),
                             placement=client_secret_post,
                         )
                     ),
@@ -106,7 +110,7 @@ class TeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[RawClient]
                         if thirdpartytoken_client_credentials_token_source is not None
                         else ClientCredentialsTokenSource[ThirdpartytokenClientCredentialsScope](
                             client=self._raw_client,
-                            token_url=self._server.default("/token"),
+                            token_url=self._server.auth_server("/token"),
                             placement=client_secret_post,
                         )
                     ),

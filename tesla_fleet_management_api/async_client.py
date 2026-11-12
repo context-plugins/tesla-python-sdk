@@ -30,22 +30,23 @@ from .core import (
     BearerAuthScheme,
     ClientCredentials,
     ClientCredentialsOrDict,
+    LoggingOptionsOrDict,
     RetryOptionsOrDict,
     client_secret_post,
     no_auth,
     param,
 )
-from .server.environment import Environment
+from .server.server_config import ServerConfigOrDict
 
 
 class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[AsyncRawClient]):
     def __init__(
         self,
         *,
-        environment: Environment = "production",
-        base_url: str | None = None,
+        server_config: ServerConfigOrDict | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         retry_options: int | RetryOptionsOrDict | None = None,
+        logging_options: LoggingOptionsOrDict | None = None,
         custom_async_http_client: AsyncHttpClient | None = None,
         bearer_auth: str | None = None,
         thirdpartytoken_authorization_code: (
@@ -61,12 +62,15 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
             AsyncTokenSource[ClientCredentials[ThirdpartytokenClientCredentialsScope]] | None
         ) = None,
     ) -> None:
-        super().__init__(environment=environment, base_url=base_url, timeout=timeout, retry_options=retry_options)
+        super().__init__(
+            server_config=server_config, timeout=timeout, retry_options=retry_options, logging_options=logging_options
+        )
         self._raw_client = AsyncRawClient(
             http_client=(
                 custom_async_http_client if custom_async_http_client is not None else AsyncHttpx2Client(timeout=timeout)
             ),
             retry_options=self._retry_options,
+            logging_options=self._logging_options,
             global_headers=[
                 param[str]("User-Agent", "TeslaFleetManagementApiClient/1.0.0 Python"),
                 param[str]("X-APIMatic-Lang", "Python"),
@@ -88,9 +92,9 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
                         if thirdpartytoken_authorization_code_token_source is not None
                         else AsyncAuthorizationCodeTokenSource[ThirdpartytokenAuthorizationCodeScope](
                             client=self._raw_client,
-                            authorization_url=self._server.default("/authorize"),
-                            token_url=self._server.default("/token"),
-                            refresh_url=self._server.default("/token"),
+                            authorization_url=self._server.auth_server("/authorize"),
+                            token_url=self._server.auth_server("/token"),
+                            refresh_url=self._server.auth_server("/token"),
                             placement=client_secret_post,
                         )
                     ),
@@ -108,7 +112,7 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
                         if thirdpartytoken_client_credentials_token_source is not None
                         else AsyncClientCredentialsTokenSource[ThirdpartytokenClientCredentialsScope](
                             client=self._raw_client,
-                            token_url=self._server.default("/token"),
+                            token_url=self._server.auth_server("/token"),
                             placement=client_secret_post,
                         )
                     ),

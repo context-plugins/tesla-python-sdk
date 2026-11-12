@@ -10,6 +10,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/users/orders`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_active_orders_for_a_user(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `OrdersResponse`
 - **Returns (raw)**: `ApiResult[OrdersResponse, RawError]`
@@ -23,6 +24,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/users/feature_config`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_custom_feature_flags_for_a_user(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `BackupResponse`
 - **Returns (raw)**: `ApiResult[BackupResponse, RawError]`
@@ -36,6 +38,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/users/me`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_summary_of_a_user_s_account(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `MeResponse`
 - **Returns (raw)**: `ApiResult[MeResponse, RawError]`
@@ -49,6 +52,7 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /api/1/users/region`
 - **Auth**: `thirdpartytoken_authorization_code` OR `thirdpartytoken_client_credentials`
+- **Server**: `default`
 - **Signature**: `def get_user_s_region_and_fleet_api_base_url(*, request_options: RequestOptionsOrDict | None = None)`
 - **Returns (parsed)**: `RegionResponse`
 - **Returns (raw)**: `ApiResult[RegionResponse, RawError]`
