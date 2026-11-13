@@ -290,9 +290,9 @@ Import paths by content type (`from <package> import <Name>`):
 
 **Bearer token.** Pass `bearer_auth="<token>"`.
 
-**OAuth2 (authorization code).** Pass `thirdpartytoken_authorization_code` your client id, redirect URI and authorization code; authorization is at `/authorize` and tokens come from `/token`, both on the `auth_server` server. Scopes are the `ThirdpartytokenAuthorizationCodeScope` alias.
+**OAuth2 (authorization code).** Pass `thirdpartytoken_authorization_code` your client id, redirect URI and authorization code; authorization is at `/authorize` and tokens come from `/token`, both on the `access_token_server` server. Scopes are the `ThirdpartytokenAuthorizationCodeScope` alias.
 
-**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the `auth_server` server. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
+**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the `access_token_server` server. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
 
 Operation blocks name their scheme in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 
@@ -303,12 +303,13 @@ A scheme you did not configure is skipped silently rather than raising, and the 
 
 **One environment.** The spec declares a single environment, so no `environment` keyword exists and there is nothing to select.
 
-**2 servers.** Base-URL templates and override points (`tesla_fleet_management_api/server/server_config.py`):
+**3 servers.** Base-URL templates and override points (`tesla_fleet_management_api/server/server_config.py`):
 
 | Server | Base URL | Override point |
 | --- | --- | --- |
 | `default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | `{"default": {"base_url": …}}` |
 | `auth_server` | `https://auth.tesla.com/oauth2/v3` | `{"auth_server": {"base_url": …}}` |
+| `access_token_server` | `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3` | `{"access_token_server": {"base_url": …}}` |
 
 Override any of these by passing `server_config=` a dict nested exactly as the columns above read — `{"default": {"base_url": …}}` — with each row's variables sitting beside its `base_url`.
 

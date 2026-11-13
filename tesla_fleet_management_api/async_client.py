@@ -93,8 +93,8 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
                         else AsyncAuthorizationCodeTokenSource[ThirdpartytokenAuthorizationCodeScope](
                             client=self._raw_client,
                             authorization_url=self._server.auth_server("/authorize"),
-                            token_url=self._server.auth_server("/token"),
-                            refresh_url=self._server.auth_server("/token"),
+                            token_url=self._server.access_token_server("/token"),
+                            refresh_url=self._server.access_token_server("/token"),
                             placement=client_secret_post,
                         )
                     ),
@@ -112,7 +112,7 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
                         if thirdpartytoken_client_credentials_token_source is not None
                         else AsyncClientCredentialsTokenSource[ThirdpartytokenClientCredentialsScope](
                             client=self._raw_client,
-                            token_url=self._server.auth_server("/token"),
+                            token_url=self._server.access_token_server("/token"),
                             placement=client_secret_post,
                         )
                     ),

@@ -32,10 +32,23 @@ class AuthServerConfigDict(TypedDict):
     base_url: NotRequired[str]
 
 
+class AccessTokenServerConfig(BaseModel):
+    model_config = ConfigDict(frozen=True, extra="forbid")
+    base_url: str = "https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3"
+
+    def resolve(self, path: str) -> UrlTemplate:
+        return UrlTemplate(base_url=self.base_url, path=path)
+
+
+class AccessTokenServerConfigDict(TypedDict):
+    base_url: NotRequired[str]
+
+
 class ServerConfig(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
     default: DefaultConfig = Field(default_factory=DefaultConfig)
     auth_server: AuthServerConfig = Field(default_factory=AuthServerConfig)
+    access_token_server: AccessTokenServerConfig = Field(default_factory=AccessTokenServerConfig)
 
     @classmethod
     def coerce(cls, value: ServerConfigOrDict | None) -> ServerConfig:
@@ -47,6 +60,7 @@ class ServerConfig(BaseModel):
 class ServerConfigDict(TypedDict):
     default: NotRequired[DefaultConfigDict]
     auth_server: NotRequired[AuthServerConfigDict]
+    access_token_server: NotRequired[AccessTokenServerConfigDict]
 
 
 ServerConfigOrDict: TypeAlias = ServerConfig | ServerConfigDict

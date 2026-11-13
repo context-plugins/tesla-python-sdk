@@ -15,3 +15,6 @@ class Server:
 
     def auth_server(self, path: str) -> UrlTemplate:
         return self.config.auth_server.resolve(path)
+
+    def access_token_server(self, path: str) -> UrlTemplate:
+        return self.config.access_token_server.resolve(path)
