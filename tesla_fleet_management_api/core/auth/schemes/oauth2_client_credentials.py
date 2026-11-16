@@ -1,7 +1,8 @@
 """``oauth2`` / ``clientCredentials`` -- RFC 6749 §4.4.
 
 The grant with the least to it: no resource owner, so no second credential pair and no human. The
-whole request is a ``grant_type``, the scopes, and whatever the placement contributes."""
+whole request is a ``grant_type``, the scopes, the ``audience`` Tesla requires, and whatever the
+placement contributes."""
 
 from __future__ import annotations
 
@@ -37,6 +38,8 @@ class ClientCredentials(OAuth2Credentials, Generic[ScopeT]):
 
     client_id: str
     client_secret: str = Field(repr=False)
+    audience: str
+    """Fleet API base URL of the region the token is for, e.g. ``https://fleet-api.prd.na.vn.cloud.tesla.com``."""
     scopes: list[ScopeT] | None = None
 
     @classmethod
@@ -61,6 +64,7 @@ class ClientCredentials(OAuth2Credentials, Generic[ScopeT]):
 class ClientCredentialsDict(TypedDict, Generic[ScopeT]):
     client_id: str
     client_secret: str
+    audience: str
     scopes: NotRequired[list[ScopeT] | None]
 
 
@@ -77,8 +81,12 @@ def _token_params(credentials: ClientCredentials[ScopeT]) -> OAuthParams:
         credentials: The configured client credentials.
 
     Returns:
-        The ``grant_type`` and the scopes; the placement's half is spliced in by each ``fetch``."""
-    return param[str]("grant_type", "client_credentials"), *scope_params(credentials.scopes)
+        The ``grant_type``, the scopes and the ``audience``; the placement's half is spliced in by each ``fetch``."""
+    return (
+        param[str]("grant_type", "client_credentials"),
+        *scope_params(credentials.scopes),
+        param[str]("audience", credentials.audience),
+    )
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)

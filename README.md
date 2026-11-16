@@ -53,7 +53,8 @@ client = TeslaFleetManagementApiClient(
         client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
     ),
     thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
-        client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
+        client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
+        audience="https://fleet-api.prd.na.vn.cloud.tesla.com",
     ),
 )
 
@@ -92,7 +93,8 @@ async def main() -> None:
             client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
         ),
         thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
-            client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
+            client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
+            audience="https://fleet-api.prd.na.vn.cloud.tesla.com",
         ),
     )
     # TODO: call endpoints here, awaiting each -- see api-reference.md
