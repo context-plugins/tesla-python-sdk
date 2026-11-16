@@ -9,6 +9,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -432,7 +433,7 @@ class AsyncVehicles:
         self,
         body: FleetTelemetryJwsRequest | FleetTelemetryJwsRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> Any:
         """Send a ``POST`` request.
 
@@ -453,7 +454,7 @@ class AsyncVehicles:
         )
 
     async def create_or_update_fleet_telemetry_configuration(
-        self, body: Any, *, request_options: RequestOptionsOrDict | None = None
+        self, body: Any, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Any:
         """Send a ``POST`` request.
 
@@ -474,7 +475,7 @@ class AsyncVehicles:
         )
 
     async def delete_fleet_telemetry_configuration(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Any:
         """Send a ``DELETE`` request.
 
@@ -495,7 +496,7 @@ class AsyncVehicles:
         )
 
     async def get_allowed_drivers_for_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> DriversResponse:
         """Send a ``GET`` request.
 
@@ -516,7 +517,7 @@ class AsyncVehicles:
         )
 
     async def get_eligible_vehicle_subscriptions(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> SiteInfoResponse:
         """Send a ``GET`` request.
 
@@ -535,7 +536,7 @@ class AsyncVehicles:
         )
 
     async def get_eligible_vehicle_upgrades(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> SiteInfoResponse:
         """Send a ``GET`` request.
 
@@ -552,7 +553,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.get_eligible_vehicle_upgrades(vin, request_options=request_options))
 
     async def get_enterprise_roles_for_a_vehicle(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Any:
         """Send a ``GET`` request.
 
@@ -571,7 +572,10 @@ class AsyncVehicles:
         )
 
     async def get_fleet_status_for_vehicles(
-        self, body: FleetStatusRequest | FleetStatusRequestDict, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        body: FleetStatusRequest | FleetStatusRequestDict,
+        *,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> Any:
         """Send a ``POST`` request.
 
@@ -590,7 +594,7 @@ class AsyncVehicles:
         )
 
     async def get_fleet_telemetry_configuration(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Any:
         """Send a ``GET`` request.
 
@@ -611,7 +615,7 @@ class AsyncVehicles:
         )
 
     async def get_fleet_telemetry_errors_for_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Any:
         """Send a ``GET`` request.
 
@@ -632,7 +636,7 @@ class AsyncVehicles:
         )
 
     async def get_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1VehiclesResponseResponse200:
         """Send a ``GET`` request.
 
@@ -648,7 +652,7 @@ class AsyncVehicles:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
         return unwrap(await self._with_raw_response.get_vehicle(vehicle_tag, request_options=request_options))
 
-    async def list_vehicles(self, *, request_options: RequestOptionsOrDict | None = None) -> Api1VehiclesResponse:
+    async def list_vehicles(self, *, request_options: AsyncRequestOptionsOrDict | None = None) -> Api1VehiclesResponse:
         """Send a ``GET`` request.
 
         Args:
@@ -663,7 +667,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.list_vehicles(request_options=request_options))
 
     async def mobile_enabled(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1VehiclesMobileEnabledResponse:
         """Send a ``GET`` request.
 
@@ -680,7 +684,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.mobile_enabled(vehicle_tag, request_options=request_options))
 
     async def nearby_charging_sites(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1VehiclesNearbyChargingSitesResponse:
         """Send a ``GET`` request.
 
@@ -697,7 +701,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.nearby_charging_sites(vehicle_tag, request_options=request_options))
 
     async def remove_driver_access_from_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> SimpleOkResponse:
         """Send a ``DELETE`` request.
 
@@ -722,7 +726,7 @@ class AsyncVehicles:
         vin: str,
         body: EnterprisePayerRequest | EnterprisePayerRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> None:
         """Send a ``POST`` request.
 
@@ -742,7 +746,7 @@ class AsyncVehicles:
         )
 
     async def vehicle_live_data(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> SiteInfoResponse:
         """Send a ``GET`` request.
 
@@ -759,7 +763,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.vehicle_live_data(vehicle_tag, request_options=request_options))
 
     async def vehicle_options(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1DxVehiclesOptionsResponse:
         """Send a ``GET`` request.
 
@@ -775,7 +779,9 @@ class AsyncVehicles:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
         return unwrap(await self._with_raw_response.vehicle_options(vin, request_options=request_options))
 
-    async def vehicle_specs(self, vin: str, *, request_options: RequestOptionsOrDict | None = None) -> SiteInfoResponse:
+    async def vehicle_specs(
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
+    ) -> SiteInfoResponse:
         """Send a ``GET`` request.
 
         Args:
@@ -791,7 +797,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.vehicle_specs(vin, request_options=request_options))
 
     async def wake_up_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1VehiclesWakeUpResponse:
         """Send a ``POST`` request.
 
@@ -808,7 +814,7 @@ class AsyncVehicles:
         return unwrap(await self._with_raw_response.wake_up_vehicle(vehicle_tag, request_options=request_options))
 
     async def warranty_details(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> Api1DxWarrantyDetailsResponse:
         """Send a ``GET`` request.
 
@@ -1351,7 +1357,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         self,
         body: FleetTelemetryJwsRequest | FleetTelemetryJwsRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[Any, RawError]:
         """Send a ``POST`` request.
 
@@ -1376,7 +1382,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def create_or_update_fleet_telemetry_configuration(
-        self, body: Any, *, request_options: RequestOptionsOrDict | None = None
+        self, body: Any, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Any, RawError]:
         """Send a ``POST`` request.
 
@@ -1401,7 +1407,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def delete_fleet_telemetry_configuration(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Any, RawError]:
         """Send a ``DELETE`` request.
 
@@ -1426,7 +1432,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_allowed_drivers_for_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[DriversResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1450,7 +1456,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_eligible_vehicle_subscriptions(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SiteInfoResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1474,7 +1480,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_eligible_vehicle_upgrades(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SiteInfoResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1498,7 +1504,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_enterprise_roles_for_a_vehicle(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Any, RawError]:
         """Send a ``GET`` request.
 
@@ -1522,7 +1528,10 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_fleet_status_for_vehicles(
-        self, body: FleetStatusRequest | FleetStatusRequestDict, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        body: FleetStatusRequest | FleetStatusRequestDict,
+        *,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[Any, RawError]:
         """Send a ``POST`` request.
 
@@ -1547,7 +1556,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_fleet_telemetry_configuration(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Any, RawError]:
         """Send a ``GET`` request.
 
@@ -1571,7 +1580,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_fleet_telemetry_errors_for_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Any, RawError]:
         """Send a ``GET`` request.
 
@@ -1595,7 +1604,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1VehiclesResponseResponse200, RawError]:
         """Send a ``GET`` request.
 
@@ -1619,7 +1628,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def list_vehicles(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1VehiclesResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1641,7 +1650,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def mobile_enabled(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1VehiclesMobileEnabledResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1665,7 +1674,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def nearby_charging_sites(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1VehiclesNearbyChargingSitesResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1689,7 +1698,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def remove_driver_access_from_a_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SimpleOkResponse, RawError]:
         """Send a ``DELETE`` request.
 
@@ -1718,7 +1727,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         vin: str,
         body: EnterprisePayerRequest | EnterprisePayerRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[None, RawError]:
         """Send a ``POST`` request.
 
@@ -1745,7 +1754,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def vehicle_live_data(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SiteInfoResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1769,7 +1778,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def vehicle_options(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1DxVehiclesOptionsResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1793,7 +1802,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def vehicle_specs(
-        self, vin: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vin: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SiteInfoResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1817,7 +1826,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def wake_up_vehicle(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1VehiclesWakeUpResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1842,7 +1851,7 @@ class AsyncVehiclesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def warranty_details(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[Api1DxWarrantyDetailsResponse, RawError]:
         """Send a ``GET`` request.
 

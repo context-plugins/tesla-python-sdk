@@ -6,6 +6,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -96,7 +97,7 @@ class AsyncUser:
         self._with_raw_response = AsyncUserWithRawResponse(client, server, auth)
 
     async def get_active_orders_for_a_user(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> OrdersResponse:
         """Send a ``GET`` request.
 
@@ -112,7 +113,7 @@ class AsyncUser:
         return unwrap(await self._with_raw_response.get_active_orders_for_a_user(request_options=request_options))
 
     async def get_custom_feature_flags_for_a_user(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> BackupResponse:
         """Send a ``GET`` request.
 
@@ -130,7 +131,7 @@ class AsyncUser:
         )
 
     async def get_summary_of_a_user_s_account(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> MeResponse:
         """Send a ``GET`` request.
 
@@ -146,7 +147,7 @@ class AsyncUser:
         return unwrap(await self._with_raw_response.get_summary_of_a_user_s_account(request_options=request_options))
 
     async def get_user_s_region_and_fleet_api_base_url(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> RegionResponse:
         """Send a ``GET`` request.
 
@@ -260,7 +261,7 @@ class UserWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
 class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def get_active_orders_for_a_user(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[OrdersResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -282,7 +283,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         )
 
     async def get_custom_feature_flags_for_a_user(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[BackupResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -304,7 +305,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         )
 
     async def get_summary_of_a_user_s_account(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[MeResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -326,7 +327,7 @@ class AsyncUserWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         )
 
     async def get_user_s_region_and_fleet_api_base_url(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[RegionResponse, RawError]:
         """Send a ``GET`` request.
 

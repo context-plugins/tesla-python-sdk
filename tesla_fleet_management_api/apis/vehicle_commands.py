@@ -8,6 +8,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -425,7 +426,7 @@ class AsyncVehicleCommands:
         vehicle_tag: str,
         body: ActuateTrunkRequest | ActuateTrunkRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CommandResponse:
         """Controls the front or rear trunk
 
@@ -447,7 +448,7 @@ class AsyncVehicleCommands:
         vehicle_tag: str,
         body: AddChargeScheduleRequest | AddChargeScheduleRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -471,7 +472,7 @@ class AsyncVehicleCommands:
         vehicle_tag: str,
         body: AddPreconditionScheduleRequest | AddPreconditionScheduleRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -495,7 +496,7 @@ class AsyncVehicleCommands:
         vehicle_tag: str,
         body: AdjustVolumeRequest | AdjustVolumeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -515,7 +516,7 @@ class AsyncVehicleCommands:
         )
 
     async def cancelsoftwareupdate(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -532,7 +533,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.cancelsoftwareupdate(vehicle_tag, request_options=request_options))
 
     async def chargemaxrange(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -549,7 +550,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.chargemaxrange(vehicle_tag, request_options=request_options))
 
     async def chargestandard(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -566,7 +567,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.chargestandard(vehicle_tag, request_options=request_options))
 
     async def clear_pi_nto_drive_admin(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Deactivates PIN to Drive and resets the associated PIN for supported firmware versions.
 
@@ -585,7 +586,7 @@ class AsyncVehicleCommands:
         )
 
     async def closechargeportdoor(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -606,7 +607,7 @@ class AsyncVehicleCommands:
         vehicle_tag: str,
         body: GuestModeRequest | GuestModeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -626,7 +627,7 @@ class AsyncVehicleCommands:
         )
 
     async def eraseuserdata(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Erases user data from the vehicle UI. Requires Guest Mode.
 
@@ -643,7 +644,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.eraseuserdata(vehicle_tag, request_options=request_options))
 
     async def flashlights(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Briefly flashes vehicle headlights.
 
@@ -660,7 +661,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.flashlights(vehicle_tag, request_options=request_options))
 
     async def honkhorn(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -677,7 +678,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.honkhorn(vehicle_tag, request_options=request_options))
 
     async def lockdoors(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -694,7 +695,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.lockdoors(vehicle_tag, request_options=request_options))
 
     async def nextfavoritemediatrack(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -713,7 +714,7 @@ class AsyncVehicleCommands:
         )
 
     async def openchargeportdoor(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -730,7 +731,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.openchargeportdoor(vehicle_tag, request_options=request_options))
 
     async def startcharging(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -747,7 +748,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.startcharging(vehicle_tag, request_options=request_options))
 
     async def startclimatepreconditioning(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -766,7 +767,7 @@ class AsyncVehicleCommands:
         )
 
     async def stopcharging(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -783,7 +784,7 @@ class AsyncVehicleCommands:
         return unwrap(await self._with_raw_response.stopcharging(vehicle_tag, request_options=request_options))
 
     async def stopclimatepreconditioning(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -802,7 +803,7 @@ class AsyncVehicleCommands:
         )
 
     async def unlockdoors(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> CommandResponse:
         """Send a ``POST`` request.
 
@@ -1386,7 +1387,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         vehicle_tag: str,
         body: ActuateTrunkRequest | ActuateTrunkRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CommandResponse, RawError]:
         """Controls the front or rear trunk
 
@@ -1417,7 +1418,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         vehicle_tag: str,
         body: AddChargeScheduleRequest | AddChargeScheduleRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1448,7 +1449,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         vehicle_tag: str,
         body: AddPreconditionScheduleRequest | AddPreconditionScheduleRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1479,7 +1480,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         vehicle_tag: str,
         body: AdjustVolumeRequest | AdjustVolumeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1506,7 +1507,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def cancelsoftwareupdate(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1531,7 +1532,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def chargemaxrange(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1556,7 +1557,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def chargestandard(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1581,7 +1582,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def clear_pi_nto_drive_admin(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Deactivates PIN to Drive and resets the associated PIN for supported firmware versions.
 
@@ -1606,7 +1607,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def closechargeportdoor(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1635,7 +1636,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         vehicle_tag: str,
         body: GuestModeRequest | GuestModeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1662,7 +1663,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def eraseuserdata(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Erases user data from the vehicle UI. Requires Guest Mode.
 
@@ -1687,7 +1688,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def flashlights(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Briefly flashes vehicle headlights.
 
@@ -1712,7 +1713,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def honkhorn(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1737,7 +1738,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def lockdoors(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1762,7 +1763,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def nextfavoritemediatrack(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1787,7 +1788,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def openchargeportdoor(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1812,7 +1813,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def startcharging(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1837,7 +1838,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def startclimatepreconditioning(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1862,7 +1863,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def stopcharging(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1887,7 +1888,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def stopclimatepreconditioning(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1912,7 +1913,7 @@ class AsyncVehicleCommandsWithRawResponse(SecuredRawResponse[AsyncRawClient, Ser
         )
 
     async def unlockdoors(
-        self, vehicle_tag: str, *, request_options: RequestOptionsOrDict | None = None
+        self, vehicle_tag: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[CommandResponse, RawError]:
         """Send a ``POST`` request.
 
