@@ -9,6 +9,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -335,7 +336,7 @@ class AsyncEnergy:
         energy_site_id: str,
         body: BackupRequest | BackupRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> BackupResponse:
         """Send a ``POST`` request.
 
@@ -361,7 +362,7 @@ class AsyncEnergy:
         energy_site_id: str,
         body: OffGridVehicleChargingReserveRequest | OffGridVehicleChargingReserveRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> GenericUpdateResponse:
         """Send a ``POST`` request.
 
@@ -383,7 +384,7 @@ class AsyncEnergy:
         )
 
     async def allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-        self, energy_site_id: str, *, body: Any | None = None, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, body: Any | None = None, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> GenericUpdateResponse:
         """Send a ``POST`` request.
 
@@ -413,7 +414,7 @@ class AsyncEnergy:
         *,
         period: str | None = None,
         time_zone: str | None = None,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> CalendarHistoryResponse:
         """Send a ``GET`` request.
 
@@ -445,7 +446,7 @@ class AsyncEnergy:
         )
 
     async def get_live_site_status(
-        self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> LiveStatusResponse:
         """Send a ``GET`` request.
 
@@ -464,7 +465,7 @@ class AsyncEnergy:
         )
 
     async def get_site_information_assets_settings_features(
-        self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> SiteInfoResponse:
         """Send a ``GET`` request.
 
@@ -485,7 +486,7 @@ class AsyncEnergy:
         )
 
     async def get_user_products_vehicles_energy_sites(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ProductsResponse:
         """Send a ``GET`` request.
 
@@ -510,7 +511,7 @@ class AsyncEnergy:
         end_date: RFC3339DateTime,
         *,
         time_zone: str | None = None,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ChargeHistoryResponse:
         """Send a ``GET`` request.
 
@@ -539,7 +540,7 @@ class AsyncEnergy:
         energy_site_id: str,
         body: OperationRequest | OperationRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> GenericUpdateResponse:
         """Send a ``POST`` request.
 
@@ -565,7 +566,7 @@ class AsyncEnergy:
         energy_site_id: str,
         body: StormModeRequest | StormModeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> GenericUpdateResponse:
         """Send a ``POST`` request.
 
@@ -591,7 +592,7 @@ class AsyncEnergy:
         energy_site_id: str,
         body: TimeOfUseSettingsRequest | TimeOfUseSettingsRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> GenericUpdateResponse:
         """Send a ``POST`` request.
 
@@ -962,7 +963,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         energy_site_id: str,
         body: BackupRequest | BackupRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[BackupResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -993,7 +994,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         energy_site_id: str,
         body: OffGridVehicleChargingReserveRequest | OffGridVehicleChargingReserveRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[GenericUpdateResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1020,7 +1021,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         )
 
     async def allow_disallow_charging_from_the_grid_and_exporting_energy_to_the_grid(
-        self, energy_site_id: str, *, body: Any | None = None, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, body: Any | None = None, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[GenericUpdateResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1055,7 +1056,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         *,
         period: str | None = None,
         time_zone: str | None = None,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[CalendarHistoryResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1091,7 +1092,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         )
 
     async def get_live_site_status(
-        self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[LiveStatusResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1115,7 +1116,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         )
 
     async def get_site_information_assets_settings_features(
-        self, energy_site_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, energy_site_id: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[SiteInfoResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1139,7 +1140,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         )
 
     async def get_user_products_vehicles_energy_sites(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[ProductsResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1168,7 +1169,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         end_date: RFC3339DateTime,
         *,
         time_zone: str | None = None,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[ChargeHistoryResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -1206,7 +1207,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         energy_site_id: str,
         body: OperationRequest | OperationRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[GenericUpdateResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1237,7 +1238,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         energy_site_id: str,
         body: StormModeRequest | StormModeRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[GenericUpdateResponse, RawError]:
         """Send a ``POST`` request.
 
@@ -1268,7 +1269,7 @@ class AsyncEnergyWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asyn
         energy_site_id: str,
         body: TimeOfUseSettingsRequest | TimeOfUseSettingsRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[GenericUpdateResponse, RawError]:
         """Send a ``POST`` request.
 

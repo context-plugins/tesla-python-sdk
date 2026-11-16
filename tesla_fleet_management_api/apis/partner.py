@@ -8,6 +8,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -110,7 +111,7 @@ class AsyncPartner:
         self._with_raw_response = AsyncPartnerWithRawResponse(client, server, auth)
 
     async def get_public_key_for_a_domain(
-        self, domain: str, *, request_options: RequestOptionsOrDict | None = None
+        self, domain: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> PublicKeyResponse:
         """Send a ``GET`` request.
 
@@ -129,7 +130,7 @@ class AsyncPartner:
         )
 
     async def get_recent_fleet_telemetry_errors(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> FleetTelemetryErrorsResponse:
         """Send a ``GET`` request.
 
@@ -145,7 +146,7 @@ class AsyncPartner:
         return unwrap(await self._with_raw_response.get_recent_fleet_telemetry_errors(request_options=request_options))
 
     async def get_vins_with_fleet_telemetry_errors(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> BackupResponse:
         """Send a ``GET`` request.
 
@@ -166,7 +167,7 @@ class AsyncPartner:
         self,
         body: RegisterPartnerRequest | RegisterPartnerRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> RegisterPartnerResponse:
         """Send a ``POST`` request.
 
@@ -287,7 +288,7 @@ class PartnerWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes])
 
 class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def get_public_key_for_a_domain(
-        self, domain: str, *, request_options: RequestOptionsOrDict | None = None
+        self, domain: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[PublicKeyResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -311,7 +312,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         )
 
     async def get_recent_fleet_telemetry_errors(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[FleetTelemetryErrorsResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -333,7 +334,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         )
 
     async def get_vins_with_fleet_telemetry_errors(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[BackupResponse, RawError]:
         """Send a ``GET`` request.
 
@@ -358,7 +359,7 @@ class AsyncPartnerWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Asy
         self,
         body: RegisterPartnerRequest | RegisterPartnerRequestDict,
         *,
-        request_options: RequestOptionsOrDict | None = None,
+        request_options: AsyncRequestOptionsOrDict | None = None,
     ) -> ApiResult[RegisterPartnerResponse, RawError]:
         """Send a ``POST`` request.
 

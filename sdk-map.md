@@ -86,7 +86,7 @@ run(main())
 
 Alternatively, scope it — `async with AsyncTeslaFleetManagementApiClient(...) as client:` closes the pool on exit.
 
-`AsyncClient` (`tesla_fleet_management_api/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavor.
+`AsyncClient` (`tesla_fleet_management_api/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavour.
 
 `Client` and `AsyncClient` are aliases of `TeslaFleetManagementApiClient` and `AsyncTeslaFleetManagementApiClient` — the names tracebacks and `repr()` show; all four import from the root.
 
@@ -100,6 +100,7 @@ Every API group is a property on the client (e.g. `client.charging`). Every cons
 | `timeout` | `float` | `float` | `30.0` seconds |
 | `retry_options` | `int \| RetryOptionsOrDict \| None` | `int \| RetryOptionsOrDict \| None` | `None` |
 | `logging_options` | `LoggingOptionsOrDict \| None` | `LoggingOptionsOrDict \| None` | `None` |
+| `hooks` | `Sequence[SdkHook] \| SdkHooksDict \| None` | `Sequence[AsyncSdkHook] \| AsyncSdkHooksDict \| None` | `None` |
 | `custom_http_client` | `HttpClient \| None` | — | `None` |
 | `custom_async_http_client` | — | `AsyncHttpClient \| None` | `None` |
 | `bearer_auth` | `str \| None` | `str \| None` | `None` |
@@ -115,6 +116,8 @@ The types those columns name — where each imports from and, for a credentials 
 | `ServerConfigOrDict` | `tesla_fleet_management_api.server` | keys as the Servers & auth tables read |
 | `RetryOptionsOrDict` | `tesla_fleet_management_api.core` | a retry count, `RetryOptions`, or a dict: `max_retries: int` · `initial_delay: float` · `backoff_factor: float` · `max_delay: float` · `max_jitter: float` · `status_codes_to_retry: frozenset[int]` · `http_methods_to_retry: frozenset[HttpMethod]` |
 | `LoggingOptionsOrDict` | `tesla_fleet_management_api.core` | `LoggingOptions` or a dict: `log_request_headers: bool` · `log_response_headers: bool` · `log_request_body: bool` · `body_size_limit: int` · `redaction_placeholder: str` · `unmask_headers: AbstractSet[str]` · `mask_headers: AbstractSet[str]` · `mask_keys: AbstractSet[str]` |
+| `SdkHook` | `tesla_fleet_management_api.core` | protocol — `before_request(request: HttpRequest, context: HookContext) -> HttpRequest` · `after_response(response: HttpResponse, context: HookContext) -> HttpResponse`; subclass it and override either, or pass plain functions as an `SdkHooksDict` |
+| `SdkHooksDict` | `tesla_fleet_management_api.core` | dict — `on_request`: functions `(HttpRequest, HookContext) -> HttpRequest` · `on_response`: functions `(HttpResponse, HookContext) -> HttpResponse`; both optional, the `on_request` ones run first, any other key is ignored |
 | `HttpClient` | `tesla_fleet_management_api.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()`; `send` returns once the head has arrived and never reads the body, and raises `SdkConnectionError` (from `core`; `SdkTimeoutError` for a timeout) when no response arrives, as the response's reads do for a body they cannot deliver, naming the call as `request.method` and `safe_url(request.url)` — anything else it raises is never retried |
 | `AuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
 | `ThirdpartytokenAuthorizationCodeScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
@@ -124,6 +127,8 @@ The types those columns name — where each imports from and, for a credentials 
 | `ThirdpartytokenClientCredentialsScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `TokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthToken` |
 | `ClientCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str` · `audience: str` · `scopes: list[Scope] \| None` |
+| `AsyncSdkHook` | `tesla_fleet_management_api.core` | protocol — the same two methods as `async def`, taking `AsyncHookContext` and `AsyncHttpResponse`; `async def` functions go in an `AsyncSdkHooksDict` |
+| `AsyncSdkHooksDict` | `tesla_fleet_management_api.core` | dict — the same two keys, each function `async def`, taking `AsyncHookContext` and, for a response, `AsyncHttpResponse` |
 | `AsyncHttpClient` | `tesla_fleet_management_api.core` | protocol — `async send(request: HttpRequest) -> AsyncHttpResponse` · `async aclose()`; the same obligation, awaited |
 | `AsyncAuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
 | `AsyncRefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthTokenRefreshable` · `async refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
@@ -168,6 +173,14 @@ Every HTTP exchange is written through the standard `logging` module under the `
 | `mask_keys` | `AbstractSet[str]` | `frozenset({"sig", "signature", "access_token", "apikey", "api_key", "client_secret", "password", "refresh_token", "code", "assertion", "client_assertion"})` |
 
 A single call is quietened through `request_options` (`tesla_fleet_management_api/core/request_options.py`): `log_level`, a `logging` level constant, is a floor below which that call's records are not written; it never turns a dump or the body on. A header value prints `REDACTED` unless its name is on the runtime's safe list, a query value unless its key is a paging name, and a form field whose key is in `mask_keys` always; a JSON body prints as sent; a response body is never logged.
+
+### Hooks — none by default
+
+A hook is caller code run on every attempt of every request, retries and the token requests an OAuth scheme makes included (source: `tesla_fleet_management_api/core/hooks.py`). `before_request` runs after authentication and before the request line is logged, and returns the request to send: the one it was given, or a `dataclasses.replace` of it. `after_response` runs after the response line and the 401 check and before the retry decision, and returns the response the call acts on. The client's hooks run first, in order, then the call's.
+
+A single call adds hooks through `request_options` (`tesla_fleet_management_api/core/request_options.py`): `hooks`, a list of hooks or an `SdkHooksDict`, appended to the client's and never replacing them. The client keeps the hooks it was given uncopied, so a list changed after construction is read by the next call. On the async client the per-call options are `AsyncRequestOptions`, whose `hooks` are `AsyncSdkHook` or an `AsyncSdkHooksDict`; a hook of the other flavour is a type error, and nothing is checked at run time.
+
+A hook that raises ends the call with that exception, after any open response is closed. The one exception is `SdkConnectionError` raised from `before_request` naming the call, `safe_url(context.url)`: the attempt is retried as a failed send, under the same method and retry-count rules as a transport failure. Raised from `after_response`, it ends the call like any other exception. On a token request an OAuth scheme makes only the client's hooks run, not the call's, and one that raises reaches you as `AuthSchemeError` with its exception in `scheme_failures`; in an `OR` requirement the next configured scheme is tried first.
 
 ---
 
@@ -243,7 +256,7 @@ Each links to a sub-page with one block per operation, headed by its full access
 | **Four spellings, one signature** — the same method name and parameters on `Client` and `AsyncClient`, each also reachable through `.with_raw_response`; the async twin is a coroutine to `await`, with the same return types and error case, and where the **Async Type** column differs, pass the type it names | Getting a client |
 | **Parsed raises, raw returns** — `ApiError` versus `ApiResult` | Error-handling model |
 | **Case B error is always `RawError`** — also the last arm of every Case A alias, where a block's **Error arms** bullet ends in it | Error-handling model |
-| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout, extra headers, `max_retries`, `status_codes_to_retry` or `log_level`; every signature ends with it | here (`tesla_fleet_management_api/core/request_options.py`), Retries, Logging |
+| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout, extra headers, `max_retries`, `status_codes_to_retry`, `log_level` or `hooks`; every signature ends with it | here (`tesla_fleet_management_api/core/request_options.py`), Retries, Logging, Hooks |
 | **Each operation names its own server** — this SDK declares several, so every block carries a **Server** bullet with the server's key in `server_config=` | its block |
 | **Parameter names are literal** — signatures are generated code verbatim, and everything behind the bare `*` must be passed by name | here |
 | **A parameter's wire name is its Python name** — sent as-is on the path, query string, header or body, unless the block's **Params** bullet carries a wire name beside the role | here |

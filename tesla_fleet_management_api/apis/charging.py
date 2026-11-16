@@ -6,6 +6,7 @@ from ..core import (
     ApiResult,
     AsyncAnySchemes,
     AsyncRawClient,
+    AsyncRequestOptionsOrDict,
     RawClient,
     RawError,
     RequestOptionsOrDict,
@@ -80,7 +81,7 @@ class AsyncCharging:
         self._with_raw_response = AsyncChargingWithRawResponse(client, server, auth)
 
     async def get_charging_history(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ChargingHistoryResponse:
         """Returns the paginated charging history for the authenticated account.
 
@@ -95,7 +96,7 @@ class AsyncCharging:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
         return unwrap(await self._with_raw_response.get_charging_history(request_options=request_options))
 
-    async def get_charging_invoice(self, id_: str, *, request_options: RequestOptionsOrDict | None = None) -> None:
+    async def get_charging_invoice(self, id_: str, *, request_options: AsyncRequestOptionsOrDict | None = None) -> None:
         """Returns a charging invoice PDF for a charging session.
 
         Args:
@@ -111,7 +112,7 @@ class AsyncCharging:
         return unwrap(await self._with_raw_response.get_charging_invoice(id_, request_options=request_options))
 
     async def get_charging_sessions(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ChargingSessionsResponse:
         """Returns charging session information. Only available for business fleet owners.
 
@@ -203,7 +204,7 @@ class ChargingWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
 
 class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def get_charging_history(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[ChargingHistoryResponse, RawError]:
         """Returns the paginated charging history for the authenticated account.
 
@@ -225,7 +226,7 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_charging_invoice(
-        self, id_: str, *, request_options: RequestOptionsOrDict | None = None
+        self, id_: str, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[None, RawError]:
         """Returns a charging invoice PDF for a charging session.
 
@@ -249,7 +250,7 @@ class AsyncChargingWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         )
 
     async def get_charging_sessions(
-        self, *, request_options: RequestOptionsOrDict | None = None
+        self, *, request_options: AsyncRequestOptionsOrDict | None = None
     ) -> ApiResult[ChargingSessionsResponse, RawError]:
         """Returns charging session information. Only available for business fleet owners.
 

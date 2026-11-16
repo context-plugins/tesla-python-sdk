@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from functools import cached_property
 from types import TracebackType
 
@@ -26,6 +27,8 @@ from .core import (
     AsyncOAuth2Scheme,
     AsyncRawClient,
     AsyncRefreshableTokenSource,
+    AsyncSdkHook,
+    AsyncSdkHooksDict,
     AsyncTokenSource,
     BearerAuthScheme,
     ClientCredentials,
@@ -47,6 +50,7 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
         timeout: float = DEFAULT_TIMEOUT,
         retry_options: int | RetryOptionsOrDict | None = None,
         logging_options: LoggingOptionsOrDict | None = None,
+        hooks: Sequence[AsyncSdkHook] | AsyncSdkHooksDict | None = None,
         custom_async_http_client: AsyncHttpClient | None = None,
         bearer_auth: str | None = None,
         thirdpartytoken_authorization_code: (
@@ -71,6 +75,7 @@ class AsyncTeslaFleetManagementApiClient(BaseTeslaFleetManagementApiClient[Async
             ),
             retry_options=self._retry_options,
             logging_options=self._logging_options,
+            hooks=hooks if hooks is not None else [],
             global_headers=[
                 param[str]("User-Agent", "TeslaFleetManagementApiClient/1.0.0 Python"),
                 param[str]("X-APIMatic-Lang", "Python"),
