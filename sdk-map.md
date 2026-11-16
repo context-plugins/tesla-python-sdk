@@ -39,7 +39,8 @@ client = TeslaFleetManagementApiClient(
         client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
     ),
     thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
-        client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
+        client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
+        audience="https://fleet-api.prd.na.vn.cloud.tesla.com",
     ),
 )
 
@@ -72,7 +73,8 @@ async def main() -> None:
             client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
         ),
         thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
-            client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET"
+            client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
+            audience="https://fleet-api.prd.na.vn.cloud.tesla.com",
         ),
     )
     # TODO: call endpoints here, awaiting each -- see api-reference.md
@@ -118,10 +120,10 @@ The types those columns name — where each imports from and, for a credentials 
 | `ThirdpartytokenAuthorizationCodeScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `RefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthTokenRefreshable` · `refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
 | `AuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
-| `ClientCredentialsOrDict` | `tesla_fleet_management_api.core` | `ClientCredentials` or a dict: `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
+| `ClientCredentialsOrDict` | `tesla_fleet_management_api.core` | `ClientCredentials` or a dict: `client_id: str` · `client_secret: str` · `audience: str` · `scopes: list[Scope] \| None` |
 | `ThirdpartytokenClientCredentialsScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `TokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthToken` |
-| `ClientCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str` · `scopes: list[Scope] \| None` |
+| `ClientCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str` · `audience: str` · `scopes: list[Scope] \| None` |
 | `AsyncHttpClient` | `tesla_fleet_management_api.core` | protocol — `async send(request: HttpRequest) -> AsyncHttpResponse` · `async aclose()`; the same obligation, awaited |
 | `AsyncAuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
 | `AsyncRefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthTokenRefreshable` · `async refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
@@ -292,7 +294,7 @@ Import paths by content type (`from <package> import <Name>`):
 
 **OAuth2 (authorization code).** Pass `thirdpartytoken_authorization_code` your client id, redirect URI and authorization code; authorization is at `/authorize` and tokens come from `/token`, both on the `access_token_server` server. Scopes are the `ThirdpartytokenAuthorizationCodeScope` alias.
 
-**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id and secret; tokens come from `/token` on the `access_token_server` server. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
+**OAuth2 (client credentials).** Pass `thirdpartytoken_client_credentials` your client id, secret and `audience` (the Fleet API base URL of the token's region); tokens come from `/token` on the `access_token_server` server. Scopes are the `ThirdpartytokenClientCredentialsScope` alias.
 
 Operation blocks name their scheme in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 
