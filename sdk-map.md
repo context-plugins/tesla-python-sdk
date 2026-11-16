@@ -36,7 +36,7 @@ def prompt(url: str) -> str:
 client = TeslaFleetManagementApiClient(
     bearer_auth="YOUR_BEARER_TOKEN",
     thirdpartytoken_authorization_code=AuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
-        client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
+        client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", audience="https://fleet-api.prd.na.vn.cloud.tesla.com", prompt_for_authorization_code=prompt
     ),
     thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
         client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
@@ -70,7 +70,7 @@ async def main() -> None:
     client = AsyncTeslaFleetManagementApiClient(
         bearer_auth="YOUR_BEARER_TOKEN",
         thirdpartytoken_authorization_code=AsyncAuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
-            client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
+            client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", audience="https://fleet-api.prd.na.vn.cloud.tesla.com", prompt_for_authorization_code=prompt
         ),
         thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
             client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
@@ -119,10 +119,10 @@ The types those columns name — where each imports from and, for a credentials 
 | `SdkHook` | `tesla_fleet_management_api.core` | protocol — `before_request(request: HttpRequest, context: HookContext) -> HttpRequest` · `after_response(response: HttpResponse, context: HookContext) -> HttpResponse`; subclass it and override either, or pass plain functions as an `SdkHooksDict` |
 | `SdkHooksDict` | `tesla_fleet_management_api.core` | dict — `on_request`: functions `(HttpRequest, HookContext) -> HttpRequest` · `on_response`: functions `(HttpResponse, HookContext) -> HttpResponse`; both optional, the `on_request` ones run first, any other key is ignored |
 | `HttpClient` | `tesla_fleet_management_api.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()`; `send` returns once the head has arrived and never reads the body, and raises `SdkConnectionError` (from `core`; `SdkTimeoutError` for a timeout) when no response arrives, as the response's reads do for a body they cannot deliver, naming the call as `request.method` and `safe_url(request.url)` — anything else it raises is never retried |
-| `AuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
+| `AuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `audience: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
 | `ThirdpartytokenAuthorizationCodeScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `RefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthTokenRefreshable` · `refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
-| `AuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
+| `AuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `audience: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AuthorizationCodePrompt` |
 | `ClientCredentialsOrDict` | `tesla_fleet_management_api.core` | `ClientCredentials` or a dict: `client_id: str` · `client_secret: str` · `audience: str` · `scopes: list[Scope] \| None` |
 | `ThirdpartytokenClientCredentialsScope` | `tesla_fleet_management_api.auth` | `Enum` of the declared scopes |
 | `TokenSource` | `tesla_fleet_management_api.core` | protocol — `fetch(credentials) -> OAuthToken` |
@@ -130,9 +130,9 @@ The types those columns name — where each imports from and, for a credentials 
 | `AsyncSdkHook` | `tesla_fleet_management_api.core` | protocol — the same two methods as `async def`, taking `AsyncHookContext` and `AsyncHttpResponse`; `async def` functions go in an `AsyncSdkHooksDict` |
 | `AsyncSdkHooksDict` | `tesla_fleet_management_api.core` | dict — the same two keys, each function `async def`, taking `AsyncHookContext` and, for a response, `AsyncHttpResponse` |
 | `AsyncHttpClient` | `tesla_fleet_management_api.core` | protocol — `async send(request: HttpRequest) -> AsyncHttpResponse` · `async aclose()`; the same obligation, awaited |
-| `AsyncAuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
+| `AsyncAuthorizationCodeCredentialsOrDict` | `tesla_fleet_management_api.core` | `AsyncAuthorizationCodeCredentials` or a dict: `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `audience: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
 | `AsyncRefreshableTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthTokenRefreshable` · `async refresh(credentials, refresh_token) -> OAuthTokenRefreshable \| None` |
-| `AsyncAuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
+| `AsyncAuthorizationCodeCredentials` | `tesla_fleet_management_api.core` | `client_id: str` · `client_secret: str \| None` · `redirect_uri: str` · `audience: str` · `scopes: list[Scope] \| None` · `state: str \| None` · `pkce: PkceMethod \| None = "S256"` · `prompt_for_authorization_code: AsyncAuthorizationCodePrompt` |
 | `AsyncTokenSource` | `tesla_fleet_management_api.core` | protocol — `async fetch(credentials) -> OAuthToken` |
 
 ### Retries — on by default

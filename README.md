@@ -50,7 +50,7 @@ def prompt(url: str) -> str:
 client = TeslaFleetManagementApiClient(
     bearer_auth="YOUR_BEARER_TOKEN",
     thirdpartytoken_authorization_code=AuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
-        client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
+        client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", audience="https://fleet-api.prd.na.vn.cloud.tesla.com", prompt_for_authorization_code=prompt
     ),
     thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
         client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",
@@ -90,7 +90,7 @@ async def main() -> None:
     client = AsyncTeslaFleetManagementApiClient(
         bearer_auth="YOUR_BEARER_TOKEN",
         thirdpartytoken_authorization_code=AsyncAuthorizationCodeCredentials[ThirdpartytokenAuthorizationCodeScope](
-            client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", prompt_for_authorization_code=prompt
+            client_id="YOUR_CLIENT_ID", redirect_uri="YOUR_REDIRECT_URI", audience="https://fleet-api.prd.na.vn.cloud.tesla.com", prompt_for_authorization_code=prompt
         ),
         thirdpartytoken_client_credentials=ClientCredentials[ThirdpartytokenClientCredentialsScope](
             client_id="YOUR_CLIENT_ID", client_secret="YOUR_CLIENT_SECRET",

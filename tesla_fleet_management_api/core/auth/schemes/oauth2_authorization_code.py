@@ -103,6 +103,9 @@ class AuthorizationCodeCredentials(OAuth2Credentials, Generic[ScopeT]):
     client_id: str
     client_secret: str | None = Field(default=None, repr=False)
     redirect_uri: str
+    audience: str
+    """Fleet API base URL of the region the token is for, e.g. ``https://fleet-api.prd.na.vn.cloud.tesla.com``.
+    Sent on the code exchange."""
     scopes: list[ScopeT] | None = None
     state: str | None = None
     pkce: PkceMethod | None = "S256"
@@ -141,6 +144,7 @@ class AuthorizationCodeCredentialsDict(TypedDict, Generic[ScopeT]):
     client_id: str
     client_secret: NotRequired[str | None]
     redirect_uri: str
+    audience: str
     scopes: NotRequired[list[ScopeT] | None]
     state: NotRequired[str | None]
     pkce: NotRequired[PkceMethod | None]
@@ -164,6 +168,7 @@ class AsyncAuthorizationCodeCredentials(OAuth2Credentials, Generic[ScopeT]):
     client_id: str
     client_secret: str | None = Field(default=None, repr=False)
     redirect_uri: str
+    audience: str
     scopes: list[ScopeT] | None = None
     state: str | None = None
     pkce: PkceMethod | None = "S256"
@@ -203,6 +208,7 @@ class AsyncAuthorizationCodeCredentialsDict(TypedDict, Generic[ScopeT]):
     client_id: str
     client_secret: NotRequired[str | None]
     redirect_uri: str
+    audience: str
     scopes: NotRequired[list[ScopeT] | None]
     state: NotRequired[str | None]
     pkce: NotRequired[PkceMethod | None]
@@ -293,6 +299,7 @@ class AuthorizationCodeTokenSource(Generic[ScopeT]):
                     param[str]("grant_type", "authorization_code"),
                     param[str]("code", code),
                     param[str]("redirect_uri", credentials.redirect_uri),
+                    param[str]("audience", credentials.audience),
                     *_code_verifier_params(pkce),
                     *client_params,
                 ),
@@ -359,6 +366,7 @@ class AsyncAuthorizationCodeTokenSource(Generic[ScopeT]):
                     param[str]("grant_type", "authorization_code"),
                     param[str]("code", code),
                     param[str]("redirect_uri", credentials.redirect_uri),
+                    param[str]("audience", credentials.audience),
                     *_code_verifier_params(pkce),
                     *client_params,
                 ),
